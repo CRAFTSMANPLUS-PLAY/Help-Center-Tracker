@@ -236,7 +236,7 @@
 
 <!-- USER PICKER -->
 <div id="user-picker">
-  <div class="picker-logo">CRAFTSMAN<span>+</span></div>
+  <div class="picker-logo"><img src="LOGO_LIGHT_CRAFTSMAN_PLUS.png" alt="CRAFTSMAN+" height="28"></div>
   <h2 class="picker-title">Who's studying today?</h2>
   <p class="picker-sub">PLAY Enablement Track &nbsp;·&nbsp; Select your name to continue</p>
   <div class="picker-grid" id="picker-grid"></div>
@@ -304,10 +304,28 @@
   </div>
 </div>
 
+
+<!-- ADMIN KEYCODE MODAL -->
+<div class="modal-overlay" id="modal-admin-key">
+  <div class="modal">
+    <h3>Admin access</h3>
+    <p>Enter the admin keycode to view the team progress dashboard.</p>
+    <div class="modal-field">
+      <label>Keycode</label>
+      <input type="password" id="admin-key-input" placeholder="Enter keycode" maxlength="20" onkeydown="if(event.key==='Enter')checkAdminKey()">
+    </div>
+    <div id="admin-key-error" style="font-size:11px;color:var(--red);margin-top:-6px;margin-bottom:8px;display:none;">Incorrect keycode. Try again.</div>
+    <div class="modal-actions">
+      <button class="btn-ghost" onclick="closeModal('modal-admin-key')">Cancel</button>
+      <button class="btn-primary" onclick="checkAdminKey()">Unlock</button>
+    </div>
+  </div>
+</div>
+
 <!-- MAIN APP -->
 <div id="main-app" style="display:none;">
   <nav>
-    <span class="nav-wordmark">CRAFTSMAN+</span>
+    <a href="#"><img src="LOGO_LIGHT_CRAFTSMAN_PLUS.png" alt="CRAFTSMAN+" height="20" style="display:block;"></a>
     <div class="nav-right">
       <span class="nav-tag">PLAY Enablement Track</span>
       <div class="nav-user-btn" onclick="switchUser()">
@@ -321,7 +339,7 @@
     <button class="tab active" data-tab="roadmap" onclick="switchTab('roadmap',this)">Roadmap</button>
     <button class="tab" data-tab="rubric"   onclick="switchTab('rubric',  this)">Rubric Scores</button>
     <button class="tab" data-tab="cert"     onclick="switchTab('cert',    this)">Certification</button>
-    <button class="tab" id="tab-admin-btn" data-tab="admin" onclick="switchTab('admin',this)" style="display:none;">Team Overview</button>
+    <button class="tab" id="tab-admin-btn" data-tab="admin" onclick="handleAdminTabClick(this)">Team Overview</button>
   </div>
 
   <!-- ROADMAP -->
@@ -427,8 +445,8 @@ var DEFAULT_USERS = [
   { name: "Matt Forman",       color: "#9b6bfa" }
 ];
 
-// This user sees the Team Overview tab
-var ADMIN_NAME = "Shane Hedengran";
+var ADMIN_KEYCODE = "0000";
+var adminUnlocked = false;
 
 var AVATAR_COLORS = ["#FA6C00","#FEC01F","#5aad3a","#9b6bfa","#00b4d8","#f72585","#e04444","#43aa8b","#f77f00","#4cc9f0"];
 
@@ -583,13 +601,14 @@ function selectUser(uid) {
   document.getElementById("nav-username").textContent = CU.name;
   document.getElementById("roadmap-eyebrow").textContent = CU.name + "'s Track";
   document.getElementById("roadmap-title").innerHTML = CU.name.split(" ")[0] + "'s PLAY<br><span>Enablement Track.</span>";
-  document.getElementById("tab-admin-btn").style.display = CU.name === ADMIN_NAME ? "inline-block" : "none";
+  // Admin tab always visible — keycode protected
   switchTab("roadmap", document.querySelector('.tab[data-tab="roadmap"]'));
   buildRoadmap(); buildRubric(); buildCert(); updateDashboard();
 }
 
 function switchUser() {
   CU = null;
+  adminUnlocked = false;
   document.getElementById("main-app").style.display = "none";
   document.getElementById("user-picker").style.display = "flex";
   renderPicker();
@@ -868,7 +887,7 @@ function buildAdminPanel() {
           '<div class="admin-user-name">'+user.name+'</div>' +
           '<div class="admin-user-meta">'+s.complete+' sessions complete &middot; '+s.certDone+' cert items &middot; Avg conf: '+conf+'</div>' +
         '</div>' +
-        (user.name !== ADMIN_NAME ? '<div class="admin-actions"><button class="btn-sm danger" onclick="promptDeleteUser(\''+user.id+'\')">Remove</button></div>' : '') +
+        (user.id !== CU.id ? '<div class="admin-actions"><button class="btn-sm danger" onclick="promptDeleteUser(\''+user.id+'\')">Remove</button></div>' : '<div class="admin-actions"><span style="font-size:10px;color:var(--mid);">You</span></div>') +
       '</div>' +
       '<div class="admin-stats-row">' +
         '<div class="admin-stat"><div class="admin-stat-val" style="color:var(--green)">'+s.complete+'</div><div class="admin-stat-lbl">Complete</div></div>' +
@@ -940,6 +959,35 @@ function switchTab(name, el) {
   document.getElementById("panel-"+name).classList.add("active");
   if(el) el.classList.add("active");
   if(name==="admin") buildAdminPanel();
+}
+
+
+/* ============================================================
+   ADMIN KEYCODE
+   ============================================================ */
+function handleAdminTabClick(el) {
+  if (adminUnlocked) {
+    switchTab('admin', el);
+  } else {
+    document.getElementById("admin-key-input").value = "";
+    document.getElementById("admin-key-error").style.display = "none";
+    // store ref to tab el for after unlock
+    window._adminTabEl = el;
+    openModal("modal-admin-key");
+  }
+}
+
+function checkAdminKey() {
+  var val = document.getElementById("admin-key-input").value;
+  if (val === ADMIN_KEYCODE) {
+    adminUnlocked = true;
+    closeModal("modal-admin-key");
+    switchTab("admin", window._adminTabEl);
+  } else {
+    document.getElementById("admin-key-error").style.display = "block";
+    document.getElementById("admin-key-input").value = "";
+    document.getElementById("admin-key-input").focus();
+  }
 }
 
 /* ============================================================
