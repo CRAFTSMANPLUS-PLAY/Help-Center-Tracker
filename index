@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CRAFTSMAN+ — Hugo PLAY Enablement Track</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --orange: #FA6C00;
+    --yellow: #FEC01F;
+    --black: #090909;
+    --white: #FDFDFD;
+    --mid: #888;
+    --surface: #141414;
+    --surface2: #1c1c1c;
+    --border: #2a2a2a;
+    --green: #5aad3a;
+    --red: #e04444;
+    --purple: #9b6bfa;
+  }
+
+  html, body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    font-size: 14px;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--black); border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2rem; height: 56px;
+  }
+  .nav-logo { display: flex; align-items: center; text-decoration: none; }
+  .nav-wordmark { font-size: 13px; font-weight: 800; letter-spacing: -0.03em; color: var(--white); }
+  .nav-right { display: flex; align-items: center; gap: 16px; }
+  .nav-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); }
+  .nav-pill {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--black); background: var(--orange);
+    padding: 6px 14px; border-radius: 100px; white-space: nowrap;
+  }
+
+  /* ── TABS ── */
+  .tabs {
+    max-width: 900px; margin: 0 auto; padding: 0 2rem;
+    display: flex; border-bottom: 1px solid var(--border);
+    margin-top: 1.5rem; overflow-x: auto; scrollbar-width: none;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--mid); padding: 10px 20px; cursor: pointer;
+    border-bottom: 2px solid transparent; margin-bottom: -1px;
+    transition: color 0.15s; white-space: nowrap; background: none; border-top: none; border-left: none; border-right: none;
+    font-family: 'Poppins', sans-serif;
+  }
+  .tab:hover { color: var(--white); }
+  .tab.active { color: var(--orange); border-bottom-color: var(--orange); }
+
+  /* ── HERO ── */
+  .hero { padding: 2.5rem 2rem 1.5rem; max-width: 900px; margin: 0 auto; }
+  .hero-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--orange); margin-bottom: 0.75rem; }
+  .hero-title { font-size: clamp(1.8rem, 4vw, 2.75rem); font-weight: 800; line-height: 1.08; letter-spacing: -0.03em; color: var(--white); margin-bottom: 0.6rem; }
+  .hero-title span { color: var(--orange); }
+  .hero-sub { font-size: 14px; color: var(--mid); line-height: 1.6; max-width: 560px; }
+
+  /* ── LAYOUT ── */
+  .content { max-width: 900px; margin: 0 auto; padding: 0 2rem 4rem; }
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    font-size: 9px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--mid); margin-bottom: 14px; margin-top: 1.5rem;
+  }
+  .section-label:first-child { margin-top: 0; }
+
+  hr { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
+
+  /* ── CARDS ── */
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; }
+  .card-accent { border-top: 2px solid var(--orange); }
+
+  /* ── STAT GRID ── */
+  .stat-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 1.25rem; }
+  .stat-box { background: var(--surface2); border-radius: 8px; padding: 1rem; }
+  .stat-box.hl-orange { border: 1px solid var(--orange); background: rgba(250,108,0,0.06); }
+  .stat-box.hl-green  { border: 1px solid var(--green);  background: rgba(90,173,58,0.05); }
+  .stat-lbl { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); margin-bottom: 4px; }
+  .stat-num { font-size: 26px; font-weight: 800; letter-spacing: -0.03em; color: var(--white); }
+  .stat-num.o { color: var(--orange); }
+  .stat-num.g { color: var(--green); }
+  .stat-num.y { color: var(--yellow); }
+  .stat-sub { font-size: 11px; color: var(--mid); margin-top: 4px; line-height: 1.4; }
+
+  /* ── PROGRESS METER ── */
+  .meter-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; }
+  .meter-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+  .meter-title { font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid); }
+  .meter-pct { font-size: 22px; font-weight: 800; letter-spacing: -0.03em; color: var(--orange); }
+  .meter-track { height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; margin-bottom: 8px; }
+  .meter-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--orange), var(--yellow)); transition: width 0.4s ease; }
+  .meter-legend { display: flex; justify-content: space-between; font-size: 10px; color: var(--mid); }
+
+  /* ── BAR ── */
+  .bar-track { height: 4px; border-radius: 2px; background: var(--border); margin: 1rem 0 6px; overflow: hidden; }
+  .bar-fill   { height: 100%; border-radius: 2px; background: var(--orange); transition: width 0.3s ease; }
+  .bar-fill.g { background: var(--green); }
+
+  /* ── WEEK SECTION ── */
+  .week-section { margin-bottom: 10px; }
+
+  .week-header {
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
+    padding: 1.25rem 1.5rem; background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; cursor: pointer; transition: border-color 0.15s; user-select: none;
+  }
+  .week-header:hover { border-color: #3a3a3a; }
+  .week-header.open { border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom-color: var(--surface); }
+
+  .week-title-group { flex: 1; }
+  .week-eyebrow { font-size: 9px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--orange); margin-bottom: 4px; }
+  .week-title { font-size: 15px; font-weight: 700; letter-spacing: -0.02em; color: var(--white); }
+  .week-goal { font-size: 11px; color: var(--mid); margin-top: 4px; line-height: 1.5; }
+  .week-badges { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+
+  .badge { display: inline-block; font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 20px; letter-spacing: 0.04em; border: 1px solid; }
+  .badge-orange { color: var(--orange); background: rgba(250,108,0,0.1);   border-color: rgba(250,108,0,0.3); }
+  .badge-green  { color: var(--green);  background: rgba(90,173,58,0.1);   border-color: rgba(90,173,58,0.3); }
+  .badge-yellow { color: var(--yellow); background: rgba(254,192,31,0.1);  border-color: rgba(254,192,31,0.3); }
+  .badge-mid    { color: var(--mid);    background: rgba(136,136,136,0.08); border-color: #333; }
+  .badge-purple { color: var(--purple); background: rgba(155,107,250,0.1); border-color: rgba(155,107,250,0.3); }
+
+  .week-chevron { font-size: 16px; color: var(--mid); transition: transform 0.2s; flex-shrink: 0; padding-top: 3px; }
+  .week-header.open .week-chevron { transform: rotate(180deg); }
+
+  .week-body {
+    display: none; flex-direction: column; gap: 8px;
+    background: var(--surface); border: 1px solid var(--border); border-top: none;
+    border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; padding: 12px;
+  }
+  .week-body.open { display: flex; }
+
+  /* ── SESSION CARD ── */
+  .session-card {
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 10px; overflow: hidden; transition: border-color 0.15s;
+  }
+  .session-card:hover { border-color: #3a3a3a; }
+  .session-card.status-complete      { border-left: 3px solid var(--green); }
+  .session-card.status-in-progress   { border-left: 3px solid var(--orange); }
+  .session-card.status-skipped       { border-left: 3px solid #444; }
+  .session-card.status-needs-followup{ border-left: 3px solid var(--yellow); }
+  .session-card.status-reference     { border-left: 3px solid var(--purple); }
+
+  .session-head { display: flex; align-items: center; gap: 12px; padding: 12px 16px; cursor: pointer; user-select: none; }
+
+  .day-num {
+    width: 34px; height: 34px; border-radius: 7px; background: #222;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 800; color: var(--mid); flex-shrink: 0; letter-spacing: -0.02em;
+  }
+  .session-card.status-complete    .day-num { background: rgba(90,173,58,0.15);  color: var(--green); }
+  .session-card.status-in-progress .day-num { background: rgba(250,108,0,0.15); color: var(--orange); }
+
+  .session-title-wrap { flex: 1; min-width: 0; }
+  .session-day-label { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); }
+  .session-title { font-size: 13px; font-weight: 600; color: var(--white); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  .session-head-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+  .conf-badge {
+    font-size: 10px; font-weight: 700; color: var(--yellow);
+    background: rgba(254,192,31,0.12); border: 1px solid rgba(254,192,31,0.25);
+    border-radius: 5px; padding: 2px 7px; display: none;
+  }
+  .conf-badge.visible { display: inline-block; }
+  .session-chevron { font-size: 13px; color: var(--mid); transition: transform 0.2s; }
+  .session-card.open .session-chevron { transform: rotate(180deg); }
+
+  .session-body { display: none; padding: 0 16px 16px; border-top: 1px solid var(--border); padding-top: 14px; }
+  .session-card.open .session-body { display: block; }
+
+  .session-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+
+  .session-block label { display: block; font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); margin-bottom: 8px; }
+  .session-block ul { list-style: none; }
+  .session-block ul li { font-size: 12px; color: #aaa; padding: 3px 0 3px 14px; position: relative; line-height: 1.4; }
+  .session-block ul li::before { content: "→"; position: absolute; left: 0; color: #555; font-size: 10px; top: 4px; }
+
+  .app-block { background: #111; border-radius: 8px; padding: 10px 12px; }
+  .app-block p { font-size: 12px; color: #aaa; line-height: 1.5; }
+
+  .rubric-box {
+    background: rgba(250,108,0,0.06); border: 1px solid rgba(250,108,0,0.2);
+    border-radius: 8px; padding: 10px 12px; margin-bottom: 14px;
+    font-size: 12px; color: #ccc; font-style: italic;
+  }
+  .rubric-box strong { display: block; font-style: normal; font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--orange); margin-bottom: 4px; }
+
+  .session-controls { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+
+  .field-group { display: flex; flex-direction: column; gap: 5px; }
+  .field-group label { font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); }
+
+  select, textarea {
+    background: #111; border: 1px solid var(--border); color: var(--white);
+    border-radius: 7px; padding: 8px 10px; font-size: 12px;
+    font-family: 'Poppins', sans-serif; outline: none; transition: border-color 0.15s; width: 100%;
+  }
+  select:focus, textarea:focus { border-color: var(--orange); }
+  select option { background: #111; }
+  textarea { resize: vertical; min-height: 64px; line-height: 1.5; }
+
+  .conf-stars { display: flex; gap: 3px; align-items: center; padding-top: 4px; }
+  .star-btn { font-size: 20px; color: #333; cursor: pointer; transition: color 0.1s, transform 0.1s; background: none; border: none; padding: 2px; line-height: 1; }
+  .star-btn:hover { transform: scale(1.2); }
+  .star-btn.filled { color: var(--yellow); }
+
+  .textarea-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+
+  .save-indicator { font-size: 10px; color: var(--green); opacity: 0; transition: opacity 0.3s; margin-top: 6px; text-align: right; font-weight: 600; letter-spacing: 0.04em; }
+  .save-indicator.show { opacity: 1; }
+
+  /* ── RUBRIC TABLE ── */
+  .rubric-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 1rem; }
+  .rubric-head { display: grid; grid-template-columns: 220px repeat(5,1fr); background: #111; border-bottom: 1px solid var(--border); }
+  .rubric-head div { padding: 10px 14px; font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); }
+  .rubric-row { display: grid; grid-template-columns: 220px repeat(5,1fr); border-bottom: 1px solid var(--border); }
+  .rubric-row:last-child { border-bottom: none; }
+  .rubric-row:hover { background: rgba(255,255,255,0.015); }
+  .rubric-cat-cell { padding: 14px; font-size: 13px; font-weight: 600; color: var(--white); display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+  .rubric-desc-cell { padding: 10px 14px; font-size: 11px; color: var(--mid); display: flex; align-items: center; line-height: 1.4; }
+  .rubric-desc-cell.current { color: var(--orange); font-weight: 600; }
+  select.rubric-select { width: auto; min-width: 52px; padding: 4px 6px; font-size: 11px; }
+
+  /* ── CERT ── */
+  .cert-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; }
+  .cert-wrap h3 { font-size: 15px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 4px; }
+  .cert-wrap p { font-size: 12px; color: var(--mid); margin-bottom: 1rem; line-height: 1.5; }
+  .cert-progress-row { display: flex; justify-content: space-between; font-size: 10px; margin-bottom: 6px; }
+  .cert-progress-row span:first-child { color: var(--mid); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
+  .cert-progress-row span:last-child { color: var(--green); font-weight: 700; }
+  .cert-list { display: flex; flex-direction: column; gap: 6px; margin-top: 1rem; }
+  .cert-item {
+    display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px;
+    background: var(--surface2); border: 1px solid var(--border); border-radius: 8px;
+    cursor: pointer; transition: border-color 0.15s;
+  }
+  .cert-item:hover { border-color: #3a3a3a; }
+  .cert-item.checked { border-color: rgba(90,173,58,0.3); background: rgba(90,173,58,0.04); }
+  .cert-box { width: 17px; height: 17px; border-radius: 4px; border: 2px solid #444; flex-shrink: 0; margin-top: 1px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; transition: all 0.15s; }
+  .cert-item.checked .cert-box { background: var(--green); border-color: var(--green); color: #000; }
+  .cert-text { font-size: 13px; color: #aaa; line-height: 1.4; }
+  .cert-item.checked .cert-text { color: var(--white); text-decoration: line-through; text-decoration-color: var(--green); text-decoration-thickness: 1px; }
+
+  .note { font-size: 11px; color: #555; line-height: 1.6; margin-top: 0.75rem; }
+
+  /* ── FOOTER ── */
+  footer { border-top: 1px solid var(--border); padding: 1.5rem 2rem; display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--mid); flex-wrap: wrap; gap: 10px; }
+  footer a { color: var(--orange); text-decoration: none; }
+  .reset-btn {
+    background: none; border: 1px solid var(--border); color: var(--mid);
+    padding: 6px 14px; border-radius: 100px; font-size: 11px; font-weight: 600;
+    cursor: pointer; transition: all 0.2s; font-family: 'Poppins', sans-serif; letter-spacing: 0.04em;
+  }
+  .reset-btn:hover { border-color: var(--red); color: var(--red); }
+
+  @media (max-width: 580px) {
+    nav { padding: 0 1rem; }
+    .hero, .content { padding-left: 1rem; padding-right: 1rem; }
+    .stat-grid-4 { grid-template-columns: 1fr 1fr; }
+    .session-grid, .textarea-row, .session-controls { grid-template-columns: 1fr; }
+    .nav-tag { display: none; }
+    .rubric-head { display: none; }
+    .rubric-row { display: block; padding: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a class="nav-logo" href="#">
+    <span class="nav-wordmark">CRAFTSMAN+</span>
+  </a>
+  <div class="nav-right">
+    <span class="nav-tag">Hugo Aguilera &nbsp;·&nbsp; CS Enablement</span>
+    <span class="nav-pill">PLAY Track</span>
+  </div>
+</nav>
+
+<!-- ── TABS ── -->
+<div class="tabs">
+  <button class="tab active" data-tab="roadmap" onclick="switchTab('roadmap',this)">Roadmap</button>
+  <button class="tab"        data-tab="rubric"  onclick="switchTab('rubric', this)">Rubric Scores</button>
+  <button class="tab"        data-tab="cert"    onclick="switchTab('cert',   this)">Certification</button>
+</div>
+
+<!-- ══════════════════════ ROADMAP PANEL ══════════════════════ -->
+<div id="panel-roadmap" class="panel active">
+  <div class="hero">
+    <p class="hero-eyebrow">4-Week Enablement Track</p>
+    <h1 class="hero-title">Hugo PLAY<br><span>Enablement Track.</span></h1>
+    <p class="hero-sub">CS fluency roadmap for PLAY, INTELLIGENCE, ANALYTICS, onboarding, support, and escalation. 20 sessions · 1 hour per day · 5 days per week.</p>
+  </div>
+  <div class="content">
+
+    <p class="section-label">Progress snapshot</p>
+    <div class="stat-grid-4">
+      <div class="stat-box hl-orange">
+        <div class="stat-lbl">Complete</div>
+        <div class="stat-num o" id="stat-complete">0</div>
+        <div class="stat-sub">of 20 sessions</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-lbl">In Progress</div>
+        <div class="stat-num o" id="stat-inprogress">0</div>
+        <div class="stat-sub">sessions started</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-lbl">Needs Follow-Up</div>
+        <div class="stat-num y" id="stat-followup">0</div>
+        <div class="stat-sub">flagged for review</div>
+      </div>
+      <div class="stat-box hl-green">
+        <div class="stat-lbl">Avg Confidence</div>
+        <div class="stat-num g" id="stat-avgconf">—</div>
+        <div class="stat-sub">out of 5 stars</div>
+      </div>
+    </div>
+
+    <div class="meter-wrap">
+      <div class="meter-top">
+        <span class="meter-title">Overall Completion</span>
+        <span class="meter-pct" id="pct-label">0%</span>
+      </div>
+      <div class="meter-track">
+        <div class="meter-fill" id="pct-bar" style="width:0%"></div>
+      </div>
+      <div class="meter-legend">
+        <span>Week 1</span>
+        <span id="meter-mid" style="color:var(--green);font-weight:700;">0 of 20 sessions scored</span>
+        <span>Week 4</span>
+      </div>
+    </div>
+
+    <hr>
+    <div id="roadmap-container"></div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════ RUBRIC PANEL ══════════════════════ -->
+<div id="panel-rubric" class="panel">
+  <div class="hero">
+    <p class="hero-eyebrow">Skill Assessment</p>
+    <h1 class="hero-title">Rubric<br><span>score tracker.</span></h1>
+    <p class="hero-sub">Score each category 1–5 as Hugo progresses through the track. 4 = client-ready is the graduation threshold.</p>
+  </div>
+  <div class="content">
+    <p class="section-label">Score each category — 1 to 5</p>
+    <div class="rubric-wrap">
+      <div class="rubric-head">
+        <div>Category</div>
+        <div>1 — Not yet</div>
+        <div>2 — Needs guidance</div>
+        <div>3 — With notes</div>
+        <div>4 — Client-ready</div>
+        <div>5 — Can train</div>
+      </div>
+      <div id="rubric-rows"></div>
+    </div>
+    <p class="note">Update scores weekly. 5 = Hugo can train the next CSM hire.</p>
+  </div>
+</div>
+
+<!-- ══════════════════════ CERT PANEL ══════════════════════ -->
+<div id="panel-cert" class="panel">
+  <div class="hero">
+    <p class="hero-eyebrow">Final Certification</p>
+    <h1 class="hero-title">CS independence<br><span>checklist.</span></h1>
+    <p class="hero-sub">Mark each item once Hugo can do it without prompting. This is the bar for operating independently as a PLAY CSM.</p>
+  </div>
+  <div class="content">
+    <div class="cert-wrap">
+      <div class="cert-progress-row">
+        <span>Certification progress</span>
+        <span id="cert-pct-label">0 of 15 complete</span>
+      </div>
+      <div class="bar-track"><div class="bar-fill g" id="cert-bar" style="width:0%"></div></div>
+      <div class="cert-list" id="cert-list"></div>
+    </div>
+    <p class="note">All 15 items checked = Hugo is certified. Day 20 deliverable: a 1-page PLAY Support + Enablement Cheat Sheet reviewed by Shane.</p>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <span>© 2026 CRAFTSMAN+ &nbsp;·&nbsp; Hugo Aguilera PLAY Enablement Track</span>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <a href="https://help.craftsmanplus.com/" target="_blank">help.craftsmanplus.com</a>
+    <button class="reset-btn" onclick="confirmReset()">Reset Progress</button>
+  </div>
+</footer>
+
+<script>
+/* =====================================================
+   DATA — Edit sessions here to update the roadmap
+   ===================================================== */
+var WEEKS = [
+  {
+    week: 1,
+    title: "Platform Foundation + Core PLAY Workflow",
+    goal: "Hugo can explain PLAY, navigate the docs, understand the core project journey, and walk a new partner through the basics.",
+    sessions: [
+      { day:1,  title:"Platform Overview + Documentation Orientation", study:["Welcome / Home","Platform Overview","How docs are structured"], application:"Write a 5-sentence client-friendly explanation of PLAY.", rubric:"Can Hugo explain what PLAY is without jargon?" },
+      { day:2,  title:"Build a Playable from Scratch", study:["Quickstart","Project creation","Basic project workflow"], application:"Create a simple onboarding walkthrough outline.", rubric:"Can Hugo explain the basic creation flow?" },
+      { day:3,  title:"Editor Basics", study:["Editor layout","Canvas / workspace","Layers","Assets","Scene hierarchy"], application:"Create a glossary of 10 core PLAY terms.", rubric:"Can Hugo define core platform terms?" },
+      { day:4,  title:"Scenes + User Flow", study:["Scene structure","Flow between scenes","CTA / end-card logic"], application:"Map a simple 4-scene playable: Intro → Interaction → Result → CTA.", rubric:"Can Hugo explain how a user moves through a playable?" },
+      { day:5,  title:"Week 1 Applied Review", study:["Review Week 1 docs"], application:"Apply the workflow to one real partner (KashKick, Niantic, InMobi, Stillfront, DraftKings, or Digital Turbine).", rubric:"Can Hugo explain how he would onboard a partner into PLAY?" }
+    ]
+  },
+  {
+    week: 2,
+    title: "PLAY Feature Depth + Support Readiness",
+    goal: "Hugo can support common partner questions around interactions, animations, variants, dynamic content, exports, and troubleshooting.",
+    sessions: [
+      { day:6,  title:"Interactions", study:["Interactions","Triggers","Tap / click / gesture behavior"], application:"Create a troubleshooting checklist for interactions not working.", rubric:"Can Hugo identify the first 3 things to check when an interaction fails?" },
+      { day:7,  title:"Animations + Timeline", study:["Timeline","Animation controls","Layer sequencing"], application:"Write a plain-English explanation of how timeline impacts user experience.", rubric:"Can Hugo explain timing issues without needing Product?" },
+      { day:8,  title:"Variants", study:["Variants","Versioning","Iteration workflows"], application:"Draft a client-facing explanation of when to use variants.", rubric:"Can Hugo explain variants to a UA or creative team?" },
+      { day:9,  title:"Dynamic Content / Advanced Requests", study:["Dynamic content","API / data-related docs (if available)","Mark blank/incomplete pages as Skipped"], application:"Create an escalation intake checklist for dynamic / API requests.", rubric:"Can Hugo ask the right discovery questions before escalating?" },
+      { day:10, title:"Export + Publishing Readiness", study:["Export documentation","Previewing","Network / export considerations"], application:"Create a pre-export QA checklist.", rubric:"Can Hugo distinguish a PLAY issue from a network / DSP issue?" }
+    ]
+  },
+  {
+    week: 3,
+    title: "INTELLIGENCE + ANALYTICS",
+    goal: "Hugo can explain AI features, guide clients on prompt quality, understand analytics basics, and connect usage/performance data to next steps.",
+    sessions: [
+      { day:11, title:"INTELLIGENCE Overview", study:["INTELLIGENCE welcome","How to access it","What it can and cannot do"], application:"Draft a 30-second client explanation of INTELLIGENCE.", rubric:"Can Hugo explain AI features without overpromising?" },
+      { day:12, title:"Design Recommendations", study:["Design Recommendations","Layout, CTA, hierarchy, visual feedback"], application:"Write 5 strong client prompt examples.", rubric:"Can Hugo help clients ask better questions?" },
+      { day:13, title:"Builder Agent", study:["Builder Agent","Natural language editing","Project editing limitations"], application:"Create a client-safe guidance note: \"Use Builder Agent to accelerate edits, but always preview and QA before export.\"", rubric:"Can Hugo explain the value and limitations clearly?" },
+      { day:14, title:"Creative Strategy + Concept Ideation", study:["Creative Strategy","Concept Ideation","Prompt quality"], application:"Create 3 prompt templates: gaming, non-gaming, renewal / QBR.", rubric:"Can Hugo use AI to prepare for a client strategy conversation?" },
+      { day:15, title:"ANALYTICS Overview + Best Practices", study:["Analytics overview","Project analytics","Analytics best practices","Scene naming and structure"], application:"Create a glossary of analytics terms and a 'build for analytics' checklist.", rubric:"Can Hugo explain what the data means and what it does not mean?" }
+    ]
+  },
+  {
+    week: 4,
+    title: "Applied CS Certification",
+    goal: "Hugo can apply the docs to real client scenarios and demonstrate client-ready judgment.",
+    sessions: [
+      { day:16, title:"Client Scenario — Onboarding", study:["Review PLAY foundation and onboarding-related docs"], application:"Build a 30-minute partner onboarding agenda.", rubric:"Can Hugo lead a basic onboarding call?" },
+      { day:17, title:"Client Scenario — Support / Troubleshooting", study:["Review interactions, animations, variants, exports, FAQs"], application:"Create a support triage workflow: User education → Platform bug → Export/network → Product request.", rubric:"Can Hugo classify and escalate issues cleanly?" },
+      { day:18, title:"Client Scenario — Performance Review", study:["Review analytics and analytics insights"], application:"Prepare a sample response to a client who sent performance data and wants recommendations.", rubric:"Can Hugo recommend next steps without overclaiming causation?" },
+      { day:19, title:"Client Scenario — INTELLIGENCE Enablement", study:["Review all INTELLIGENCE specialties"], application:"Create a mini-training agenda for showing INTELLIGENCE to a client.", rubric:"Can Hugo explain where AI fits in the creative workflow?" },
+      { day:20, title:"Final Certification", study:["Review all notes"], application:"Prepare a final 1-page \"PLAY Support + Enablement Cheat Sheet.\"", rubric:"Can Hugo teach Shane how he would onboard, support, analyze, and escalate for a new PLAY partner?" }
+    ]
+  }
+];
+
+var RUBRIC_CATS = [
+  "Platform Comprehension","Client Explanation Quality","Support / Troubleshooting Judgment",
+  "Escalation Clarity","Analytics Interpretation","INTELLIGENCE Fluency","Confidence / Independence"
+];
+var RUBRIC_LEVELS = ["Not yet comfortable","Needs guidance","Can explain with notes","Client-ready","Can train others"];
+
+var CERT_ITEMS = [
+  "Can explain PLAY in plain English",
+  "Can walk through basic project creation",
+  "Can explain scenes, layers, assets, and timeline",
+  "Can troubleshoot basic interaction issues",
+  "Can explain variants",
+  "Can prepare a project for export QA",
+  "Can explain INTELLIGENCE without overpromising",
+  "Can write strong prompts for AI use cases",
+  "Can explain basic analytics",
+  "Can recommend next steps from performance data",
+  "Can identify when to escalate to Product",
+  "Can identify when to escalate to Creative",
+  "Can identify when to escalate to Shane",
+  "Can create a partner onboarding agenda",
+  "Can create a support summary with clear next steps"
+];
+
+var STATUS_OPTIONS = [
+  { value:"",               label:"— Not started —" },
+  { value:"in-progress",   label:"In Progress" },
+  { value:"complete",      label:"Complete" },
+  { value:"skipped",       label:"Skipped / Blank Page" },
+  { value:"needs-followup",label:"Needs Follow-Up" },
+  { value:"reference",     label:"Reference Only" }
+];
+
+/* ── STORAGE ── */
+var STORAGE_KEY = "hugo_play_v2";
+function loadData() { try { var r=localStorage.getItem(STORAGE_KEY); return r?JSON.parse(r):{} } catch(e){return{}} }
+function saveData() { try { localStorage.setItem(STORAGE_KEY,JSON.stringify(DATA)); } catch(e){} }
+var DATA = loadData();
+function getSession(d)   { return DATA["s"+d]||{status:"",confidence:0,notes:"",questions:""}; }
+function setSession(d,o) { DATA["s"+d]=o; saveData(); }
+function getRubric(i)    { return DATA["r"+i]||0; }
+function setRubric(i,v)  { DATA["r"+i]=parseInt(v); saveData(); }
+function getCert(i)      { return DATA["c"+i]||false; }
+function setCert(i,v)    { DATA["c"+i]=v; saveData(); }
+
+/* ── DASHBOARD ── */
+function updateDashboard() {
+  var complete=0,inprog=0,followup=0,scored=0,confT=0,confN=0;
+  WEEKS.forEach(function(w){ w.sessions.forEach(function(s){
+    var d=getSession(s.day);
+    if(d.status==="complete")        { complete++; scored++; }
+    else if(d.status==="in-progress") inprog++;
+    else if(d.status==="needs-followup") followup++;
+    else if(d.status==="skipped"||d.status==="reference") scored++;
+    if(d.confidence>0){ confT+=d.confidence; confN++; }
+  }); });
+  document.getElementById("stat-complete").textContent   = complete;
+  document.getElementById("stat-inprogress").textContent = inprog;
+  document.getElementById("stat-followup").textContent   = followup;
+  var avg = confN>0 ? (confT/confN).toFixed(1) : null;
+  document.getElementById("stat-avgconf").textContent = avg ? avg+"★" : "—";
+  var pct = Math.round((scored/20)*100);
+  document.getElementById("pct-label").textContent = pct+"%";
+  document.getElementById("pct-bar").style.width = pct+"%";
+  document.getElementById("meter-mid").textContent = scored+" of 20 sessions scored";
+}
+
+/* ── ROADMAP ── */
+function buildRoadmap() {
+  var container = document.getElementById("roadmap-container");
+  container.innerHTML = "";
+  WEEKS.forEach(function(week, wi) {
+    var section = document.createElement("div");
+    section.className = "week-section";
+    section.innerHTML =
+      '<div class="week-header" id="wh-'+wi+'" onclick="toggleWeek('+wi+')">' +
+        '<div class="week-title-group">' +
+          '<div class="week-eyebrow">Week '+week.week+'</div>' +
+          '<div class="week-title">'+week.title+'</div>' +
+          '<div class="week-goal">'+week.goal+'</div>' +
+          '<div class="week-badges" id="wb-badges-'+wi+'"></div>' +
+        '</div>' +
+        '<div class="week-chevron">▾</div>' +
+      '</div>' +
+      '<div class="week-body" id="wb-'+wi+'"></div>';
+    var body = section.querySelector(".week-body");
+    week.sessions.forEach(function(sess){ body.appendChild(buildSessionCard(sess)); });
+    container.appendChild(section);
+  });
+  refreshAllBadges();
+}
+
+function getWeekBadges(wi) {
+  var w = WEEKS[wi];
+  var st = {complete:0,inprog:0,skipped:0,followup:0,reference:0};
+  w.sessions.forEach(function(s){
+    var d=getSession(s.day);
+    if(d.status==="complete") st.complete++;
+    else if(d.status==="in-progress") st.inprog++;
+    else if(d.status==="skipped") st.skipped++;
+    else if(d.status==="needs-followup") st.followup++;
+    else if(d.status==="reference") st.reference++;
+  });
+  return [
+    st.complete  ? '<span class="badge badge-green">'+st.complete+' complete</span>'   : "",
+    st.inprog    ? '<span class="badge badge-orange">'+st.inprog+' in progress</span>' : "",
+    st.followup  ? '<span class="badge badge-yellow">'+st.followup+' follow-up</span>' : "",
+    st.skipped   ? '<span class="badge badge-mid">'+st.skipped+' skipped</span>'       : "",
+    st.reference ? '<span class="badge badge-purple">'+st.reference+' reference</span>': ""
+  ].filter(Boolean).join("") || '<span class="badge badge-mid">Not started</span>';
+}
+
+function refreshAllBadges() {
+  WEEKS.forEach(function(_,wi){
+    var el = document.getElementById("wb-badges-"+wi);
+    if(el) el.innerHTML = getWeekBadges(wi);
+  });
+}
+
+function buildSessionCard(session) {
+  var card = document.createElement("div");
+  var d = getSession(session.day);
+  card.className = "session-card"+(d.status?" status-"+d.status:"");
+  card.id = "card-"+session.day;
+  var studyHTML = session.study.map(function(i){ return "<li>"+i+"</li>"; }).join("");
+  var statusOpts = STATUS_OPTIONS.map(function(o){ return '<option value="'+o.value+'"'+(d.status===o.value?" selected":"")+">"+o.label+"</option>"; }).join("");
+  var stars = [1,2,3,4,5].map(function(i){ return '<button class="star-btn'+(d.confidence>=i?" filled":"")+'" onclick="setConf('+session.day+','+i+')">★</button>'; }).join("");
+  card.innerHTML =
+    '<div class="session-head" onclick="toggleSession('+session.day+')">' +
+      '<div class="day-num">D'+session.day+'</div>' +
+      '<div class="session-title-wrap">' +
+        '<div class="session-day-label">Day '+session.day+'</div>' +
+        '<div class="session-title">'+session.title+'</div>' +
+      '</div>' +
+      '<div class="session-head-right">' +
+        '<span class="conf-badge'+(d.confidence>0?" visible":"")+'" id="cb-'+session.day+'">'+(d.confidence>0?d.confidence+"★":"")+'</span>' +
+        '<span class="session-chevron">▾</span>' +
+      '</div>' +
+    '</div>' +
+    '<div class="session-body">' +
+      '<div class="session-grid">' +
+        '<div class="session-block"><label>Study Items</label><ul>'+studyHTML+'</ul></div>' +
+        '<div class="session-block"><label>Application Task</label><div class="app-block"><p>'+session.application+'</p></div></div>' +
+      '</div>' +
+      '<div class="rubric-box"><strong>Rubric Check</strong>'+session.rubric+'</div>' +
+      '<div class="session-controls">' +
+        '<div class="field-group"><label>Status</label><select onchange="updateStatus('+session.day+',this.value)">'+statusOpts+'</select></div>' +
+        '<div class="field-group"><label>Confidence (1–5)</label><div class="conf-stars">'+stars+'</div></div>' +
+      '</div>' +
+      '<div class="textarea-row">' +
+        '<div class="field-group"><label>Session Notes</label><textarea placeholder="Key concepts, observations…" oninput="updateField('+session.day+',\'notes\',this.value)">'+(d.notes||"")+'</textarea></div>' +
+        '<div class="field-group"><label>Open Questions</label><textarea placeholder="Anything unresolved or flagged…" oninput="updateField('+session.day+',\'questions\',this.value)">'+(d.questions||"")+'</textarea></div>' +
+      '</div>' +
+      '<div class="save-indicator" id="saved-'+session.day+'">✓ Saved</div>' +
+    '</div>';
+  return card;
+}
+
+/* ── RUBRIC ── */
+function buildRubric() {
+  var container = document.getElementById("rubric-rows");
+  container.innerHTML = "";
+  RUBRIC_CATS.forEach(function(cat, i) {
+    var current = getRubric(i);
+    var row = document.createElement("div");
+    row.className = "rubric-row";
+    var scoreOpts = [0,1,2,3,4,5].map(function(v){ return '<option value="'+v+'"'+(current===v?" selected":"")+">"+( v===0?"—":v )+"</option>"; }).join("");
+    var descs = RUBRIC_LEVELS.map(function(desc,idx){
+      return '<div class="rubric-desc-cell'+(current===(idx+1)?" current":"")+'">'+desc+'</div>';
+    }).join("");
+    row.innerHTML =
+      '<div class="rubric-cat-cell">'+cat+
+        '<select class="rubric-select" onchange="saveRubric('+i+',this.value)">'+scoreOpts+'</select>'+
+      '</div>'+descs;
+    container.appendChild(row);
+  });
+}
+
+/* ── CERT ── */
+function buildCert() {
+  var list = document.getElementById("cert-list");
+  list.innerHTML = "";
+  CERT_ITEMS.forEach(function(item,i){
+    var checked = getCert(i);
+    var div = document.createElement("div");
+    div.className = "cert-item"+(checked?" checked":"");
+    div.id = "ci-"+i;
+    div.onclick = function(){ toggleCert(i); };
+    div.innerHTML = '<div class="cert-box">'+(checked?"✓":"")+'</div><div class="cert-text">'+item+'</div>';
+    list.appendChild(div);
+  });
+  updateCertBar();
+}
+function updateCertBar() {
+  var done=0;
+  CERT_ITEMS.forEach(function(_,i){ if(getCert(i)) done++; });
+  document.getElementById("cert-pct-label").textContent = done+" of "+CERT_ITEMS.length+" complete";
+  document.getElementById("cert-bar").style.width = Math.round((done/CERT_ITEMS.length)*100)+"%";
+}
+
+/* ── EVENTS ── */
+function toggleWeek(wi) {
+  var hdr=document.getElementById("wh-"+wi), body=document.getElementById("wb-"+wi);
+  var open=hdr.classList.contains("open");
+  hdr.classList.toggle("open",!open); body.classList.toggle("open",!open);
+}
+function toggleSession(day) { var c=document.getElementById("card-"+day); if(c) c.classList.toggle("open"); }
+
+function updateStatus(day, value) {
+  var d=getSession(day); d.status=value; setSession(day,d); flashSaved(day);
+  var card=document.getElementById("card-"+day);
+  if(card){ var wasOpen=card.classList.contains("open"); card.className="session-card"+(value?" status-"+value:"")+(wasOpen?" open":""); }
+  updateDashboard(); refreshAllBadges();
+}
+function setConf(day, val) {
+  var d=getSession(day); d.confidence=val; setSession(day,d); flashSaved(day);
+  var card=document.getElementById("card-"+day);
+  if(card){
+    card.querySelectorAll(".star-btn").forEach(function(s,i){ s.classList.toggle("filled",i<val); });
+    var badge=document.getElementById("cb-"+day);
+    if(badge){ badge.textContent=val+"★"; badge.classList.add("visible"); }
+  }
+  updateDashboard();
+}
+var saveTimers={};
+function updateField(day, field, value) {
+  var d=getSession(day); d[field]=value; setSession(day,d);
+  clearTimeout(saveTimers[day]);
+  saveTimers[day]=setTimeout(function(){ flashSaved(day); },700);
+}
+function flashSaved(day) {
+  var el=document.getElementById("saved-"+day); if(!el) return;
+  el.classList.add("show"); setTimeout(function(){ el.classList.remove("show"); },1800);
+}
+function toggleCert(i) {
+  var val=!getCert(i); setCert(i,val);
+  var item=document.getElementById("ci-"+i);
+  if(item){ item.classList.toggle("checked",val); item.querySelector(".cert-box").textContent=val?"✓":""; }
+  updateCertBar();
+}
+function saveRubric(i,val){ setRubric(i,val); buildRubric(); }
+function switchTab(name, el) {
+  document.querySelectorAll(".panel").forEach(function(p){ p.classList.remove("active"); });
+  document.querySelectorAll(".tab").forEach(function(t){ t.classList.remove("active"); });
+  document.getElementById("panel-"+name).classList.add("active");
+  if(el) el.classList.add("active");
+}
+function confirmReset() {
+  if(confirm("Reset all progress? This cannot be undone.")){ localStorage.removeItem(STORAGE_KEY); DATA={}; init(); }
+}
+
+/* ── INIT ── */
+function init() {
+  buildRoadmap(); buildRubric(); buildCert(); updateDashboard();
+  if(!Object.keys(DATA).length){
+    var hdr=document.getElementById("wh-0"), body=document.getElementById("wb-0");
+    if(hdr&&body){ hdr.classList.add("open"); body.classList.add("open"); }
+  }
+}
+document.addEventListener("DOMContentLoaded", init);
+</script>
+</body>
+</html>
