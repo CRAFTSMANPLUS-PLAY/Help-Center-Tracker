@@ -1036,7 +1036,10 @@ function switchTab(name,el){
   document.querySelectorAll(".tab").forEach(function(t){t.classList.remove("active");});
   document.getElementById("panel-"+name).classList.add("active");
   if(el) el.classList.add("active");
-  if(name==="admin") buildAdminPanel();
+  if(name==="admin")   buildAdminPanel();
+  if(name==="roadmap" && CU) buildRoadmap();
+  if(name==="rubric"  && CU) buildRubric();
+  if(name==="cert"    && CU) { buildCert(); }
 }
 
 /* =============================================================
