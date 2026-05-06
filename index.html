@@ -612,7 +612,7 @@ function renderPicker(){
   grid.innerHTML = "";
 
   /* Who is the "known" user from this session? */
-  var knownId = sessionStorage.getItem("cplus_uid") || "";
+  var knownId = localStorage.getItem("cplus_device_uid") || "";
 
   STORE.users.forEach(function(user){
     var stats    = calcStats(user.id);
@@ -667,7 +667,7 @@ function selectUser(id){
   CU = STORE.users.find(function(u){return u.id===id;});
   if (!CU) return;
 
-  sessionStorage.setItem("cplus_uid", CU.id);
+  localStorage.setItem("cplus_device_uid", CU.id);
   adminUnlocked = (CU.name === SHANE_NAME);
 
   document.getElementById("user-picker").style.display   = "none";
@@ -690,7 +690,7 @@ function selectUser(id){
 
 function switchUser(){
   CU = null; adminUnlocked = false;
-  sessionStorage.removeItem("cplus_uid");
+  /* keep device ownership — do not clear on switch */
   document.getElementById("main-app").style.display  = "none";
   document.getElementById("user-picker").style.display = "flex";
   renderPicker();
