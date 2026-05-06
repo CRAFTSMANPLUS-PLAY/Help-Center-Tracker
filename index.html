@@ -246,7 +246,11 @@
 
 <!-- ADMIN KEYCODE SCREEN -->
 <div id="admin-screen">
-  <img src="LOGO_LIGHT_CRAFTSMAN_PLUS.png" alt="CRAFTSMAN+" height="28" style="margin-bottom:2.5rem;">
+  <img src="LOGO_LIGHT_CRAFTSMAN_PLUS.png" alt="CRAFTSMAN+" height="28" style="margin-bottom:2rem;">
+  <div style="text-align:center;margin-bottom:2rem;">
+    <div style="font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--orange);margin-bottom:0.5rem;">PLAY Enablement Track</div>
+    <div style="font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;letter-spacing:-0.03em;color:var(--white);line-height:1.08;">Team Progress<br><span style="color:var(--orange);">Dashboard.</span></div>
+  </div>
   <div class="key-form">
     <h3>Admin access</h3>
     <p>Enter the admin keycode to view the full team progress dashboard.</p>
@@ -613,8 +617,8 @@ function init(){
   }
 
   if(!slug){
-    /* No param — show wrong URL screen */
-    document.getElementById("wrong-url").style.display = "flex";
+    /* No param — default to admin keycode screen */
+    document.getElementById("admin-screen").style.display = "flex";
     return;
   }
 
