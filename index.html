@@ -13,40 +13,44 @@
     --surface2: #1c1c1c; --border: #2a2a2a; --green: #5aad3a;
     --red: #e04444; --purple: #9b6bfa;
   }
-  html, body { background: var(--black); color: var(--white); font-family: 'Poppins', -apple-system, sans-serif; min-height: 100vh; -webkit-font-smoothing: antialiased; font-size: 14px; }
+  html, body { background: var(--black); color: var(--white); font-family: 'Poppins', sans-serif; min-height: 100vh; -webkit-font-smoothing: antialiased; font-size: 14px; }
 
+  /* NAV */
   nav { position: sticky; top: 0; z-index: 100; background: var(--black); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 56px; }
-  .nav-wordmark { font-size: 13px; font-weight: 800; letter-spacing: -0.03em; color: var(--white); text-decoration: none; }
   .nav-right { display: flex; align-items: center; gap: 12px; }
   .nav-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); }
   .nav-user-btn { display: flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--border); border-radius: 100px; padding: 5px 12px 5px 6px; cursor: pointer; transition: border-color 0.15s; }
   .nav-user-btn:hover { border-color: #3a3a3a; }
-  .nav-avatar { width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; color: var(--black); flex-shrink: 0; overflow: hidden; }
-  .nav-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+  .nav-avatar { width: 26px; height: 26px; border-radius: 50%; background: var(--surface2); display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; color: var(--black); flex-shrink: 0; overflow: hidden; }
+  .nav-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 50%; }
   .nav-username { font-size: 12px; font-weight: 600; color: var(--white); }
 
+  /* TABS */
   .tabs { max-width: 900px; margin: 0 auto; padding: 0 2rem; display: flex; border-bottom: 1px solid var(--border); margin-top: 1.5rem; overflow-x: auto; scrollbar-width: none; }
   .tabs::-webkit-scrollbar { display: none; }
   .tab { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--mid); padding: 10px 20px; cursor: pointer; border: none; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color 0.15s; white-space: nowrap; font-family: 'Poppins', sans-serif; background: none; }
   .tab:hover { color: var(--white); }
   .tab.active { color: var(--orange); border-bottom-color: var(--orange); }
 
+  /* HERO */
   .hero { padding: 2.5rem 2rem 1.5rem; max-width: 900px; margin: 0 auto; }
   .hero-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--orange); margin-bottom: 0.75rem; }
   .hero-title { font-size: clamp(1.8rem, 4vw, 2.75rem); font-weight: 800; line-height: 1.08; letter-spacing: -0.03em; color: var(--white); margin-bottom: 0.6rem; }
   .hero-title span { color: var(--orange); }
   .hero-sub { font-size: 14px; color: var(--mid); line-height: 1.6; max-width: 560px; }
 
+  /* LAYOUT */
   .content { max-width: 900px; margin: 0 auto; padding: 0 2rem 4rem; }
   .panel { display: none; }
   .panel.active { display: block; }
   .section-label { font-size: 9px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mid); margin-bottom: 14px; margin-top: 1.5rem; }
   .section-label:first-child { margin-top: 0; }
   hr { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
-
   .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; }
+  .note { font-size: 11px; color: #555; line-height: 1.6; margin-top: 0.75rem; }
 
-  .stat-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 1.25rem; }
+  /* STATS */
+  .stat-grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-bottom: 1.25rem; }
   .stat-box { background: var(--surface2); border-radius: 8px; padding: 1rem; }
   .stat-box.hl-orange { border: 1px solid var(--orange); background: rgba(250,108,0,0.06); }
   .stat-box.hl-green  { border: 1px solid var(--green);  background: rgba(90,173,58,0.05); }
@@ -55,6 +59,7 @@
   .stat-num.o { color: var(--orange); } .stat-num.g { color: var(--green); } .stat-num.y { color: var(--yellow); }
   .stat-sub { font-size: 11px; color: var(--mid); margin-top: 4px; line-height: 1.4; }
 
+  /* METER */
   .meter-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; }
   .meter-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
   .meter-title { font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid); }
@@ -62,18 +67,19 @@
   .meter-track { height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; margin-bottom: 8px; }
   .meter-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--orange), var(--yellow)); transition: width 0.4s ease; }
   .meter-legend { display: flex; justify-content: space-between; font-size: 10px; color: var(--mid); }
-
   .bar-track { height: 4px; border-radius: 2px; background: var(--border); margin: 0.5rem 0 4px; overflow: hidden; }
-  .bar-fill { height: 100%; border-radius: 2px; background: var(--orange); transition: width 0.3s ease; }
+  .bar-fill   { height: 100%; border-radius: 2px; background: var(--orange); transition: width 0.3s ease; }
   .bar-fill.g { background: var(--green); }
 
+  /* BADGES */
   .badge { display: inline-block; font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 20px; letter-spacing: 0.04em; border: 1px solid; }
-  .badge-orange { color: var(--orange); background: rgba(250,108,0,0.1);    border-color: rgba(250,108,0,0.3); }
-  .badge-green  { color: var(--green);  background: rgba(90,173,58,0.1);    border-color: rgba(90,173,58,0.3); }
-  .badge-yellow { color: var(--yellow); background: rgba(254,192,31,0.1);   border-color: rgba(254,192,31,0.3); }
-  .badge-mid    { color: var(--mid);    background: rgba(136,136,136,0.08); border-color: #333; }
-  .badge-purple { color: var(--purple); background: rgba(155,107,250,0.1);  border-color: rgba(155,107,250,0.3); }
+  .badge-orange { color: var(--orange); background: rgba(250,108,0,0.1);   border-color: rgba(250,108,0,0.3); }
+  .badge-green  { color: var(--green);  background: rgba(90,173,58,0.1);   border-color: rgba(90,173,58,0.3); }
+  .badge-yellow { color: var(--yellow); background: rgba(254,192,31,0.1);  border-color: rgba(254,192,31,0.3); }
+  .badge-mid    { color: var(--mid);    background: rgba(136,136,136,0.08);border-color: #333; }
+  .badge-purple { color: var(--purple); background: rgba(155,107,250,0.1); border-color: rgba(155,107,250,0.3); }
 
+  /* WEEK / SESSION */
   .week-section { margin-bottom: 10px; }
   .week-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; padding: 1.25rem 1.5rem; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; cursor: pointer; transition: border-color 0.15s; user-select: none; }
   .week-header:hover { border-color: #3a3a3a; }
@@ -87,7 +93,6 @@
   .week-header.open .week-chevron { transform: rotate(180deg); }
   .week-body { display: none; flex-direction: column; gap: 8px; background: var(--surface); border: 1px solid var(--border); border-top: none; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; padding: 12px; }
   .week-body.open { display: flex; }
-
   .session-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; transition: border-color 0.15s; }
   .session-card:hover { border-color: #3a3a3a; }
   .session-card.status-complete       { border-left: 3px solid var(--green); }
@@ -107,7 +112,7 @@
   .conf-badge.visible { display: inline-block; }
   .session-chevron { font-size: 13px; color: var(--mid); transition: transform 0.2s; }
   .session-card.open .session-chevron { transform: rotate(180deg); }
-  .session-body { display: none; padding: 0 16px 16px; border-top: 1px solid var(--border); padding-top: 14px; }
+  .session-body { display: none; padding: 14px 16px 16px; border-top: 1px solid var(--border); }
   .session-card.open .session-body { display: block; }
   .session-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
   .session-block label { display: block; font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); margin-bottom: 8px; }
@@ -121,8 +126,8 @@
   .session-controls { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
   .field-group { display: flex; flex-direction: column; gap: 5px; }
   .field-group label { font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); }
-  select, textarea, input[type=text] { background: #111; border: 1px solid var(--border); color: var(--white); border-radius: 7px; padding: 8px 10px; font-size: 12px; font-family: 'Poppins', sans-serif; outline: none; transition: border-color 0.15s; width: 100%; }
-  select:focus, textarea:focus, input[type=text]:focus { border-color: var(--orange); }
+  select, textarea, input[type=text], input[type=password] { background: #111; border: 1px solid var(--border); color: var(--white); border-radius: 7px; padding: 8px 10px; font-size: 12px; font-family: 'Poppins', sans-serif; outline: none; transition: border-color 0.15s; width: 100%; }
+  select:focus, textarea:focus, input:focus { border-color: var(--orange); }
   select option { background: #111; }
   textarea { resize: vertical; min-height: 64px; line-height: 1.5; }
   .conf-stars { display: flex; gap: 3px; align-items: center; padding-top: 4px; }
@@ -133,6 +138,7 @@
   .save-indicator { font-size: 10px; color: var(--green); opacity: 0; transition: opacity 0.3s; margin-top: 6px; text-align: right; font-weight: 600; }
   .save-indicator.show { opacity: 1; }
 
+  /* RUBRIC */
   .rubric-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 1rem; }
   .rubric-head { display: grid; grid-template-columns: 220px repeat(5,1fr); background: #111; border-bottom: 1px solid var(--border); }
   .rubric-head div { padding: 10px 14px; font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); }
@@ -144,6 +150,7 @@
   .rubric-desc-cell.current { color: var(--orange); font-weight: 600; }
   select.rubric-select { width: auto; min-width: 52px; padding: 4px 6px; font-size: 11px; }
 
+  /* CERT */
   .cert-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; }
   .cert-progress-row { display: flex; justify-content: space-between; font-size: 10px; margin-bottom: 6px; }
   .cert-progress-row span:first-child { color: var(--mid); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
@@ -157,15 +164,15 @@
   .cert-text { font-size: 13px; color: #aaa; line-height: 1.4; }
   .cert-item.checked .cert-text { color: var(--white); text-decoration: line-through; text-decoration-color: var(--green); }
 
-  /* ADMIN */
+  /* ADMIN PANEL */
   .admin-summary-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-bottom: 1.5rem; }
   .admin-user-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem 1.5rem; margin-bottom: 10px; }
   .admin-user-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
-  .admin-avatar { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; color: var(--black); flex-shrink: 0; overflow: hidden; }
-  .admin-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+  .admin-avatar { width: 42px; height: 42px; border-radius: 50%; background: var(--surface2); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; color: var(--black); flex-shrink: 0; overflow: hidden; }
+  .admin-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .admin-user-info { flex: 1; }
   .admin-user-name { font-size: 15px; font-weight: 700; color: var(--white); letter-spacing: -0.02em; }
-  .admin-user-meta { font-size: 11px; color: var(--mid); margin-top: 1px; }
+  .admin-user-meta { font-size: 11px; color: var(--mid); margin-top: 2px; }
   .admin-stats-row { display: grid; grid-template-columns: repeat(5,1fr); gap: 8px; margin-bottom: 10px; }
   .admin-stat { background: var(--surface2); border-radius: 7px; padding: 8px 10px; text-align: center; }
   .admin-stat-val { font-size: 18px; font-weight: 800; letter-spacing: -0.03em; }
@@ -175,41 +182,48 @@
   .admin-bar-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--orange), var(--yellow)); transition: width 0.4s ease; }
   .admin-bar-pct { font-size: 12px; font-weight: 700; color: var(--orange); min-width: 36px; text-align: right; }
   .admin-actions { display: flex; gap: 8px; margin-left: auto; }
-  .btn-sm { background: none; border: 1px solid #333; color: #555; padding: 4px 12px; border-radius: 100px; font-size: 10px; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: 'Poppins', sans-serif; letter-spacing: 0.04em; }
-  .btn-sm:hover { border-color: #555; color: var(--white); }
+  .btn-sm { background: none; border: 1px solid #333; color: #555; padding: 4px 12px; border-radius: 100px; font-size: 10px; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: 'Poppins', sans-serif; }
   .btn-sm.danger:hover { border-color: var(--red); color: var(--red); }
 
   /* USER PICKER */
   #user-picker { position: fixed; inset: 0; background: var(--black); z-index: 999; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; }
-  .picker-logo { font-size: 13px; font-weight: 800; letter-spacing: -0.03em; color: var(--white); margin-bottom: 2.5rem; }
-  .picker-logo span { color: var(--orange); }
-  .picker-title { font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 800; letter-spacing: -0.03em; color: var(--white); margin-bottom: 0.5rem; text-align: center; }
+  .picker-logo { margin-bottom: 2.5rem; }
+  .picker-title { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 800; letter-spacing: -0.03em; color: var(--white); margin-bottom: 0.5rem; text-align: center; }
   .picker-sub { font-size: 13px; color: var(--mid); margin-bottom: 2rem; text-align: center; }
-  .picker-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; width: 100%; max-width: 680px; margin-bottom: 1.5rem; }
-  .picker-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem 1rem; display: flex; flex-direction: column; align-items: center; gap: 10px; cursor: pointer; transition: border-color 0.15s, transform 0.15s; }
+  .picker-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; width: 100%; max-width: 720px; margin-bottom: 1.5rem; }
+
+  /* Individual user card */
+  .picker-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem 1rem; display: flex; flex-direction: column; align-items: center; gap: 10px; cursor: pointer; transition: border-color 0.15s, transform 0.15s; position: relative; }
   .picker-card:hover { border-color: var(--orange); transform: translateY(-2px); }
-  .picker-avatar { width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 800; color: var(--black); overflow: hidden; flex-shrink:0; }
-  .picker-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
-  .picker-card.locked { opacity: 0.38; cursor: not-allowed; pointer-events: none; filter: grayscale(0.6); }
+
+  /* Locked card */
+  .picker-card.locked { opacity: 0.35; cursor: not-allowed; filter: grayscale(0.7); }
   .picker-card.locked:hover { border-color: var(--border); transform: none; }
-  .picker-lock { font-size: 18px; position: absolute; bottom: -4px; right: -4px; background: var(--surface2); border: 1px solid var(--border); border-radius: 50%; width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; font-size: 11px; }
-  .picker-avatar-wrap { position: relative; display: inline-flex; }
-  .admin-picker-card { background: var(--surface); border: 1px dashed var(--orange); border-radius: 12px; padding: 1.25rem 1rem; display: flex; flex-direction: column; align-items: center; gap: 10px; cursor: pointer; transition: border-color 0.15s, transform 0.15s; }
-  .admin-picker-card:hover { background: rgba(250,108,0,0.06); transform: translateY(-2px); }
-  .picker-name { font-size: 14px; font-weight: 700; color: var(--white); text-align: center; }
-  .picker-prog { font-size: 11px; color: var(--mid); }
+  .lock-icon { position: absolute; top: 10px; right: 10px; font-size: 13px; }
+
+  /* Avatar */
+  .picker-avatar { width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 800; color: var(--black); overflow: hidden; flex-shrink: 0; }
+  .picker-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .picker-name { font-size: 13px; font-weight: 700; color: var(--white); text-align: center; line-height: 1.3; }
+  .picker-prog { font-size: 11px; color: var(--mid); text-align: center; }
   .picker-prog.has-progress { color: var(--green); }
+
+  /* Admin tile */
+  .picker-admin-card { background: var(--surface); border: 1px dashed var(--orange); border-radius: 12px; padding: 1.25rem 1rem; display: flex; flex-direction: column; align-items: center; gap: 10px; cursor: pointer; transition: background 0.15s, transform 0.15s; }
+  .picker-admin-card:hover { background: rgba(250,108,0,0.07); transform: translateY(-2px); }
+
+  /* Add learner */
   .picker-add-btn { background: none; border: 1px dashed #333; color: var(--mid); border-radius: 12px; padding: 1.25rem 1rem; display: flex; flex-direction: column; align-items: center; gap: 8px; cursor: pointer; transition: border-color 0.15s; font-family: 'Poppins', sans-serif; }
   .picker-add-btn:hover { border-color: var(--orange); color: var(--orange); }
-  .picker-add-icon { font-size: 24px; line-height: 1; }
-  .picker-add-label { font-size: 13px; font-weight: 600; }
+  .picker-add-icon { font-size: 22px; line-height: 1; }
+  .picker-add-label { font-size: 12px; font-weight: 600; }
 
   /* MODALS */
-  .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 1000; display: none; align-items: center; justify-content: center; padding: 2rem; }
+  .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.78); z-index: 1000; display: none; align-items: center; justify-content: center; padding: 2rem; }
   .modal-overlay.open { display: flex; }
   .modal { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; width: 100%; max-width: 440px; }
   .modal h3 { font-size: 18px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.4rem; }
-  .modal p { font-size: 12px; color: var(--mid); margin-bottom: 1.5rem; line-height: 1.5; }
+  .modal p { font-size: 12px; color: var(--mid); margin-bottom: 1.25rem; line-height: 1.6; }
   .modal-field { margin-bottom: 1rem; }
   .modal-field label { display: block; font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); margin-bottom: 6px; }
   .color-picker-row { display: flex; gap: 8px; flex-wrap: wrap; }
@@ -223,9 +237,11 @@
   .btn-ghost:hover { border-color: #3a3a3a; color: var(--white); }
   .btn-danger { flex: 1; background: var(--red); color: var(--white); border: none; border-radius: 100px; padding: 10px 20px; font-size: 13px; font-weight: 700; cursor: pointer; font-family: 'Poppins', sans-serif; transition: opacity 0.15s; }
   .btn-danger:hover { opacity: 0.85; }
-  .confirm-warning { background: rgba(224,68,68,0.08); border: 1px solid rgba(224,68,68,0.25); border-radius: 8px; padding: 10px 14px; font-size: 12px; color: #f88; margin-bottom: 1rem; font-style: normal !important; }
+  .btn-danger:disabled { opacity: 0.35; cursor: not-allowed; }
+  .modal-warning { background: rgba(224,68,68,0.08); border: 1px solid rgba(224,68,68,0.25); border-radius: 8px; padding: 10px 14px; font-size: 12px; color: #f99; margin-bottom: 1rem; }
+  .modal-error { font-size: 11px; color: var(--red); margin-top: -6px; margin-bottom: 8px; display: none; }
 
-  .note { font-size: 11px; color: #555; line-height: 1.6; margin-top: 0.75rem; }
+  /* FOOTER */
   footer { border-top: 1px solid var(--border); padding: 1.5rem 2rem; display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--mid); flex-wrap: wrap; gap: 10px; }
   footer a { color: var(--orange); text-decoration: none; }
   .reset-btn { background: none; border: 1px solid var(--border); color: var(--mid); padding: 6px 14px; border-radius: 100px; font-size: 11px; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: 'Poppins', sans-serif; }
@@ -236,8 +252,7 @@
     .stat-grid-4, .admin-summary-grid, .admin-stats-row { grid-template-columns: 1fr 1fr; }
     .session-grid, .textarea-row, .session-controls { grid-template-columns: 1fr; }
     .nav-tag { display: none; }
-    .rubric-head { display: none; }
-    .rubric-row { display: block; padding: 14px; }
+    .rubric-head { display: none; } .rubric-row { display: block; padding: 14px; }
   }
 </style>
 </head>
@@ -245,17 +260,78 @@
 
 <!-- USER PICKER -->
 <div id="user-picker">
-  <div class="picker-logo"><img src="LOGO_LIGHT_CRAFTSMAN_PLUS.png" alt="CRAFTSMAN+" height="28"></div>
+  <div class="picker-logo">
+    <img src="LOGO_LIGHT_CRAFTSMAN_PLUS.png" alt="CRAFTSMAN+" height="28">
+  </div>
   <h2 class="picker-title">Who's studying today?</h2>
-  <p class="picker-sub">PLAY Enablement Track &nbsp;·&nbsp; Select your name to continue</p>
+  <p class="picker-sub">PLAY Enablement Track &middot; Select your name to continue</p>
   <div class="picker-grid" id="picker-grid"></div>
+</div>
+
+<!-- ADMIN KEYCODE MODAL -->
+<div class="modal-overlay" id="modal-admin-key">
+  <div class="modal">
+    <h3>Admin access</h3>
+    <p>Enter the admin keycode to view the full team progress dashboard.</p>
+    <div class="modal-field">
+      <label>Keycode</label>
+      <input type="password" id="admin-key-input" placeholder="Enter keycode" maxlength="20" onkeydown="if(event.key==='Enter')checkAdminKey()">
+    </div>
+    <div class="modal-error" id="admin-key-error">Incorrect keycode. Try again.</div>
+    <div class="modal-actions">
+      <button class="btn-ghost" onclick="closeModal('modal-admin-key')">Cancel</button>
+      <button class="btn-primary" onclick="checkAdminKey()">Unlock</button>
+    </div>
+  </div>
+</div>
+
+<!-- RESET MODAL STEP 1 -->
+<div class="modal-overlay" id="modal-reset-1">
+  <div class="modal">
+    <h3>Reset your progress?</h3>
+    <p>This will permanently erase all session data, confidence scores, notes, rubric scores, and certification progress for <strong id="reset-name-1" style="color:var(--white)"></strong>.</p>
+    <div class="modal-warning">This action cannot be undone.</div>
+    <div class="modal-actions">
+      <button class="btn-ghost" onclick="closeModal('modal-reset-1')">Cancel</button>
+      <button class="btn-danger" onclick="openResetStep2()">Yes, continue</button>
+    </div>
+  </div>
+</div>
+
+<!-- RESET MODAL STEP 2 -->
+<div class="modal-overlay" id="modal-reset-2">
+  <div class="modal">
+    <h3>Final confirmation</h3>
+    <p>Type <strong style="color:var(--white)">RESET</strong> below to permanently erase all progress for <strong id="reset-name-2" style="color:var(--white)"></strong>.</p>
+    <div class="modal-field">
+      <label>Type RESET to confirm</label>
+      <input type="text" id="reset-confirm-input" placeholder="RESET" oninput="checkResetInput()">
+    </div>
+    <div class="modal-actions">
+      <button class="btn-ghost" onclick="closeModal('modal-reset-2')">Cancel</button>
+      <button class="btn-danger" id="btn-final-reset" onclick="executeReset()" disabled>Erase All Progress</button>
+    </div>
+  </div>
+</div>
+
+<!-- DELETE USER MODAL -->
+<div class="modal-overlay" id="modal-delete-user">
+  <div class="modal">
+    <h3>Remove learner?</h3>
+    <p>This will permanently delete <strong id="delete-name" style="color:var(--white)"></strong> and all of their progress data.</p>
+    <div class="modal-warning">This cannot be undone.</div>
+    <div class="modal-actions">
+      <button class="btn-ghost" onclick="closeModal('modal-delete-user')">Cancel</button>
+      <button class="btn-danger" onclick="executeDeleteUser()">Remove Learner</button>
+    </div>
+  </div>
 </div>
 
 <!-- ADD USER MODAL -->
 <div class="modal-overlay" id="modal-add-user">
   <div class="modal">
     <h3>Add a new learner</h3>
-    <p>They'll get their own progress tracker, completely separate from everyone else's.</p>
+    <p>They'll get their own progress tracker, fully separate from everyone else's.</p>
     <div class="modal-field">
       <label>Full name</label>
       <input type="text" id="new-user-name" placeholder="e.g. Alex Chen" maxlength="40">
@@ -267,66 +343,6 @@
     <div class="modal-actions">
       <button class="btn-ghost" onclick="closeModal('modal-add-user')">Cancel</button>
       <button class="btn-primary" onclick="createUser()">Add Learner</button>
-    </div>
-  </div>
-</div>
-
-<!-- RESET PROGRESS MODAL (step 1) -->
-<div class="modal-overlay" id="modal-reset-1">
-  <div class="modal">
-    <h3>Reset your progress?</h3>
-    <p>This will permanently erase all session statuses, confidence scores, notes, rubric scores, and certification progress for <strong id="reset-username-1" style="color:var(--white)"></strong>.</p>
-    <div class="confirm-warning">This action cannot be undone.</div>
-    <div class="modal-actions">
-      <button class="btn-ghost" onclick="closeModal('modal-reset-1')">Cancel</button>
-      <button class="btn-danger" onclick="confirmReset2()">Yes, reset my progress</button>
-    </div>
-  </div>
-</div>
-
-<!-- RESET PROGRESS MODAL (step 2 - final confirmation) -->
-<div class="modal-overlay" id="modal-reset-2">
-  <div class="modal">
-    <h3>Are you absolutely sure?</h3>
-    <p>Type <strong style="color:var(--white)">RESET</strong> below to confirm. All progress for <strong id="reset-username-2" style="color:var(--white)"></strong> will be erased immediately.</p>
-    <div class="modal-field">
-      <label>Type RESET to confirm</label>
-      <input type="text" id="reset-confirm-input" placeholder="RESET" oninput="checkResetInput()">
-    </div>
-    <div class="modal-actions">
-      <button class="btn-ghost" onclick="closeModal('modal-reset-2')">Cancel</button>
-      <button class="btn-danger" id="final-reset-btn" onclick="executeReset()" disabled style="opacity:0.4;cursor:not-allowed;">Erase All Progress</button>
-    </div>
-  </div>
-</div>
-
-<!-- DELETE USER MODAL -->
-<div class="modal-overlay" id="modal-delete-user">
-  <div class="modal">
-    <h3>Remove learner?</h3>
-    <p>This will permanently delete <strong id="delete-username" style="color:var(--white)"></strong> and all of their progress data.</p>
-    <div class="confirm-warning">This cannot be undone.</div>
-    <div class="modal-actions">
-      <button class="btn-ghost" onclick="closeModal('modal-delete-user')">Cancel</button>
-      <button class="btn-danger" onclick="executeDeleteUser()">Remove Learner</button>
-    </div>
-  </div>
-</div>
-
-
-<!-- ADMIN KEYCODE MODAL -->
-<div class="modal-overlay" id="modal-admin-key">
-  <div class="modal">
-    <h3>Admin access</h3>
-    <p>Enter the admin keycode to view the team progress dashboard.</p>
-    <div class="modal-field">
-      <label>Keycode</label>
-      <input type="password" id="admin-key-input" placeholder="Enter keycode" maxlength="20" onkeydown="if(event.key==='Enter')checkAdminKey()">
-    </div>
-    <div id="admin-key-error" style="font-size:11px;color:var(--red);margin-top:-6px;margin-bottom:8px;display:none;">Incorrect keycode. Try again.</div>
-    <div class="modal-actions">
-      <button class="btn-ghost" onclick="closeModal('modal-admin-key')">Cancel</button>
-      <button class="btn-primary" onclick="checkAdminKey()">Unlock</button>
     </div>
   </div>
 </div>
@@ -348,7 +364,7 @@
     <button class="tab active" data-tab="roadmap" onclick="switchTab('roadmap',this)">Roadmap</button>
     <button class="tab" data-tab="rubric"   onclick="switchTab('rubric',  this)">Rubric Scores</button>
     <button class="tab" data-tab="cert"     onclick="switchTab('cert',    this)">Certification</button>
-    <button class="tab" id="tab-admin-btn" data-tab="admin" onclick="handleAdminTabClick(this)">Team Overview</button>
+    <button class="tab" id="tab-admin" data-tab="admin" onclick="switchTab('admin',this)" style="display:none;">Team Overview</button>
   </div>
 
   <!-- ROADMAP -->
@@ -356,7 +372,7 @@
     <div class="hero">
       <p class="hero-eyebrow" id="roadmap-eyebrow">Your Track</p>
       <h1 class="hero-title" id="roadmap-title">PLAY<br><span>Enablement Track.</span></h1>
-      <p class="hero-sub">CS fluency roadmap covering PLAY, INTELLIGENCE, ANALYTICS, onboarding, support, and escalation. 20 sessions &middot; 1 hour per day &middot; 5 days per week.</p>
+      <p class="hero-sub">CS fluency roadmap for PLAY, INTELLIGENCE, ANALYTICS, onboarding, support, and escalation. 20 sessions &middot; 1 hour/day &middot; 5 days/week.</p>
     </div>
     <div class="content">
       <p class="section-label">Progress snapshot</p>
@@ -371,8 +387,7 @@
         <div class="meter-track"><div class="meter-fill" id="pct-bar" style="width:0%"></div></div>
         <div class="meter-legend"><span>Week 1</span><span id="meter-mid" style="color:var(--green);font-weight:700;">0 of 20 sessions scored</span><span>Week 4</span></div>
       </div>
-      <hr>
-      <div id="roadmap-container"></div>
+      <hr><div id="roadmap-container"></div>
     </div>
   </div>
 
@@ -381,14 +396,12 @@
     <div class="hero">
       <p class="hero-eyebrow">Skill Assessment</p>
       <h1 class="hero-title">Rubric<br><span>score tracker.</span></h1>
-      <p class="hero-sub">Score each category 1 to 5 as you progress. 4 = client-ready is the graduation threshold.</p>
+      <p class="hero-sub">Score each category 1-5 as you progress. 4 = client-ready is the graduation threshold.</p>
     </div>
     <div class="content">
       <p class="section-label">Score each category</p>
       <div class="rubric-wrap">
-        <div class="rubric-head">
-          <div>Category</div><div>1 Not yet</div><div>2 Needs guidance</div><div>3 With notes</div><div>4 Client-ready</div><div>5 Can train</div>
-        </div>
+        <div class="rubric-head"><div>Category</div><div>1 Not yet</div><div>2 Needs guidance</div><div>3 With notes</div><div>4 Client-ready</div><div>5 Can train</div></div>
         <div id="rubric-rows"></div>
       </div>
       <p class="note">Update weekly. 5 = can train the next CSM hire.</p>
@@ -417,7 +430,7 @@
     <div class="hero">
       <p class="hero-eyebrow">Team Overview</p>
       <h1 class="hero-title">Team<br><span>progress dashboard.</span></h1>
-      <p class="hero-sub">All learners in one view. Track completion, confidence, and certification status across the full team.</p>
+      <p class="hero-sub">All learners in one view. Track completion, confidence, and certification status across the team.</p>
     </div>
     <div class="content">
       <p class="section-label">Team summary</p>
@@ -428,7 +441,7 @@
       <hr>
       <p class="section-label">Manage learners</p>
       <div class="card" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
-        <p style="font-size:13px;color:var(--mid);line-height:1.5;">Add new learners to the track. Each person gets their own isolated progress data.</p>
+        <p style="font-size:13px;color:var(--mid);line-height:1.5;margin:0;">Add new learners to the track. Each person gets their own isolated progress data.</p>
         <button class="btn-primary" style="width:auto;padding:8px 20px;font-size:12px;white-space:nowrap;" onclick="openAddUserModal()">+ Add Learner</button>
       </div>
     </div>
@@ -444,9 +457,9 @@
 </div>
 
 <script>
-/* ============================================================
-   CONFIG — edit names/colors here, or use the UI to add more
-   ============================================================ */
+/* =============================================================
+   CONFIG — edit names/colors/avatars here, or add via the UI
+   ============================================================= */
 var DEFAULT_USERS = [
   { name: "Hugo Rojas Jr.",    color: "#FA6C00", avatar: "hugo-avatar.png"   },
   { name: "Shane Hedengran",   color: "#FEC01F", avatar: "shane-avatar.png"  },
@@ -454,21 +467,23 @@ var DEFAULT_USERS = [
   { name: "Matt Forman",       color: "#9b6bfa", avatar: "matt-avatar.png"   }
 ];
 
+/* Shane gets the Team Overview tab without needing the keycode */
+var SHANE_NAME    = "Shane Hedengran";
+/* Admin keycode for the picker-screen Admin tile and all other users */
 var ADMIN_KEYCODE = "0000";
-var adminUnlocked = false;
 
 var AVATAR_COLORS = ["#FA6C00","#FEC01F","#5aad3a","#9b6bfa","#00b4d8","#f72585","#e04444","#43aa8b","#f77f00","#4cc9f0"];
 
-/* ============================================================
-   CURRICULUM DATA — edit sessions here to update the roadmap
-   ============================================================ */
+/* =============================================================
+   CURRICULUM — edit sessions here to update the roadmap
+   ============================================================= */
 var WEEKS = [
   { week:1, title:"Platform Foundation + Core PLAY Workflow", goal:"Explain PLAY, navigate the docs, understand the core project journey, and walk a new partner through the basics.",
     sessions:[
       { day:1,  title:"Platform Overview + Documentation Orientation", study:["Welcome / Home","Platform Overview","How docs are structured"], application:"Write a 5-sentence client-friendly explanation of PLAY.", rubric:"Can you explain what PLAY is without jargon?" },
       { day:2,  title:"Build a Playable from Scratch", study:["Quickstart","Project creation","Basic project workflow"], application:"Create a simple onboarding walkthrough outline.", rubric:"Can you explain the basic creation flow?" },
       { day:3,  title:"Editor Basics", study:["Editor layout","Canvas / workspace","Layers","Assets","Scene hierarchy"], application:"Create a glossary of 10 core PLAY terms.", rubric:"Can you define core platform terms?" },
-      { day:4,  title:"Scenes + User Flow", study:["Scene structure","Flow between scenes","CTA / end-card logic"], application:"Map a simple 4-scene playable: Intro to Interaction to Result to CTA.", rubric:"Can you explain how a user moves through a playable?" },
+      { day:4,  title:"Scenes + User Flow", study:["Scene structure","Flow between scenes","CTA / end-card logic"], application:"Map a 4-scene playable: Intro to Interaction to Result to CTA.", rubric:"Can you explain how a user moves through a playable?" },
       { day:5,  title:"Week 1 Applied Review", study:["Review Week 1 docs"], application:"Apply the workflow to one real partner (KashKick, Niantic, InMobi, Stillfront, DraftKings, or Digital Turbine).", rubric:"Can you explain how you would onboard a partner into PLAY?" }
     ]
   },
@@ -477,7 +492,7 @@ var WEEKS = [
       { day:6,  title:"Interactions", study:["Interactions","Triggers","Tap / click / gesture behavior"], application:"Create a troubleshooting checklist for interactions not working.", rubric:"Can you identify the first 3 things to check when an interaction fails?" },
       { day:7,  title:"Animations + Timeline", study:["Timeline","Animation controls","Layer sequencing"], application:"Write a plain-English explanation of how timeline impacts UX.", rubric:"Can you explain timing issues without needing Product?" },
       { day:8,  title:"Variants", study:["Variants","Versioning","Iteration workflows"], application:"Draft a client-facing explanation of when to use variants.", rubric:"Can you explain variants to a UA or creative team?" },
-      { day:9,  title:"Dynamic Content / Advanced Requests", study:["Dynamic content","API / data-related docs (if available)","Mark blank pages as Skipped"], application:"Create an escalation intake checklist for dynamic / API requests.", rubric:"Can you ask the right discovery questions before escalating?" },
+      { day:9,  title:"Dynamic Content / Advanced Requests", study:["Dynamic content","API / data-related docs","Mark blank pages as Skipped"], application:"Create an escalation intake checklist for dynamic / API requests.", rubric:"Can you ask the right discovery questions before escalating?" },
       { day:10, title:"Export + Publishing Readiness", study:["Export documentation","Previewing","Network / export considerations"], application:"Create a pre-export QA checklist.", rubric:"Can you distinguish a PLAY issue from a network / DSP issue?" }
     ]
   },
@@ -487,7 +502,7 @@ var WEEKS = [
       { day:12, title:"Design Recommendations", study:["Design Recommendations","Layout, CTA, hierarchy, visual feedback"], application:"Write 5 strong client prompt examples.", rubric:"Can you help clients ask better questions?" },
       { day:13, title:"Builder Agent", study:["Builder Agent","Natural language editing","Project editing limitations"], application:"Write a client-safe note about using Builder Agent to accelerate edits while always previewing and QA-ing before export.", rubric:"Can you explain the value and limitations clearly?" },
       { day:14, title:"Creative Strategy + Concept Ideation", study:["Creative Strategy","Concept Ideation","Prompt quality"], application:"Create 3 prompt templates: gaming, non-gaming, renewal / QBR.", rubric:"Can you use AI to prepare for a client strategy conversation?" },
-      { day:15, title:"ANALYTICS Overview + Best Practices", study:["Analytics overview","Project analytics","Analytics best practices","Scene naming and structure"], application:"Create a glossary of analytics terms and a build-for-analytics checklist.", rubric:"Can you explain what the data means and what it does not mean?" }
+      { day:15, title:"ANALYTICS Overview + Best Practices", study:["Analytics overview","Project analytics","Analytics best practices","Scene naming and structure"], application:"Create an analytics glossary and a build-for-analytics checklist.", rubric:"Can you explain what the data means and what it does not mean?" }
     ]
   },
   { week:4, title:"Applied CS Certification", goal:"Apply the docs to real client scenarios and demonstrate client-ready judgment.",
@@ -501,7 +516,7 @@ var WEEKS = [
   }
 ];
 
-var RUBRIC_CATS = ["Platform Comprehension","Client Explanation Quality","Support / Troubleshooting Judgment","Escalation Clarity","Analytics Interpretation","INTELLIGENCE Fluency","Confidence / Independence"];
+var RUBRIC_CATS   = ["Platform Comprehension","Client Explanation Quality","Support / Troubleshooting Judgment","Escalation Clarity","Analytics Interpretation","INTELLIGENCE Fluency","Confidence / Independence"];
 var RUBRIC_LEVELS = ["Not yet comfortable","Needs guidance","Can explain with notes","Client-ready","Can train others"];
 
 var CERT_ITEMS = [
@@ -514,96 +529,133 @@ var CERT_ITEMS = [
 ];
 
 var STATUS_OPTIONS = [
-  { value:"", label:"Not started" },
-  { value:"in-progress", label:"In Progress" },
-  { value:"complete", label:"Complete" },
-  { value:"skipped", label:"Skipped / Blank Page" },
-  { value:"needs-followup", label:"Needs Follow-Up" },
-  { value:"reference", label:"Reference Only" }
+  { value:"",               label:"Not started"        },
+  { value:"in-progress",   label:"In Progress"         },
+  { value:"complete",      label:"Complete"            },
+  { value:"skipped",       label:"Skipped / Blank Page"},
+  { value:"needs-followup",label:"Needs Follow-Up"     },
+  { value:"reference",     label:"Reference Only"      }
 ];
 
-/* ============================================================
+/* =============================================================
    STORAGE
-   ============================================================ */
-var STORAGE_KEY = "cplus_play_v3";
-
-function loadStore() {
-  try { var r = localStorage.getItem(STORAGE_KEY); return r ? JSON.parse(r) : null; } catch(e) { return null; }
-}
-function saveStore() {
-  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(STORE)); } catch(e) {}
-}
+   ============================================================= */
+var SK = "cplus_play_v4";
+function loadStore() { try { var r=localStorage.getItem(SK); return r?JSON.parse(r):null; } catch(e){return null;} }
+function saveStore() { try { localStorage.setItem(SK,JSON.stringify(STORE)); } catch(e){} }
 
 var STORE = loadStore();
-if (!STORE || !STORE.users || STORE.users.length === 0) {
-  STORE = { users: DEFAULT_USERS.map(function(u) { return { id: makeId(u.name), name: u.name, color: u.color, avatar: u.avatar||"" }; }), userData: {} };
+if (!STORE || !STORE.users || !STORE.users.length) {
+  STORE = {
+    users: DEFAULT_USERS.map(function(u){ return {id:uid(u.name),name:u.name,color:u.color,avatar:u.avatar||""}; }),
+    userData: {}
+  };
   saveStore();
 }
 
-function makeId(name) { return name.toLowerCase().replace(/\s+/g,"-").replace(/[^a-z0-9\-]/g,"") + "-" + Math.random().toString(36).slice(2,6); }
+function uid(name){ return name.toLowerCase().replace(/\s+/g,"-").replace(/[^a-z0-9\-]/g,"")+"-"+Math.random().toString(36).slice(2,6); }
+function getUD(id)        { return STORE.userData[id]||{}; }
+function setUD(id,d)      { STORE.userData[id]=d; saveStore(); }
+function getSess(id,day)  { var u=getUD(id); return u["s"+day]||{status:"",confidence:0,notes:"",questions:""}; }
+function setSess(id,day,o){ var u=getUD(id); u["s"+day]=o; setUD(id,u); }
+function getRub(id,i)     { var u=getUD(id); return u["r"+i]||0; }
+function setRub(id,i,v)   { var u=getUD(id); u["r"+i]=parseInt(v); setUD(id,u); }
+function getCert(id,i)    { var u=getUD(id); return u["c"+i]||false; }
+function setCert(id,i,v)  { var u=getUD(id); u["c"+i]=v; setUD(id,u); }
 
-function getUD(uid)      { return STORE.userData[uid] || {}; }
-function setUD(uid, d)   { STORE.userData[uid] = d; saveStore(); }
-function getSess(uid,day){ var u=getUD(uid); return u["s"+day] || {status:"",confidence:0,notes:"",questions:""}; }
-function setSess(uid,day,o){ var u=getUD(uid); u["s"+day]=o; setUD(uid,u); }
-function getRub(uid,i)   { var u=getUD(uid); return u["r"+i] || 0; }
-function setRub(uid,i,v) { var u=getUD(uid); u["r"+i]=parseInt(v); setUD(uid,u); }
-function getCert(uid,i)  { var u=getUD(uid); return u["c"+i] || false; }
-function setCert(uid,i,v){ var u=getUD(uid); u["c"+i]=v; setUD(uid,u); }
-
-var CU = null; // current user object
-var pendingDeleteId = null;
+/* State */
+var CU            = null;   /* current user object */
+var adminUnlocked = false;  /* set true when keycode entered OR Shane logs in */
+var pendingDelete = null;
 var selectedColor = AVATAR_COLORS[0];
+var saveTimers    = {};
 
-/* ============================================================
-   STATS
-   ============================================================ */
-function calcStats(uid) {
-  var complete=0,inprog=0,followup=0,scored=0,confT=0,confN=0,certDone=0;
-  WEEKS.forEach(function(w){ w.sessions.forEach(function(s){
-    var d = getSess(uid, s.day);
-    if(d.status==="complete")        { complete++; scored++; }
-    else if(d.status==="in-progress") inprog++;
-    else if(d.status==="needs-followup") { followup++; }
-    else if(d.status==="skipped" || d.status==="reference") scored++;
-    if(d.confidence>0){ confT+=d.confidence; confN++; }
-  }); });
-  CERT_ITEMS.forEach(function(_,i){ if(getCert(uid,i)) certDone++; });
-  return { complete:complete, inprog:inprog, followup:followup, scored:scored,
-           pct:Math.round((scored/20)*100), avgConf:confN>0?(confT/confN).toFixed(1):null, certDone:certDone };
-}
+/* =============================================================
+   HELPERS
+   ============================================================= */
+function initials(name){ return name.trim().split(/\s+/).map(function(w){return w[0];}).join("").toUpperCase().slice(0,2); }
 
-function initials(name) { return name.trim().split(/\s+/).map(function(w){ return w[0]; }).join("").toUpperCase().slice(0,2); }
-
-function avatarHTML(user) {
+/* Returns an <img> string if avatar exists, else initials text */
+function avHTML(user){
   if (user.avatar) {
-    return '<img src="' + user.avatar + '" alt="' + user.name + '" style="width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;" onerror="this.style.display=\'none\'">';
-  
+    return '<img src="'+user.avatar+'" alt="'+user.name+'" style="width:100%;height:100%;object-fit:cover;display:block;">';
   }
   return initials(user.name);
 }
 
+/* Background style for avatar container */
+function avBg(user){ return user.avatar ? "transparent" : user.color; }
 
-/* ============================================================
+function calcStats(id){
+  var complete=0,inprog=0,followup=0,scored=0,confT=0,confN=0,certDone=0;
+  WEEKS.forEach(function(w){ w.sessions.forEach(function(s){
+    var d=getSess(id,s.day);
+    if(d.status==="complete")         {complete++;scored++;}
+    else if(d.status==="in-progress")  inprog++;
+    else if(d.status==="needs-followup") followup++;
+    else if(d.status==="skipped"||d.status==="reference") scored++;
+    if(d.confidence>0){confT+=d.confidence;confN++;}
+  });});
+  CERT_ITEMS.forEach(function(_,i){ if(getCert(id,i)) certDone++; });
+  return {complete:complete,inprog:inprog,followup:followup,scored:scored,
+          pct:Math.round((scored/20)*100),avgConf:confN>0?(confT/confN).toFixed(1):null,certDone:certDone};
+}
+
+function openModal(id) { document.getElementById(id).classList.add("open"); }
+function closeModal(id){ document.getElementById(id).classList.remove("open"); }
+
+/* =============================================================
    USER PICKER
-   ============================================================ */
-function renderPicker() {
+   ============================================================= */
+function renderPicker(){
   var grid = document.getElementById("picker-grid");
   grid.innerHTML = "";
-  STORE.users.forEach(function(user) {
-    var stats = calcStats(user.id);
-    var progText = stats.scored > 0 ? stats.pct + "% complete" : "Not started";
+
+  /* Who is the "known" user from this session? */
+  var knownId = sessionStorage.getItem("cplus_uid") || "";
+
+  STORE.users.forEach(function(user){
+    var stats    = calcStats(user.id);
+    var isYours  = (knownId === "" || knownId === user.id);
+    var progText = stats.scored > 0 ? stats.pct+"% complete" : "Not started";
+
     var card = document.createElement("div");
-    card.className = "picker-card";
-    card.onclick = function(){ selectUser(user.id); };
-    card.innerHTML =
-      '<div class="picker-avatar-wrap">' +
-        '<div class="picker-avatar" style="background:'+(user.avatar?'transparent':user.color)+'">' + avatarHTML(user) + '</div>' +
-      '</div>' +
-      '<div class="picker-name">'+user.name+'</div>' +
-      '<div class="picker-prog'+(stats.scored>0?" has-progress":"")+'">'+progText+'</div>';
+
+    if (isYours) {
+      /* ── Unlocked card ── */
+      card.className = "picker-card";
+      card.onclick   = function(){ selectUser(user.id); };
+      card.innerHTML =
+        '<div class="picker-avatar" style="background:'+avBg(user)+'">'+avHTML(user)+'</div>'+
+        '<div class="picker-name">'+user.name+'</div>'+
+        '<div class="picker-prog'+(stats.scored>0?" has-progress":"")+'">'+progText+'</div>';
+    } else {
+      /* ── Locked card ── */
+      card.className = "picker-card locked";
+      card.innerHTML =
+        '<span class="lock-icon">&#128274;</span>'+
+        '<div class="picker-avatar" style="background:'+avBg(user)+'">'+avHTML(user)+'</div>'+
+        '<div class="picker-name" style="color:var(--mid)">'+user.name+'</div>'+
+        '<div class="picker-prog">Private</div>';
+    }
     grid.appendChild(card);
   });
+
+  /* ── Admin tile ── */
+  var adminTile = document.createElement("div");
+  adminTile.className = "picker-admin-card";
+  adminTile.onclick = function(){
+    document.getElementById("admin-key-input").value="";
+    document.getElementById("admin-key-error").style.display="none";
+    openModal("modal-admin-key");
+  };
+  adminTile.innerHTML =
+    '<div class="picker-avatar" style="background:#1a1a1a;font-size:22px;">&#128272;</div>'+
+    '<div class="picker-name" style="color:var(--orange)">Admin</div>'+
+    '<div class="picker-prog">Team dashboard</div>';
+  grid.appendChild(adminTile);
+
+  /* ── Add learner ── */
   var addBtn = document.createElement("button");
   addBtn.className = "picker-add-btn";
   addBtn.onclick = openAddUserModal;
@@ -611,56 +663,84 @@ function renderPicker() {
   grid.appendChild(addBtn);
 }
 
-function selectUser(uid) {
-  CU = STORE.users.find(function(u){ return u.id===uid; });
+function selectUser(id){
+  CU = STORE.users.find(function(u){return u.id===id;});
   if (!CU) return;
-  document.getElementById("user-picker").style.display = "none";
-  document.getElementById("main-app").style.display = "block";
-  sessionStorage.setItem("cplus_user_id", CU.id);
+
+  sessionStorage.setItem("cplus_uid", CU.id);
+  adminUnlocked = (CU.name === SHANE_NAME);
+
+  document.getElementById("user-picker").style.display   = "none";
+  document.getElementById("main-app").style.display      = "block";
+  document.getElementById("tab-admin").style.display     = adminUnlocked ? "inline-block" : "none";
+
+  /* Nav */
   var navAv = document.getElementById("nav-avatar");
-  navAv.style.background = CU.avatar ? "transparent" : CU.color;
-  navAv.innerHTML = avatarHTML(CU);
+  navAv.style.background = avBg(CU);
+  navAv.innerHTML        = avHTML(CU);
   document.getElementById("nav-username").textContent = CU.name;
-  document.getElementById("roadmap-eyebrow").textContent = CU.name + "'s Track";
-  document.getElementById("roadmap-title").innerHTML = CU.name.split(" ")[0] + "'s PLAY<br><span>Enablement Track.</span>";
-  // Shane gets admin tab without keycode
-  if (CU.name === "Shane Hedengran") {
-    adminUnlocked = true;
-    document.getElementById("tab-admin-btn").style.display = "inline-block";
-  } else {
-    document.getElementById("tab-admin-btn").style.display = "inline-block";
-  }
-  // Restore personal tabs visibility
-  document.querySelectorAll('.tab[data-tab="roadmap"], .tab[data-tab="rubric"], .tab[data-tab="cert"]').forEach(function(t){ t.style.display = ""; });
+
+  /* Hero */
+  document.getElementById("roadmap-eyebrow").textContent = CU.name+"'s Track";
+  document.getElementById("roadmap-title").innerHTML     = CU.name.split(" ")[0]+"'s PLAY<br><span>Enablement Track.</span>";
+
   switchTab("roadmap", document.querySelector('.tab[data-tab="roadmap"]'));
   buildRoadmap(); buildRubric(); buildCert(); updateDashboard();
 }
 
-function switchUser() {
-  CU = null;
-  adminUnlocked = false;
-  sessionStorage.removeItem("cplus_user_id");
-  document.querySelectorAll('.tab[data-tab="roadmap"], .tab[data-tab="rubric"], .tab[data-tab="cert"]').forEach(function(t){ t.style.display = ""; });
-  document.getElementById("main-app").style.display = "none";
+function switchUser(){
+  CU = null; adminUnlocked = false;
+  sessionStorage.removeItem("cplus_uid");
+  document.getElementById("main-app").style.display  = "none";
   document.getElementById("user-picker").style.display = "flex";
   renderPicker();
 }
 
-/* ============================================================
-   ADD USER MODAL
-   ============================================================ */
-function openAddUserModal() {
+/* =============================================================
+   ADMIN KEYCODE (picker Admin tile only)
+   ============================================================= */
+function checkAdminKey(){
+  var val = document.getElementById("admin-key-input").value;
+  if (val === ADMIN_KEYCODE) {
+    adminUnlocked = true;
+    closeModal("modal-admin-key");
+    /* Enter admin-only mode — no personal user selected */
+    document.getElementById("user-picker").style.display = "none";
+    document.getElementById("main-app").style.display    = "block";
+    /* Hide personal tabs */
+    ["roadmap","rubric","cert"].forEach(function(t){
+      document.querySelector('.tab[data-tab="'+t+'"]').style.display = "none";
+    });
+    document.getElementById("tab-admin").style.display = "inline-block";
+    /* Nav shows admin identity */
+    var navAv = document.getElementById("nav-avatar");
+    navAv.style.background = "#1a1a1a";
+    navAv.innerHTML = "&#128272;";
+    document.getElementById("nav-username").textContent = "Admin";
+    switchTab("admin", document.getElementById("tab-admin"));
+    buildAdminPanel();
+  } else {
+    document.getElementById("admin-key-error").style.display = "block";
+    document.getElementById("admin-key-input").value = "";
+    document.getElementById("admin-key-input").focus();
+  }
+}
+
+/* =============================================================
+   ADD USER
+   ============================================================= */
+function openAddUserModal(){
   selectedColor = AVATAR_COLORS[0];
   document.getElementById("new-user-name").value = "";
   var row = document.getElementById("color-picker-row");
   row.innerHTML = "";
-  AVATAR_COLORS.forEach(function(c) {
+  AVATAR_COLORS.forEach(function(c){
     var sw = document.createElement("div");
-    sw.className = "color-swatch" + (c===selectedColor?" selected":"");
+    sw.className = "color-swatch"+(c===selectedColor?" selected":"");
     sw.style.background = c;
-    sw.onclick = function() {
+    sw.onclick = function(){
       selectedColor = c;
-      row.querySelectorAll(".color-swatch").forEach(function(s){ s.classList.remove("selected"); });
+      row.querySelectorAll(".color-swatch").forEach(function(s){s.classList.remove("selected");});
       sw.classList.add("selected");
     };
     row.appendChild(sw);
@@ -668,47 +748,35 @@ function openAddUserModal() {
   openModal("modal-add-user");
 }
 
-function createUser() {
+function createUser(){
   var name = document.getElementById("new-user-name").value.trim();
-  if (!name) { document.getElementById("new-user-name").focus(); return; }
-  var user = { id: makeId(name), name: name, color: selectedColor };
-  STORE.users.push(user);
+  if (!name){ document.getElementById("new-user-name").focus(); return; }
+  STORE.users.push({id:uid(name),name:name,color:selectedColor,avatar:""});
   saveStore();
   closeModal("modal-add-user");
   renderPicker();
-  if (CU && document.getElementById("panel-admin").classList.contains("active")) buildAdminPanel();
+  if (adminUnlocked && document.getElementById("panel-admin").classList.contains("active")) buildAdminPanel();
 }
 
-/* ============================================================
-   RESET MODAL (2-step)
-   ============================================================ */
-function openResetModal() {
-  document.getElementById("reset-username-1").textContent = CU.name;
-  document.getElementById("reset-confirm-input").value = "";
-  document.getElementById("final-reset-btn").disabled = true;
-  document.getElementById("final-reset-btn").style.opacity = "0.4";
-  document.getElementById("final-reset-btn").style.cursor = "not-allowed";
+/* =============================================================
+   RESET MODALS (2-step)
+   ============================================================= */
+function openResetModal(){
+  document.getElementById("reset-name-1").textContent = CU ? CU.name : "";
   openModal("modal-reset-1");
 }
-
-function confirmReset2() {
+function openResetStep2(){
   closeModal("modal-reset-1");
-  document.getElementById("reset-username-2").textContent = CU.name;
+  document.getElementById("reset-name-2").textContent = CU ? CU.name : "";
   document.getElementById("reset-confirm-input").value = "";
-  checkResetInput();
+  document.getElementById("btn-final-reset").disabled = true;
   openModal("modal-reset-2");
 }
-
-function checkResetInput() {
-  var val = document.getElementById("reset-confirm-input").value;
-  var btn = document.getElementById("final-reset-btn");
-  var match = val === "RESET";
-  btn.disabled = !match;
-  btn.style.opacity = match ? "1" : "0.4";
-  btn.style.cursor = match ? "pointer" : "not-allowed";
+function checkResetInput(){
+  var match = document.getElementById("reset-confirm-input").value === "RESET";
+  document.getElementById("btn-final-reset").disabled = !match;
 }
-
-function executeReset() {
+function executeReset(){
   if (!CU) return;
   STORE.userData[CU.id] = {};
   saveStore();
@@ -716,53 +784,48 @@ function executeReset() {
   buildRoadmap(); buildRubric(); buildCert(); updateDashboard();
 }
 
-/* ============================================================
-   DELETE USER (admin)
-   ============================================================ */
-function promptDeleteUser(uid) {
-  var user = STORE.users.find(function(u){ return u.id===uid; });
+/* =============================================================
+   DELETE USER
+   ============================================================= */
+function promptDeleteUser(id){
+  var user = STORE.users.find(function(u){return u.id===id;});
   if (!user) return;
-  pendingDeleteId = uid;
-  document.getElementById("delete-username").textContent = user.name;
+  pendingDelete = id;
+  document.getElementById("delete-name").textContent = user.name;
   openModal("modal-delete-user");
 }
-
-function executeDeleteUser() {
-  if (!pendingDeleteId) return;
-  STORE.users = STORE.users.filter(function(u){ return u.id!==pendingDeleteId; });
-  delete STORE.userData[pendingDeleteId];
+function executeDeleteUser(){
+  if (!pendingDelete) return;
+  STORE.users = STORE.users.filter(function(u){return u.id!==pendingDelete;});
+  delete STORE.userData[pendingDelete];
   saveStore();
-  pendingDeleteId = null;
+  pendingDelete = null;
   closeModal("modal-delete-user");
   buildAdminPanel();
-  renderPicker();
 }
 
-function openModal(id)  { document.getElementById(id).classList.add("open"); }
-function closeModal(id) { document.getElementById(id).classList.remove("open"); }
-
-/* ============================================================
+/* =============================================================
    DASHBOARD
-   ============================================================ */
-function updateDashboard() {
+   ============================================================= */
+function updateDashboard(){
   if (!CU) return;
   var s = calcStats(CU.id);
   document.getElementById("stat-complete").textContent   = s.complete;
   document.getElementById("stat-inprogress").textContent = s.inprog;
   document.getElementById("stat-followup").textContent   = s.followup;
-  document.getElementById("stat-avgconf").textContent    = s.avgConf ? s.avgConf+"*" : "--";
+  document.getElementById("stat-avgconf").textContent    = s.avgConf ? s.avgConf+"★" : "--";
   document.getElementById("pct-label").textContent       = s.pct+"%";
   document.getElementById("pct-bar").style.width         = s.pct+"%";
   document.getElementById("meter-mid").textContent       = s.scored+" of 20 sessions scored";
 }
 
-/* ============================================================
+/* =============================================================
    ROADMAP
-   ============================================================ */
-function buildRoadmap() {
+   ============================================================= */
+function buildRoadmap(){
   var container = document.getElementById("roadmap-container");
   container.innerHTML = "";
-  WEEKS.forEach(function(week,wi) {
+  WEEKS.forEach(function(week,wi){
     var sec = document.createElement("div");
     sec.className = "week-section";
     sec.innerHTML =
@@ -773,7 +836,7 @@ function buildRoadmap() {
           '<div class="week-goal">'+week.goal+'</div>' +
           '<div class="week-badges" id="wbadges-'+wi+'"></div>' +
         '</div>' +
-        '<div class="week-chevron">v</div>' +
+        '<div class="week-chevron">&#9660;</div>' +
       '</div>' +
       '<div class="week-body" id="wb-'+wi+'"></div>';
     var body = sec.querySelector(".week-body");
@@ -781,272 +844,205 @@ function buildRoadmap() {
     container.appendChild(sec);
   });
   refreshBadges();
+  /* Auto-open week 1 */
+  document.getElementById("wh-0").classList.add("open");
+  document.getElementById("wb-0").classList.add("open");
 }
 
-function refreshBadges() {
+function refreshBadges(){
   if (!CU) return;
   WEEKS.forEach(function(_,wi){
-    var el = document.getElementById("wbadges-"+wi);
-    if (!el) return;
-    var w = WEEKS[wi], st = {c:0,i:0,s:0,f:0,r:0};
+    var el=document.getElementById("wbadges-"+wi); if(!el) return;
+    var w=WEEKS[wi], st={c:0,i:0,s:0,f:0,r:0};
     w.sessions.forEach(function(s){
-      var d = getSess(CU.id, s.day);
+      var d=getSess(CU.id,s.day);
       if(d.status==="complete") st.c++;
       else if(d.status==="in-progress") st.i++;
       else if(d.status==="skipped") st.s++;
       else if(d.status==="needs-followup") st.f++;
       else if(d.status==="reference") st.r++;
     });
-    el.innerHTML = [
-      st.c ? '<span class="badge badge-green">'+st.c+' complete</span>' : "",
-      st.i ? '<span class="badge badge-orange">'+st.i+' in progress</span>' : "",
-      st.f ? '<span class="badge badge-yellow">'+st.f+' follow-up</span>' : "",
-      st.s ? '<span class="badge badge-mid">'+st.s+' skipped</span>' : "",
-      st.r ? '<span class="badge badge-purple">'+st.r+' reference</span>' : ""
-    ].filter(Boolean).join("") || '<span class="badge badge-mid">Not started</span>';
+    el.innerHTML=[
+      st.c?'<span class="badge badge-green">'+st.c+' complete</span>':"",
+      st.i?'<span class="badge badge-orange">'+st.i+' in progress</span>':"",
+      st.f?'<span class="badge badge-yellow">'+st.f+' follow-up</span>':"",
+      st.s?'<span class="badge badge-mid">'+st.s+' skipped</span>':"",
+      st.r?'<span class="badge badge-purple">'+st.r+' reference</span>':""
+    ].filter(Boolean).join("")||'<span class="badge badge-mid">Not started</span>';
   });
 }
 
-function buildSessionCard(session) {
-  var card = document.createElement("div");
-  var d = getSess(CU.id, session.day);
-  card.className = "session-card"+(d.status?" status-"+d.status:"");
-  card.id = "card-"+session.day;
-  var studyHTML = session.study.map(function(i){ return "<li>"+i+"</li>"; }).join("");
-  var statusOpts = STATUS_OPTIONS.map(function(o){ return '<option value="'+o.value+'"'+(d.status===o.value?" selected":"")+">"+o.label+"</option>"; }).join("");
-  var stars = [1,2,3,4,5].map(function(i){ return '<button class="star-btn'+(d.confidence>=i?" filled":"")+'" onclick="setConf('+session.day+','+i+')">*</button>'; }).join("");
-  card.innerHTML =
-    '<div class="session-head" onclick="toggleSession('+session.day+')">' +
-      '<div class="day-num">D'+session.day+'</div>' +
-      '<div class="session-title-wrap"><div class="session-day-label">Day '+session.day+'</div><div class="session-title">'+session.title+'</div></div>' +
-      '<div class="session-head-right">' +
-        '<span class="conf-badge'+(d.confidence>0?" visible":"")+'" id="cb-'+session.day+'">'+(d.confidence>0?d.confidence+"*":"")+'</span>' +
-        '<span class="session-chevron">v</span>' +
-      '</div>' +
-    '</div>' +
-    '<div class="session-body">' +
-      '<div class="session-grid">' +
-        '<div class="session-block"><label>Study Items</label><ul>'+studyHTML+'</ul></div>' +
-        '<div class="session-block"><label>Application Task</label><div class="app-block"><p>'+session.application+'</p></div></div>' +
-      '</div>' +
-      '<div class="rubric-box"><strong>Rubric Check</strong>'+session.rubric+'</div>' +
-      '<div class="session-controls">' +
-        '<div class="field-group"><label>Status</label><select onchange="updateStatus('+session.day+',this.value)">'+statusOpts+'</select></div>' +
-        '<div class="field-group"><label>Confidence 1-5</label><div class="conf-stars">'+stars+'</div></div>' +
-      '</div>' +
-      '<div class="textarea-row">' +
-        '<div class="field-group"><label>Session Notes</label><textarea placeholder="Key concepts, observations..." oninput="updateField('+session.day+',\'notes\',this.value)">'+(d.notes||"")+'</textarea></div>' +
-        '<div class="field-group"><label>Open Questions</label><textarea placeholder="Anything unresolved or flagged..." oninput="updateField('+session.day+',\'questions\',this.value)">'+(d.questions||"")+'</textarea></div>' +
-      '</div>' +
-      '<div class="save-indicator" id="saved-'+session.day+'">Saved</div>' +
+function buildSessionCard(session){
+  var card=document.createElement("div");
+  var d=getSess(CU.id,session.day);
+  card.className="session-card"+(d.status?" status-"+d.status:"");
+  card.id="card-"+session.day;
+  var studyHTML=session.study.map(function(i){return"<li>"+i+"</li>";}).join("");
+  var statusOpts=STATUS_OPTIONS.map(function(o){return'<option value="'+o.value+'"'+(d.status===o.value?" selected":"")+">"+o.label+"</option>";}).join("");
+  var stars=[1,2,3,4,5].map(function(i){return'<button class="star-btn'+(d.confidence>=i?" filled":"")+'" onclick="setConf('+session.day+','+i+')">&#9733;</button>';}).join("");
+  card.innerHTML=
+    '<div class="session-head" onclick="toggleSession('+session.day+')">'+
+      '<div class="day-num">D'+session.day+'</div>'+
+      '<div class="session-title-wrap"><div class="session-day-label">Day '+session.day+'</div><div class="session-title">'+session.title+'</div></div>'+
+      '<div class="session-head-right">'+
+        '<span class="conf-badge'+(d.confidence>0?" visible":"")+'" id="cb-'+session.day+'">'+(d.confidence>0?d.confidence+"★":"")+'</span>'+
+        '<span class="session-chevron">&#9660;</span>'+
+      '</div>'+
+    '</div>'+
+    '<div class="session-body">'+
+      '<div class="session-grid">'+
+        '<div class="session-block"><label>Study Items</label><ul>'+studyHTML+'</ul></div>'+
+        '<div class="session-block"><label>Application Task</label><div class="app-block"><p>'+session.application+'</p></div></div>'+
+      '</div>'+
+      '<div class="rubric-box"><strong>Rubric Check</strong>'+session.rubric+'</div>'+
+      '<div class="session-controls">'+
+        '<div class="field-group"><label>Status</label><select onchange="updateStatus('+session.day+',this.value)">'+statusOpts+'</select></div>'+
+        '<div class="field-group"><label>Confidence (1-5)</label><div class="conf-stars">'+stars+'</div></div>'+
+      '</div>'+
+      '<div class="textarea-row">'+
+        '<div class="field-group"><label>Session Notes</label><textarea placeholder="Key concepts, observations..." oninput="updateField('+session.day+',\'notes\',this.value)">'+(d.notes||"")+'</textarea></div>'+
+        '<div class="field-group"><label>Open Questions</label><textarea placeholder="Anything unresolved or flagged..." oninput="updateField('+session.day+',\'questions\',this.value)">'+(d.questions||"")+'</textarea></div>'+
+      '</div>'+
+      '<div class="save-indicator" id="saved-'+session.day+'">&#10003; Saved</div>'+
     '</div>';
   return card;
 }
 
-/* ============================================================
+/* =============================================================
    RUBRIC
-   ============================================================ */
-function buildRubric() {
-  var container = document.getElementById("rubric-rows");
-  container.innerHTML = "";
-  RUBRIC_CATS.forEach(function(cat,i) {
-    var cur = getRub(CU.id, i);
-    var row = document.createElement("div");
-    row.className = "rubric-row";
-    var opts = [0,1,2,3,4,5].map(function(v){ return '<option value="'+v+'"'+(cur===v?" selected":"")+">"+( v===0?"--":v )+"</option>"; }).join("");
-    var descs = RUBRIC_LEVELS.map(function(desc,idx){ return '<div class="rubric-desc-cell'+(cur===(idx+1)?" current":"")+'">'+desc+'</div>'; }).join("");
-    row.innerHTML = '<div class="rubric-cat-cell">'+cat+'<select class="rubric-select" onchange="saveRubric('+i+',this.value)">'+opts+'</select></div>'+descs;
+   ============================================================= */
+function buildRubric(){
+  var container=document.getElementById("rubric-rows");
+  container.innerHTML="";
+  RUBRIC_CATS.forEach(function(cat,i){
+    var cur=getRub(CU.id,i);
+    var row=document.createElement("div"); row.className="rubric-row";
+    var opts=[0,1,2,3,4,5].map(function(v){return'<option value="'+v+'"'+(cur===v?" selected":"")+">"+(v===0?"--":v)+"</option>";}).join("");
+    var descs=RUBRIC_LEVELS.map(function(desc,idx){return'<div class="rubric-desc-cell'+(cur===(idx+1)?" current":"")+'">'+desc+'</div>';}).join("");
+    row.innerHTML='<div class="rubric-cat-cell">'+cat+'<select class="rubric-select" onchange="saveRubric('+i+',this.value)">'+opts+'</select></div>'+descs;
     container.appendChild(row);
   });
 }
 
-/* ============================================================
+/* =============================================================
    CERT
-   ============================================================ */
-function buildCert() {
-  var list = document.getElementById("cert-list");
-  list.innerHTML = "";
+   ============================================================= */
+function buildCert(){
+  var list=document.getElementById("cert-list"); list.innerHTML="";
   CERT_ITEMS.forEach(function(item,i){
-    var checked = getCert(CU.id, i);
-    var div = document.createElement("div");
-    div.className = "cert-item"+(checked?" checked":"");
-    div.id = "ci-"+i;
-    div.onclick = function(){ toggleCert(i); };
-    div.innerHTML = '<div class="cert-box">'+(checked?"v":"")+'</div><div class="cert-text">'+item+'</div>';
+    var checked=getCert(CU.id,i);
+    var div=document.createElement("div");
+    div.className="cert-item"+(checked?" checked":"");
+    div.id="ci-"+i; div.onclick=function(){toggleCert(i);};
+    div.innerHTML='<div class="cert-box">'+(checked?"&#10003;":"")+'</div><div class="cert-text">'+item+'</div>';
     list.appendChild(div);
   });
   updateCertBar();
 }
-function updateCertBar() {
-  var done=0;
-  CERT_ITEMS.forEach(function(_,i){ if(getCert(CU.id,i)) done++; });
-  document.getElementById("cert-pct-label").textContent = done+" of "+CERT_ITEMS.length+" complete";
-  document.getElementById("cert-bar").style.width = Math.round((done/CERT_ITEMS.length)*100)+"%";
+function updateCertBar(){
+  var done=0; CERT_ITEMS.forEach(function(_,i){if(getCert(CU.id,i))done++;});
+  document.getElementById("cert-pct-label").textContent=done+" of "+CERT_ITEMS.length+" complete";
+  document.getElementById("cert-bar").style.width=Math.round((done/CERT_ITEMS.length)*100)+"%";
 }
 
-/* ============================================================
+/* =============================================================
    ADMIN PANEL
-   ============================================================ */
-function buildAdminPanel() {
-  var totalScored=0, totalComplete=0, totalCert=0;
-  var n = STORE.users.length;
-  STORE.users.forEach(function(u){
-    var s = calcStats(u.id);
-    totalScored   += s.pct;
-    totalComplete += s.complete;
-    totalCert     += s.certDone;
-  });
-  var avgPct = n > 0 ? Math.round(totalScored/n) : 0;
+   ============================================================= */
+function buildAdminPanel(){
+  var n=STORE.users.length, totPct=0, totComplete=0, totCert=0;
+  STORE.users.forEach(function(u){ var s=calcStats(u.id); totPct+=s.pct; totComplete+=s.complete; totCert+=s.certDone; });
 
-  var sumEl = document.getElementById("admin-summary");
-  sumEl.innerHTML =
-    '<div class="stat-box hl-orange"><div class="stat-lbl">Learners</div><div class="stat-num o">'+n+'</div><div class="stat-sub">on this track</div></div>' +
-    '<div class="stat-box"><div class="stat-lbl">Avg Completion</div><div class="stat-num">'+avgPct+'%</div><div class="stat-sub">across all learners</div></div>' +
-    '<div class="stat-box hl-green"><div class="stat-lbl">Sessions Done</div><div class="stat-num g">'+totalComplete+'</div><div class="stat-sub">total completed</div></div>' +
-    '<div class="stat-box"><div class="stat-lbl">Cert Items</div><div class="stat-num y">'+totalCert+'</div><div class="stat-sub">checked off total</div></div>';
+  document.getElementById("admin-summary").innerHTML=
+    '<div class="stat-box hl-orange"><div class="stat-lbl">Learners</div><div class="stat-num o">'+n+'</div><div class="stat-sub">on this track</div></div>'+
+    '<div class="stat-box"><div class="stat-lbl">Avg Completion</div><div class="stat-num">'+(n?Math.round(totPct/n):0)+'%</div><div class="stat-sub">across all learners</div></div>'+
+    '<div class="stat-box hl-green"><div class="stat-lbl">Sessions Done</div><div class="stat-num g">'+totComplete+'</div><div class="stat-sub">total completed</div></div>'+
+    '<div class="stat-box"><div class="stat-lbl">Cert Items</div><div class="stat-num y">'+totCert+'</div><div class="stat-sub">checked off total</div></div>';
 
-  var learnersEl = document.getElementById("admin-learners");
-  learnersEl.innerHTML = "";
-  STORE.users.forEach(function(user) {
-    var s = calcStats(user.id);
-    var conf = s.avgConf ? s.avgConf+"*" : "--";
-    var card = document.createElement("div");
-    card.className = "admin-user-card";
-    card.innerHTML =
-      '<div class="admin-user-header">' +
-        '<div class="admin-avatar" style="background:'+(user.avatar?'transparent':user.color)+'">' + avatarHTML(user) + '</div>' +
-        '<div class="admin-user-info">' +
-          '<div class="admin-user-name">'+user.name+'</div>' +
-          '<div class="admin-user-meta">'+s.complete+' sessions complete &middot; '+s.certDone+' cert items &middot; Avg conf: '+conf+'</div>' +
-        '</div>' +
-        (user.id !== CU.id ? '<div class="admin-actions"><button class="btn-sm danger" onclick="promptDeleteUser(\''+user.id+'\')">Remove</button></div>' : '<div class="admin-actions"><span style="font-size:10px;color:var(--mid);">You</span></div>') +
-      '</div>' +
-      '<div class="admin-stats-row">' +
-        '<div class="admin-stat"><div class="admin-stat-val" style="color:var(--green)">'+s.complete+'</div><div class="admin-stat-lbl">Complete</div></div>' +
-        '<div class="admin-stat"><div class="admin-stat-val" style="color:var(--orange)">'+s.inprog+'</div><div class="admin-stat-lbl">In Progress</div></div>' +
-        '<div class="admin-stat"><div class="admin-stat-val" style="color:var(--yellow)">'+s.followup+'</div><div class="admin-stat-lbl">Follow-Up</div></div>' +
-        '<div class="admin-stat"><div class="admin-stat-val" style="color:var(--purple)">'+s.certDone+'</div><div class="admin-stat-lbl">Cert Items</div></div>' +
-        '<div class="admin-stat"><div class="admin-stat-val" style="color:var(--yellow)">'+conf+'</div><div class="admin-stat-lbl">Avg Conf</div></div>' +
-      '</div>' +
-      '<div class="admin-bar-row">' +
-        '<div class="admin-bar-track"><div class="admin-bar-fill" style="width:'+s.pct+'%"></div></div>' +
-        '<div class="admin-bar-pct">'+s.pct+'%</div>' +
+  var el=document.getElementById("admin-learners"); el.innerHTML="";
+  STORE.users.forEach(function(user){
+    var s=calcStats(user.id);
+    var conf=s.avgConf?s.avgConf+"★":"--";
+    var isMe = CU && CU.id===user.id;
+    var card=document.createElement("div"); card.className="admin-user-card";
+    card.innerHTML=
+      '<div class="admin-user-header">'+
+        '<div class="admin-avatar" style="background:'+avBg(user)+'">'+avHTML(user)+'</div>'+
+        '<div class="admin-user-info">'+
+          '<div class="admin-user-name">'+user.name+(isMe?' <span style="font-size:10px;color:var(--mid);font-weight:400;">(you)</span>':'')+'</div>'+
+          '<div class="admin-user-meta">'+s.complete+' sessions complete &middot; '+s.certDone+'/15 cert items &middot; Avg conf: '+conf+'</div>'+
+        '</div>'+
+        (!isMe?'<div class="admin-actions"><button class="btn-sm danger" onclick="promptDeleteUser(\''+user.id+'\')">Remove</button></div>':'')+
+      '</div>'+
+      '<div class="admin-stats-row">'+
+        '<div class="admin-stat"><div class="admin-stat-val" style="color:var(--green)">'+s.complete+'</div><div class="admin-stat-lbl">Complete</div></div>'+
+        '<div class="admin-stat"><div class="admin-stat-val" style="color:var(--orange)">'+s.inprog+'</div><div class="admin-stat-lbl">In Progress</div></div>'+
+        '<div class="admin-stat"><div class="admin-stat-val" style="color:var(--yellow)">'+s.followup+'</div><div class="admin-stat-lbl">Follow-Up</div></div>'+
+        '<div class="admin-stat"><div class="admin-stat-val" style="color:var(--purple)">'+s.certDone+'</div><div class="admin-stat-lbl">Cert Items</div></div>'+
+        '<div class="admin-stat"><div class="admin-stat-val" style="color:var(--yellow)">'+conf+'</div><div class="admin-stat-lbl">Avg Conf</div></div>'+
+      '</div>'+
+      '<div class="admin-bar-row">'+
+        '<div class="admin-bar-track"><div class="admin-bar-fill" style="width:'+s.pct+'%"></div></div>'+
+        '<div class="admin-bar-pct">'+s.pct+'%</div>'+
       '</div>';
-    learnersEl.appendChild(card);
+    el.appendChild(card);
   });
 }
 
-/* ============================================================
-   EVENT HANDLERS
-   ============================================================ */
-function toggleWeek(wi) {
-  var hdr=document.getElementById("wh-"+wi), body=document.getElementById("wb-"+wi);
-  var open=hdr.classList.contains("open");
-  hdr.classList.toggle("open",!open); body.classList.toggle("open",!open);
+/* =============================================================
+   EVENTS
+   ============================================================= */
+function toggleWeek(wi){
+  var h=document.getElementById("wh-"+wi), b=document.getElementById("wb-"+wi);
+  var open=h.classList.contains("open");
+  h.classList.toggle("open",!open); b.classList.toggle("open",!open);
 }
-function toggleSession(day) { var c=document.getElementById("card-"+day); if(c) c.classList.toggle("open"); }
-
-function updateStatus(day, value) {
+function toggleSession(day){
+  var c=document.getElementById("card-"+day); if(c) c.classList.toggle("open");
+}
+function updateStatus(day,value){
   var d=getSess(CU.id,day); d.status=value; setSess(CU.id,day,d); flash(day);
   var card=document.getElementById("card-"+day);
-  if(card){ var wasOpen=card.classList.contains("open"); card.className="session-card"+(value?" status-"+value:"")+(wasOpen?" open":""); }
+  if(card){var wasOpen=card.classList.contains("open"); card.className="session-card"+(value?" status-"+value:"")+(wasOpen?" open":"");}
   updateDashboard(); refreshBadges();
 }
-
-function setConf(day, val) {
+function setConf(day,val){
   var d=getSess(CU.id,day); d.confidence=val; setSess(CU.id,day,d); flash(day);
   var card=document.getElementById("card-"+day);
   if(card){
-    card.querySelectorAll(".star-btn").forEach(function(s,i){ s.classList.toggle("filled",i<val); });
+    card.querySelectorAll(".star-btn").forEach(function(s,i){s.classList.toggle("filled",i<val);});
     var badge=document.getElementById("cb-"+day);
-    if(badge){ badge.textContent=val+"*"; badge.classList.add("visible"); }
+    if(badge){badge.textContent=val+"★"; badge.classList.add("visible");}
   }
   updateDashboard();
 }
-
-var saveTimers={};
-function updateField(day, field, value) {
+function updateField(day,field,value){
   var d=getSess(CU.id,day); d[field]=value; setSess(CU.id,day,d);
   clearTimeout(saveTimers[day]);
-  saveTimers[day]=setTimeout(function(){ flash(day); },700);
+  saveTimers[day]=setTimeout(function(){flash(day);},700);
 }
-
-function flash(day) {
+function flash(day){
   var el=document.getElementById("saved-"+day); if(!el) return;
-  el.classList.add("show"); setTimeout(function(){ el.classList.remove("show"); },1800);
+  el.classList.add("show"); setTimeout(function(){el.classList.remove("show");},1800);
 }
-
-function toggleCert(i) {
+function toggleCert(i){
   var val=!getCert(CU.id,i); setCert(CU.id,i,val);
   var item=document.getElementById("ci-"+i);
-  if(item){ item.classList.toggle("checked",val); item.querySelector(".cert-box").textContent=val?"v":""; }
+  if(item){item.classList.toggle("checked",val); item.querySelector(".cert-box").innerHTML=val?"&#10003;":"";}
   updateCertBar();
 }
-
 function saveRubric(i,val){ setRub(CU.id,i,val); buildRubric(); }
-
-function switchTab(name, el) {
-  document.querySelectorAll(".panel").forEach(function(p){ p.classList.remove("active"); });
-  document.querySelectorAll(".tab").forEach(function(t){ t.classList.remove("active"); });
+function switchTab(name,el){
+  document.querySelectorAll(".panel").forEach(function(p){p.classList.remove("active");});
+  document.querySelectorAll(".tab").forEach(function(t){t.classList.remove("active");});
   document.getElementById("panel-"+name).classList.add("active");
   if(el) el.classList.add("active");
   if(name==="admin") buildAdminPanel();
 }
 
-
-/* ============================================================
-   ADMIN KEYCODE
-   ============================================================ */
-function handleAdminTabClick(el) {
-  if (adminUnlocked) {
-    switchTab('admin', el);
-  } else {
-    document.getElementById("admin-key-input").value = "";
-    document.getElementById("admin-key-error").style.display = "none";
-    // store ref to tab el for after unlock
-    window._adminTabEl = el;
-    openModal("modal-admin-key");
-  }
-}
-
-function checkAdminKey() {
-  var val = document.getElementById("admin-key-input").value;
-  if (val === ADMIN_KEYCODE) {
-    adminUnlocked = true;
-    closeModal("modal-admin-key");
-    if (window._adminFromPicker) {
-      // Coming from picker screen — go straight to admin view without a user
-      window._adminFromPicker = false;
-      document.getElementById("user-picker").style.display = "none";
-      document.getElementById("main-app").style.display = "block";
-      // Set up nav for admin-only mode (no personal user)
-      var navAv = document.getElementById("nav-avatar");
-      navAv.style.background = "#333";
-      navAv.innerHTML = "&#128272;";
-      document.getElementById("nav-username").textContent = "Admin";
-      document.getElementById("tab-admin-btn").style.display = "inline-block";
-      // Hide personal tabs if no user selected
-      if (!CU) {
-        document.querySelectorAll('.tab[data-tab="roadmap"], .tab[data-tab="rubric"], .tab[data-tab="cert"]').forEach(function(t){ t.style.display = "none"; });
-      }
-      switchTab("admin", document.getElementById("tab-admin-btn"));
-    } else {
-      switchTab("admin", window._adminTabEl);
-    }
-  } else {
-    document.getElementById("admin-key-error").style.display = "block";
-    document.getElementById("admin-key-input").value = "";
-    document.getElementById("admin-key-input").focus();
-  }
-}
-
-/* ============================================================
+/* =============================================================
    INIT
-   ============================================================ */
-document.addEventListener("DOMContentLoaded", function() {
-  renderPicker();
-  // auto-open week 1 after user selects
-});
+   ============================================================= */
+document.addEventListener("DOMContentLoaded", function(){ renderPicker(); });
 </script>
 </body>
 </html>
