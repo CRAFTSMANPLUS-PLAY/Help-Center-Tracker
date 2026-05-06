@@ -21,7 +21,8 @@
   .nav-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); }
   .nav-user-btn { display: flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--border); border-radius: 100px; padding: 5px 12px 5px 6px; cursor: pointer; transition: border-color 0.15s; }
   .nav-user-btn:hover { border-color: #3a3a3a; }
-  .nav-avatar { width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; color: var(--black); flex-shrink: 0; }
+  .nav-avatar { width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; color: var(--black); flex-shrink: 0; overflow: hidden; }
+  .nav-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
   .nav-username { font-size: 12px; font-weight: 600; color: var(--white); }
 
   .tabs { max-width: 900px; margin: 0 auto; padding: 0 2rem; display: flex; border-bottom: 1px solid var(--border); margin-top: 1.5rem; overflow-x: auto; scrollbar-width: none; }
@@ -160,7 +161,8 @@
   .admin-summary-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-bottom: 1.5rem; }
   .admin-user-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem 1.5rem; margin-bottom: 10px; }
   .admin-user-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
-  .admin-avatar { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; color: var(--black); flex-shrink: 0; }
+  .admin-avatar { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; color: var(--black); flex-shrink: 0; overflow: hidden; }
+  .admin-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
   .admin-user-info { flex: 1; }
   .admin-user-name { font-size: 15px; font-weight: 700; color: var(--white); letter-spacing: -0.02em; }
   .admin-user-meta { font-size: 11px; color: var(--mid); margin-top: 1px; }
@@ -186,7 +188,14 @@
   .picker-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; width: 100%; max-width: 680px; margin-bottom: 1.5rem; }
   .picker-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem 1rem; display: flex; flex-direction: column; align-items: center; gap: 10px; cursor: pointer; transition: border-color 0.15s, transform 0.15s; }
   .picker-card:hover { border-color: var(--orange); transform: translateY(-2px); }
-  .picker-avatar { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 800; color: var(--black); }
+  .picker-avatar { width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 800; color: var(--black); overflow: hidden; flex-shrink:0; }
+  .picker-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+  .picker-card.locked { opacity: 0.38; cursor: not-allowed; pointer-events: none; filter: grayscale(0.6); }
+  .picker-card.locked:hover { border-color: var(--border); transform: none; }
+  .picker-lock { font-size: 18px; position: absolute; bottom: -4px; right: -4px; background: var(--surface2); border: 1px solid var(--border); border-radius: 50%; width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; font-size: 11px; }
+  .picker-avatar-wrap { position: relative; display: inline-flex; }
+  .admin-picker-card { background: var(--surface); border: 1px dashed var(--orange); border-radius: 12px; padding: 1.25rem 1rem; display: flex; flex-direction: column; align-items: center; gap: 10px; cursor: pointer; transition: border-color 0.15s, transform 0.15s; }
+  .admin-picker-card:hover { background: rgba(250,108,0,0.06); transform: translateY(-2px); }
   .picker-name { font-size: 14px; font-weight: 700; color: var(--white); text-align: center; }
   .picker-prog { font-size: 11px; color: var(--mid); }
   .picker-prog.has-progress { color: var(--green); }
@@ -439,10 +448,10 @@
    CONFIG — edit names/colors here, or use the UI to add more
    ============================================================ */
 var DEFAULT_USERS = [
-  { name: "Hugo Rojas Jr.",    color: "#FA6C00" },
-  { name: "Shane Hedengran",   color: "#FEC01F" },
-  { name: "Julian Friedman",   color: "#5aad3a" },
-  { name: "Matt Forman",       color: "#9b6bfa" }
+  { name: "Hugo Rojas Jr.",    color: "#FA6C00", avatar: "hugo-avatar.png"   },
+  { name: "Shane Hedengran",   color: "#FEC01F", avatar: "shane-avatar.png"  },
+  { name: "Julian Friedman",   color: "#5aad3a", avatar: "julian-avatar.png" },
+  { name: "Matt Forman",       color: "#9b6bfa", avatar: "matt-avatar.png"   }
 ];
 
 var ADMIN_KEYCODE = "0000";
@@ -527,7 +536,7 @@ function saveStore() {
 
 var STORE = loadStore();
 if (!STORE || !STORE.users || STORE.users.length === 0) {
-  STORE = { users: DEFAULT_USERS.map(function(u) { return { id: makeId(u.name), name: u.name, color: u.color }; }), userData: {} };
+  STORE = { users: DEFAULT_USERS.map(function(u) { return { id: makeId(u.name), name: u.name, color: u.color, avatar: u.avatar||"" }; }), userData: {} };
   saveStore();
 }
 
@@ -566,6 +575,14 @@ function calcStats(uid) {
 
 function initials(name) { return name.trim().split(/\s+/).map(function(w){ return w[0]; }).join("").toUpperCase().slice(0,2); }
 
+function avatarHTML(user) {
+  if (user.avatar) {
+    return '<img src="' + user.avatar + '" alt="' + user.name + '" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" onerror="this.remove()">';
+  }
+  return initials(user.name);
+}
+
+
 /* ============================================================
    USER PICKER
    ============================================================ */
@@ -596,12 +613,22 @@ function selectUser(uid) {
   if (!CU) return;
   document.getElementById("user-picker").style.display = "none";
   document.getElementById("main-app").style.display = "block";
-  document.getElementById("nav-avatar").style.background = CU.color;
-  document.getElementById("nav-avatar").textContent = initials(CU.name);
+  sessionStorage.setItem("cplus_user_id", CU.id);
+  var navAv = document.getElementById("nav-avatar");
+  navAv.style.background = CU.avatar ? "transparent" : CU.color;
+  navAv.innerHTML = avatarHTML(CU);
   document.getElementById("nav-username").textContent = CU.name;
   document.getElementById("roadmap-eyebrow").textContent = CU.name + "'s Track";
   document.getElementById("roadmap-title").innerHTML = CU.name.split(" ")[0] + "'s PLAY<br><span>Enablement Track.</span>";
-  // Admin tab always visible — keycode protected
+  // Shane gets admin tab without keycode
+  if (CU.name === "Shane Hedengran") {
+    adminUnlocked = true;
+    document.getElementById("tab-admin-btn").style.display = "inline-block";
+  } else {
+    document.getElementById("tab-admin-btn").style.display = "inline-block";
+  }
+  // Restore personal tabs visibility
+  document.querySelectorAll('.tab[data-tab="roadmap"], .tab[data-tab="rubric"], .tab[data-tab="cert"]').forEach(function(t){ t.style.display = ""; });
   switchTab("roadmap", document.querySelector('.tab[data-tab="roadmap"]'));
   buildRoadmap(); buildRubric(); buildCert(); updateDashboard();
 }
@@ -609,6 +636,8 @@ function selectUser(uid) {
 function switchUser() {
   CU = null;
   adminUnlocked = false;
+  sessionStorage.removeItem("cplus_user_id");
+  document.querySelectorAll('.tab[data-tab="roadmap"], .tab[data-tab="rubric"], .tab[data-tab="cert"]').forEach(function(t){ t.style.display = ""; });
   document.getElementById("main-app").style.display = "none";
   document.getElementById("user-picker").style.display = "flex";
   renderPicker();
@@ -982,7 +1011,25 @@ function checkAdminKey() {
   if (val === ADMIN_KEYCODE) {
     adminUnlocked = true;
     closeModal("modal-admin-key");
-    switchTab("admin", window._adminTabEl);
+    if (window._adminFromPicker) {
+      // Coming from picker screen — go straight to admin view without a user
+      window._adminFromPicker = false;
+      document.getElementById("user-picker").style.display = "none";
+      document.getElementById("main-app").style.display = "block";
+      // Set up nav for admin-only mode (no personal user)
+      var navAv = document.getElementById("nav-avatar");
+      navAv.style.background = "#333";
+      navAv.innerHTML = "&#128272;";
+      document.getElementById("nav-username").textContent = "Admin";
+      document.getElementById("tab-admin-btn").style.display = "inline-block";
+      // Hide personal tabs if no user selected
+      if (!CU) {
+        document.querySelectorAll('.tab[data-tab="roadmap"], .tab[data-tab="rubric"], .tab[data-tab="cert"]').forEach(function(t){ t.style.display = "none"; });
+      }
+      switchTab("admin", document.getElementById("tab-admin-btn"));
+    } else {
+      switchTab("admin", window._adminTabEl);
+    }
   } else {
     document.getElementById("admin-key-error").style.display = "block";
     document.getElementById("admin-key-input").value = "";
