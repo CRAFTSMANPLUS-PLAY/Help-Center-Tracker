@@ -19,8 +19,6 @@
   nav { position: sticky; top: 0; z-index: 100; background: var(--black); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 56px; }
   .nav-right { display: flex; align-items: center; gap: 12px; }
   .nav-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); }
-  .nav-user-btn { display: flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--border); border-radius: 100px; padding: 5px 12px 5px 6px; cursor: pointer; transition: border-color 0.15s; }
-  .nav-user-btn:hover { border-color: #3a3a3a; }
   .nav-avatar { width: 26px; height: 26px; border-radius: 50%; background: var(--surface2); display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; color: var(--black); flex-shrink: 0; overflow: hidden; }
   .nav-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 50%; }
   .nav-username { font-size: 12px; font-weight: 600; color: var(--white); }
@@ -41,8 +39,7 @@
 
   /* LAYOUT */
   .content { max-width: 900px; margin: 0 auto; padding: 0 2rem 4rem; }
-  .panel { display: none; }
-  .panel.active { display: block; }
+  .panel { display: none; } .panel.active { display: block; }
   .section-label { font-size: 9px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mid); margin-bottom: 14px; margin-top: 1.5rem; }
   .section-label:first-child { margin-top: 0; }
   hr { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
@@ -68,7 +65,7 @@
   .meter-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--orange), var(--yellow)); transition: width 0.4s ease; }
   .meter-legend { display: flex; justify-content: space-between; font-size: 10px; color: var(--mid); }
   .bar-track { height: 4px; border-radius: 2px; background: var(--border); margin: 0.5rem 0 4px; overflow: hidden; }
-  .bar-fill   { height: 100%; border-radius: 2px; background: var(--orange); transition: width 0.3s ease; }
+  .bar-fill { height: 100%; border-radius: 2px; background: var(--orange); transition: width 0.3s ease; }
   .bar-fill.g { background: var(--green); }
 
   /* BADGES */
@@ -164,7 +161,7 @@
   .cert-text { font-size: 13px; color: #aaa; line-height: 1.4; }
   .cert-item.checked .cert-text { color: var(--white); text-decoration: line-through; text-decoration-color: var(--green); }
 
-  /* ADMIN PANEL */
+  /* ADMIN */
   .admin-summary-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-bottom: 1.5rem; }
   .admin-user-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem 1.5rem; margin-bottom: 10px; }
   .admin-user-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
@@ -185,38 +182,14 @@
   .btn-sm { background: none; border: 1px solid #333; color: #555; padding: 4px 12px; border-radius: 100px; font-size: 10px; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: 'Poppins', sans-serif; }
   .btn-sm.danger:hover { border-color: var(--red); color: var(--red); }
 
-  /* USER PICKER */
-  #user-picker { position: fixed; inset: 0; background: var(--black); z-index: 999; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; }
-  .picker-logo { margin-bottom: 2.5rem; }
-  .picker-title { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 800; letter-spacing: -0.03em; color: var(--white); margin-bottom: 0.5rem; text-align: center; }
-  .picker-sub { font-size: 13px; color: var(--mid); margin-bottom: 2rem; text-align: center; }
-  .picker-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; width: 100%; max-width: 720px; margin-bottom: 1.5rem; }
+  /* WRONG URL SCREEN */
+  #wrong-url { position: fixed; inset: 0; background: var(--black); z-index: 999; display: none; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; text-align: center; }
+  .wrong-url-icon { font-size: 48px; margin-bottom: 1.5rem; }
+  .wrong-url-title { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 0.5rem; }
+  .wrong-url-sub { font-size: 13px; color: var(--mid); line-height: 1.6; max-width: 400px; }
 
-  /* Individual user card */
-  .picker-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem 1rem; display: flex; flex-direction: column; align-items: center; gap: 10px; cursor: pointer; transition: border-color 0.15s, transform 0.15s; position: relative; }
-  .picker-card:hover { border-color: var(--orange); transform: translateY(-2px); }
-
-  /* Locked card */
-  .picker-card.locked { opacity: 0.35; cursor: not-allowed; filter: grayscale(0.7); }
-  .picker-card.locked:hover { border-color: var(--border); transform: none; }
-  .lock-icon { position: absolute; top: 10px; right: 10px; font-size: 13px; }
-
-  /* Avatar */
-  .picker-avatar { width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 800; color: var(--black); overflow: hidden; flex-shrink: 0; }
-  .picker-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .picker-name { font-size: 13px; font-weight: 700; color: var(--white); text-align: center; line-height: 1.3; }
-  .picker-prog { font-size: 11px; color: var(--mid); text-align: center; }
-  .picker-prog.has-progress { color: var(--green); }
-
-  /* Admin tile */
-  .picker-admin-card { background: var(--surface); border: 1px dashed var(--orange); border-radius: 12px; padding: 1.25rem 1rem; display: flex; flex-direction: column; align-items: center; gap: 10px; cursor: pointer; transition: background 0.15s, transform 0.15s; }
-  .picker-admin-card:hover { background: rgba(250,108,0,0.07); transform: translateY(-2px); }
-
-  /* Add learner */
-  .picker-add-btn { background: none; border: 1px dashed #333; color: var(--mid); border-radius: 12px; padding: 1.25rem 1rem; display: flex; flex-direction: column; align-items: center; gap: 8px; cursor: pointer; transition: border-color 0.15s; font-family: 'Poppins', sans-serif; }
-  .picker-add-btn:hover { border-color: var(--orange); color: var(--orange); }
-  .picker-add-icon { font-size: 22px; line-height: 1; }
-  .picker-add-label { font-size: 12px; font-weight: 600; }
+  /* ADMIN KEYCODE SCREEN */
+  #admin-screen { position: fixed; inset: 0; background: var(--black); z-index: 999; display: none; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; }
 
   /* MODALS */
   .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.78); z-index: 1000; display: none; align-items: center; justify-content: center; padding: 2rem; }
@@ -239,7 +212,13 @@
   .btn-danger:hover { opacity: 0.85; }
   .btn-danger:disabled { opacity: 0.35; cursor: not-allowed; }
   .modal-warning { background: rgba(224,68,68,0.08); border: 1px solid rgba(224,68,68,0.25); border-radius: 8px; padding: 10px 14px; font-size: 12px; color: #f99; margin-bottom: 1rem; }
-  .modal-error { font-size: 11px; color: var(--red); margin-top: -6px; margin-bottom: 8px; display: none; }
+  .modal-error { font-size: 11px; color: var(--red); margin-top: 6px; display: none; }
+
+  /* ADMIN KEY FORM */
+  .key-form { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; width: 100%; max-width: 400px; text-align: left; }
+  .key-form h3 { font-size: 20px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 0.4rem; }
+  .key-form p { font-size: 12px; color: var(--mid); margin-bottom: 1.25rem; line-height: 1.6; }
+  .key-error { font-size: 11px; color: var(--red); margin-top: 6px; display: none; }
 
   /* FOOTER */
   footer { border-top: 1px solid var(--border); padding: 1.5rem 2rem; display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--mid); flex-wrap: wrap; gap: 10px; }
@@ -258,28 +237,25 @@
 </head>
 <body>
 
-<!-- USER PICKER -->
-<div id="user-picker">
-  <div class="picker-logo">
-    <img src="LOGO_LIGHT_CRAFTSMAN_PLUS.png" alt="CRAFTSMAN+" height="28">
-  </div>
-  <h2 class="picker-title">Who's studying today?</h2>
-  <p class="picker-sub">PLAY Enablement Track &middot; Select your name to continue</p>
-  <div class="picker-grid" id="picker-grid"></div>
+<!-- WRONG URL SCREEN -->
+<div id="wrong-url">
+  <div class="wrong-url-icon">&#128274;</div>
+  <div class="wrong-url-title">Access Denied</div>
+  <p class="wrong-url-sub">This link is not valid or you don't have access to this profile. Please use your personal link to access your track.</p>
 </div>
 
-<!-- ADMIN KEYCODE MODAL -->
-<div class="modal-overlay" id="modal-admin-key">
-  <div class="modal">
+<!-- ADMIN KEYCODE SCREEN -->
+<div id="admin-screen">
+  <img src="LOGO_LIGHT_CRAFTSMAN_PLUS.png" alt="CRAFTSMAN+" height="28" style="margin-bottom:2.5rem;">
+  <div class="key-form">
     <h3>Admin access</h3>
     <p>Enter the admin keycode to view the full team progress dashboard.</p>
     <div class="modal-field">
       <label>Keycode</label>
       <input type="password" id="admin-key-input" placeholder="Enter keycode" maxlength="20" onkeydown="if(event.key==='Enter')checkAdminKey()">
     </div>
-    <div class="modal-error" id="admin-key-error">Incorrect keycode. Try again.</div>
-    <div class="modal-actions">
-      <button class="btn-ghost" onclick="closeModal('modal-admin-key')">Cancel</button>
+    <div class="key-error" id="admin-key-error">Incorrect keycode. Try again.</div>
+    <div class="modal-actions" style="margin-top:1.25rem;">
       <button class="btn-primary" onclick="checkAdminKey()">Unlock</button>
     </div>
   </div>
@@ -331,7 +307,7 @@
 <div class="modal-overlay" id="modal-add-user">
   <div class="modal">
     <h3>Add a new learner</h3>
-    <p>They'll get their own progress tracker, fully separate from everyone else's.</p>
+    <p>They'll get their own link and progress tracker, fully separate from everyone else's.</p>
     <div class="modal-field">
       <label>Full name</label>
       <input type="text" id="new-user-name" placeholder="e.g. Alex Chen" maxlength="40">
@@ -340,9 +316,16 @@
       <label>Pick a color</label>
       <div class="color-picker-row" id="color-picker-row"></div>
     </div>
+    <div id="new-user-link-wrap" style="display:none;margin-top:1rem;">
+      <div class="modal-field">
+        <label>Their personal link</label>
+        <input type="text" id="new-user-link" readonly onclick="this.select()">
+      </div>
+      <p style="font-size:11px;color:var(--mid);margin-bottom:0;">Copy and send this link to them. It is the only way to access their tracker.</p>
+    </div>
     <div class="modal-actions">
-      <button class="btn-ghost" onclick="closeModal('modal-add-user')">Cancel</button>
-      <button class="btn-primary" onclick="createUser()">Add Learner</button>
+      <button class="btn-ghost" id="add-user-cancel-btn" onclick="closeModal('modal-add-user')">Cancel</button>
+      <button class="btn-primary" id="add-user-btn" onclick="createUser()">Add Learner</button>
     </div>
   </div>
 </div>
@@ -350,10 +333,12 @@
 <!-- MAIN APP -->
 <div id="main-app" style="display:none;">
   <nav>
-    <a href="https://help.craftsmanplus.com/" target="_blank"><img src="LOGO_LIGHT_CRAFTSMAN_PLUS.png" alt="CRAFTSMAN+" height="20" style="display:block;"></a>
+    <a href="https://help.craftsmanplus.com/" target="_blank">
+      <img src="LOGO_LIGHT_CRAFTSMAN_PLUS.png" alt="CRAFTSMAN+" height="20" style="display:block;">
+    </a>
     <div class="nav-right">
       <span class="nav-tag">PLAY Enablement Track</span>
-      <div class="nav-user-btn" onclick="switchUser()">
+      <div style="display:flex;align-items:center;gap:8px;">
         <div class="nav-avatar" id="nav-avatar"></div>
         <span class="nav-username" id="nav-username"></span>
       </div>
@@ -413,7 +398,7 @@
     <div class="hero">
       <p class="hero-eyebrow">Final Certification</p>
       <h1 class="hero-title">CS independence<br><span>checklist.</span></h1>
-      <p class="hero-sub">Mark each item once you can do it without prompting. This is the bar for operating independently as a PLAY CSM.</p>
+      <p class="hero-sub">Mark each item once you can do it without prompting.</p>
     </div>
     <div class="content">
       <div class="cert-wrap">
@@ -441,7 +426,7 @@
       <hr>
       <p class="section-label">Manage learners</p>
       <div class="card" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
-        <p style="font-size:13px;color:var(--mid);line-height:1.5;margin:0;">Add new learners to the track. Each person gets their own isolated progress data.</p>
+        <p style="font-size:13px;color:var(--mid);line-height:1.5;margin:0;">Add new learners. After adding, copy their personal link and send it to them directly.</p>
         <button class="btn-primary" style="width:auto;padding:8px 20px;font-size:12px;white-space:nowrap;" onclick="openAddUserModal()">+ Add Learner</button>
       </div>
     </div>
@@ -451,31 +436,34 @@
     <span>2026 CRAFTSMAN+ &middot; PLAY Enablement Track</span>
     <div style="display:flex;align-items:center;gap:14px;">
       <a href="https://help.craftsmanplus.com/" target="_blank">help.craftsmanplus.com</a>
-      <button class="reset-btn" onclick="openResetModal()">Reset My Progress</button>
+      <button class="reset-btn" id="reset-btn" onclick="openResetModal()" style="display:none;">Reset My Progress</button>
     </div>
   </footer>
 </div>
 
 <script>
 /* =============================================================
-   CONFIG — edit names/colors/avatars here, or add via the UI
+   CONFIG
+   Each user gets a unique URL param: ?user=hugo, ?user=shane etc.
+   Shane gets ?user=shane AND sees Team Overview automatically.
+   Admin dashboard: ?admin=true  (prompts for keycode)
+   To add a new user, add an entry to DEFAULT_USERS and give them
+   the URL: yourdomain.com/?user=their-slug
    ============================================================= */
 var DEFAULT_USERS = [
-  { name: "Hugo Rojas Jr.",    color: "#FA6C00", avatar: "hugo-avatar.png"   },
-  { name: "Shane Hedengran",   color: "#FEC01F", avatar: "shane-avatar.png"  },
-  { name: "Julian Friedman",   color: "#5aad3a", avatar: "julian-avatar.png" },
-  { name: "Matt Forman",       color: "#9b6bfa", avatar: "matt-avatar.png"   }
+  { slug: "hugo",   name: "Hugo Rojas Jr.",    color: "#FA6C00", avatar: "hugo-avatar.png"   },
+  { slug: "shane",  name: "Shane Hedengran",   color: "#FEC01F", avatar: "shane-avatar.png"  },
+  { slug: "julian", name: "Julian Friedman",   color: "#5aad3a", avatar: "julian-avatar.png" },
+  { slug: "matt",   name: "Matt Forman",       color: "#9b6bfa", avatar: "matt-avatar.png"   }
 ];
 
-/* Shane gets the Team Overview tab without needing the keycode */
-var SHANE_NAME    = "Shane Hedengran";
-/* Admin keycode for the picker-screen Admin tile and all other users */
-var ADMIN_KEYCODE = "0000";
+var ADMIN_SLUG    = "shane";   /* this user sees Team Overview without keycode */
+var ADMIN_KEYCODE = "0000";    /* keycode for ?admin=true URL */
 
 var AVATAR_COLORS = ["#FA6C00","#FEC01F","#5aad3a","#9b6bfa","#00b4d8","#f72585","#e04444","#43aa8b","#f77f00","#4cc9f0"];
 
 /* =============================================================
-   CURRICULUM — edit sessions here to update the roadmap
+   CURRICULUM
    ============================================================= */
 var WEEKS = [
   { week:1, title:"Platform Foundation + Core PLAY Workflow", goal:"Explain PLAY, navigate the docs, understand the core project journey, and walk a new partner through the basics.",
@@ -518,8 +506,7 @@ var WEEKS = [
 
 var RUBRIC_CATS   = ["Platform Comprehension","Client Explanation Quality","Support / Troubleshooting Judgment","Escalation Clarity","Analytics Interpretation","INTELLIGENCE Fluency","Confidence / Independence"];
 var RUBRIC_LEVELS = ["Not yet comfortable","Needs guidance","Can explain with notes","Client-ready","Can train others"];
-
-var CERT_ITEMS = [
+var CERT_ITEMS    = [
   "Can explain PLAY in plain English","Can walk through basic project creation","Can explain scenes, layers, assets, and timeline",
   "Can troubleshoot basic interaction issues","Can explain variants","Can prepare a project for export QA",
   "Can explain INTELLIGENCE without overpromising","Can write strong prompts for AI use cases","Can explain basic analytics",
@@ -527,76 +514,79 @@ var CERT_ITEMS = [
   "Can identify when to escalate to Creative","Can identify when to escalate to Shane",
   "Can create a partner onboarding agenda","Can create a support summary with clear next steps"
 ];
-
 var STATUS_OPTIONS = [
-  { value:"",               label:"Not started"        },
-  { value:"in-progress",   label:"In Progress"         },
-  { value:"complete",      label:"Complete"            },
-  { value:"skipped",       label:"Skipped / Blank Page"},
-  { value:"needs-followup",label:"Needs Follow-Up"     },
-  { value:"reference",     label:"Reference Only"      }
+  {value:"",               label:"Not started"},
+  {value:"in-progress",   label:"In Progress"},
+  {value:"complete",      label:"Complete"},
+  {value:"skipped",       label:"Skipped / Blank Page"},
+  {value:"needs-followup",label:"Needs Follow-Up"},
+  {value:"reference",     label:"Reference Only"}
 ];
 
 /* =============================================================
    STORAGE
    ============================================================= */
-var SK = "cplus_play_v4";
-function loadStore() { try { var r=localStorage.getItem(SK); return r?JSON.parse(r):null; } catch(e){return null;} }
-function saveStore() { try { localStorage.setItem(SK,JSON.stringify(STORE)); } catch(e){} }
+var SK = "cplus_play_v5";
+function loadStore(){ try{ var r=localStorage.getItem(SK); return r?JSON.parse(r):null; }catch(e){return null;} }
+function saveStore(){ try{ localStorage.setItem(SK,JSON.stringify(STORE)); }catch(e){} }
 
 var STORE = loadStore();
-if (!STORE || !STORE.users || !STORE.users.length) {
+if(!STORE||!STORE.users||!STORE.users.length){
   STORE = {
-    users: DEFAULT_USERS.map(function(u){ return {id:uid(u.name),name:u.name,color:u.color,avatar:u.avatar||""}; }),
+    users: DEFAULT_USERS.map(function(u){ return {slug:u.slug,name:u.name,color:u.color,avatar:u.avatar||""}; }),
     userData: {}
   };
   saveStore();
 }
 
-function uid(name){ return name.toLowerCase().replace(/\s+/g,"-").replace(/[^a-z0-9\-]/g,"")+"-"+Math.random().toString(36).slice(2,6); }
-function getUD(id)        { return STORE.userData[id]||{}; }
-function setUD(id,d)      { STORE.userData[id]=d; saveStore(); }
-function getSess(id,day)  { var u=getUD(id); return u["s"+day]||{status:"",confidence:0,notes:"",questions:""}; }
-function setSess(id,day,o){ var u=getUD(id); u["s"+day]=o; setUD(id,u); }
-function getRub(id,i)     { var u=getUD(id); return u["r"+i]||0; }
-function setRub(id,i,v)   { var u=getUD(id); u["r"+i]=parseInt(v); setUD(id,u); }
-function getCert(id,i)    { var u=getUD(id); return u["c"+i]||false; }
-function setCert(id,i,v)  { var u=getUD(id); u["c"+i]=v; setUD(id,u); }
+/* Merge in any new default users added to config that aren't in store yet */
+DEFAULT_USERS.forEach(function(u){
+  if(!STORE.users.find(function(s){return s.slug===u.slug;})){
+    STORE.users.push({slug:u.slug,name:u.name,color:u.color,avatar:u.avatar||""});
+    saveStore();
+  }
+});
+
+function getUD(slug)          { return STORE.userData[slug]||{}; }
+function setUD(slug,d)        { STORE.userData[slug]=d; saveStore(); }
+function getSess(slug,day)    { var u=getUD(slug); return u["s"+day]||{status:"",confidence:0,notes:"",questions:""}; }
+function setSess(slug,day,o)  { var u=getUD(slug); u["s"+day]=o; setUD(slug,u); }
+function getRub(slug,i)       { var u=getUD(slug); return u["r"+i]||0; }
+function setRub(slug,i,v)     { var u=getUD(slug); u["r"+i]=parseInt(v); setUD(slug,u); }
+function getCert(slug,i)      { var u=getUD(slug); return u["c"+i]||false; }
+function setCert(slug,i,v)    { var u=getUD(slug); u["c"+i]=v; setUD(slug,u); }
 
 /* State */
-var CU            = null;   /* current user object */
-var adminUnlocked = false;  /* set true when keycode entered OR Shane logs in */
+var CU         = null;   /* current user object {slug,name,color,avatar} */
+var IS_ADMIN   = false;  /* true when in admin-only mode (?admin=true) */
+var saveTimers = {};
 var pendingDelete = null;
 var selectedColor = AVATAR_COLORS[0];
-var saveTimers    = {};
 
 /* =============================================================
    HELPERS
    ============================================================= */
 function initials(name){ return name.trim().split(/\s+/).map(function(w){return w[0];}).join("").toUpperCase().slice(0,2); }
 
-/* Returns an <img> string if avatar exists, else initials text */
 function avHTML(user){
-  if (user.avatar) {
+  if(user.avatar){
     return '<img src="'+user.avatar+'" alt="'+user.name+'" style="width:100%;height:100%;object-fit:cover;display:block;">';
   }
   return initials(user.name);
 }
-
-/* Background style for avatar container */
 function avBg(user){ return user.avatar ? "transparent" : user.color; }
 
-function calcStats(id){
+function calcStats(slug){
   var complete=0,inprog=0,followup=0,scored=0,confT=0,confN=0,certDone=0;
   WEEKS.forEach(function(w){ w.sessions.forEach(function(s){
-    var d=getSess(id,s.day);
-    if(d.status==="complete")         {complete++;scored++;}
-    else if(d.status==="in-progress")  inprog++;
+    var d=getSess(slug,s.day);
+    if(d.status==="complete")          {complete++;scored++;}
+    else if(d.status==="in-progress")   inprog++;
     else if(d.status==="needs-followup") followup++;
     else if(d.status==="skipped"||d.status==="reference") scored++;
     if(d.confidence>0){confT+=d.confidence;confN++;}
   });});
-  CERT_ITEMS.forEach(function(_,i){ if(getCert(id,i)) certDone++; });
+  CERT_ITEMS.forEach(function(_,i){if(getCert(slug,i))certDone++;});
   return {complete:complete,inprog:inprog,followup:followup,scored:scored,
           pct:Math.round((scored/20)*100),avgConf:confN>0?(confT/confN).toFixed(1):null,certDone:certDone};
 }
@@ -604,121 +594,89 @@ function calcStats(id){
 function openModal(id) { document.getElementById(id).classList.add("open"); }
 function closeModal(id){ document.getElementById(id).classList.remove("open"); }
 
-/* =============================================================
-   USER PICKER
-   ============================================================= */
-function renderPicker(){
-  var grid = document.getElementById("picker-grid");
-  grid.innerHTML = "";
-
-  /* Who is the "known" user from this session? */
-  var knownId = localStorage.getItem("cplus_device_uid") || "";
-
-  STORE.users.forEach(function(user){
-    var stats    = calcStats(user.id);
-    var isYours  = (knownId === "" || knownId === user.id);
-    var progText = stats.scored > 0 ? stats.pct+"% complete" : "Not started";
-
-    var card = document.createElement("div");
-
-    if (isYours) {
-      /* ── Unlocked card ── */
-      card.className = "picker-card";
-      card.onclick   = function(){ selectUser(user.id); };
-      card.innerHTML =
-        '<div class="picker-avatar" style="background:'+avBg(user)+'">'+avHTML(user)+'</div>'+
-        '<div class="picker-name">'+user.name+'</div>'+
-        '<div class="picker-prog'+(stats.scored>0?" has-progress":"")+'">'+progText+'</div>';
-    } else {
-      /* ── Locked card ── */
-      card.className = "picker-card locked";
-      card.innerHTML =
-        '<span class="lock-icon">&#128274;</span>'+
-        '<div class="picker-avatar" style="background:'+avBg(user)+'">'+avHTML(user)+'</div>'+
-        '<div class="picker-name" style="color:var(--mid)">'+user.name+'</div>'+
-        '<div class="picker-prog">Private</div>';
-    }
-    grid.appendChild(card);
-  });
-
-  /* ── Admin tile ── */
-  var adminTile = document.createElement("div");
-  adminTile.className = "picker-admin-card";
-  adminTile.onclick = function(){
-    document.getElementById("admin-key-input").value="";
-    document.getElementById("admin-key-error").style.display="none";
-    openModal("modal-admin-key");
-  };
-  adminTile.innerHTML =
-    '<div class="picker-avatar" style="background:#1a1a1a;font-size:22px;">&#128272;</div>'+
-    '<div class="picker-name" style="color:var(--orange)">Admin</div>'+
-    '<div class="picker-prog">Team dashboard</div>';
-  grid.appendChild(adminTile);
-
-  /* ── Add learner ── */
-  var addBtn = document.createElement("button");
-  addBtn.className = "picker-add-btn";
-  addBtn.onclick = openAddUserModal;
-  addBtn.innerHTML = '<span class="picker-add-icon">+</span><span class="picker-add-label">Add learner</span>';
-  grid.appendChild(addBtn);
+function getBaseUrl(){
+  return window.location.origin + window.location.pathname;
 }
 
-function selectUser(id){
-  CU = STORE.users.find(function(u){return u.id===id;});
-  if (!CU) return;
+/* =============================================================
+   URL-BASED ROUTING — this is the core access control
+   ============================================================= */
+function init(){
+  var params  = new URLSearchParams(window.location.search);
+  var slug    = (params.get("user")||"").toLowerCase().trim();
+  var isAdmin = params.get("admin") === "true";
 
-  localStorage.setItem("cplus_device_uid", CU.id);
-  adminUnlocked = (CU.name === SHANE_NAME);
+  if(isAdmin){
+    /* ?admin=true — show keycode screen */
+    document.getElementById("admin-screen").style.display = "flex";
+    return;
+  }
 
-  document.getElementById("user-picker").style.display   = "none";
-  document.getElementById("main-app").style.display      = "block";
-  document.getElementById("tab-admin").style.display     = adminUnlocked ? "inline-block" : "none";
+  if(!slug){
+    /* No param — show wrong URL screen */
+    document.getElementById("wrong-url").style.display = "flex";
+    return;
+  }
+
+  var user = STORE.users.find(function(u){ return u.slug===slug; });
+  if(!user){
+    /* Unknown slug */
+    document.getElementById("wrong-url").style.display = "flex";
+    return;
+  }
+
+  /* Valid user — load their tracker */
+  loadUserApp(user, false);
+}
+
+function loadUserApp(user, adminMode){
+  CU       = user;
+  IS_ADMIN = adminMode;
+
+  document.getElementById("main-app").style.display = "block";
 
   /* Nav */
   var navAv = document.getElementById("nav-avatar");
-  navAv.style.background = avBg(CU);
-  navAv.innerHTML        = avHTML(CU);
-  document.getElementById("nav-username").textContent = CU.name;
+  if(adminMode){
+    navAv.style.background = "#1a1a1a";
+    navAv.innerHTML        = "&#128272;";
+    document.getElementById("nav-username").textContent = "Admin";
+  } else {
+    navAv.style.background = avBg(user);
+    navAv.innerHTML        = avHTML(user);
+    document.getElementById("nav-username").textContent = user.name;
+    /* Hero */
+    document.getElementById("roadmap-eyebrow").textContent = user.name+"'s Track";
+    document.getElementById("roadmap-title").innerHTML     = user.name.split(" ")[0]+"'s PLAY<br><span>Enablement Track.</span>";
+    /* Show reset button for personal users */
+    document.getElementById("reset-btn").style.display = "inline-block";
+  }
 
-  /* Hero */
-  document.getElementById("roadmap-eyebrow").textContent = CU.name+"'s Track";
-  document.getElementById("roadmap-title").innerHTML     = CU.name.split(" ")[0]+"'s PLAY<br><span>Enablement Track.</span>";
+  /* Team Overview tab: Shane always, admin mode always, others never */
+  var showAdmin = adminMode || (user.slug === ADMIN_SLUG);
+  document.getElementById("tab-admin").style.display = showAdmin ? "inline-block" : "none";
 
-  switchTab("roadmap", document.querySelector('.tab[data-tab="roadmap"]'));
-  buildRoadmap(); buildRubric(); buildCert(); updateDashboard();
-}
-
-function switchUser(){
-  CU = null; adminUnlocked = false;
-  /* keep device ownership — do not clear on switch */
-  document.getElementById("main-app").style.display  = "none";
-  document.getElementById("user-picker").style.display = "flex";
-  renderPicker();
-}
-
-/* =============================================================
-   ADMIN KEYCODE (picker Admin tile only)
-   ============================================================= */
-function checkAdminKey(){
-  var val = document.getElementById("admin-key-input").value;
-  if (val === ADMIN_KEYCODE) {
-    adminUnlocked = true;
-    closeModal("modal-admin-key");
-    /* Enter admin-only mode — no personal user selected */
-    document.getElementById("user-picker").style.display = "none";
-    document.getElementById("main-app").style.display    = "block";
-    /* Hide personal tabs */
+  if(adminMode){
+    /* Admin-only: hide personal tabs, go straight to team overview */
     ["roadmap","rubric","cert"].forEach(function(t){
       document.querySelector('.tab[data-tab="'+t+'"]').style.display = "none";
     });
-    document.getElementById("tab-admin").style.display = "inline-block";
-    /* Nav shows admin identity */
-    var navAv = document.getElementById("nav-avatar");
-    navAv.style.background = "#1a1a1a";
-    navAv.innerHTML = "&#128272;";
-    document.getElementById("nav-username").textContent = "Admin";
     switchTab("admin", document.getElementById("tab-admin"));
-    buildAdminPanel();
+  } else {
+    switchTab("roadmap", document.querySelector('.tab[data-tab="roadmap"]'));
+    buildRoadmap(); buildRubric(); buildCert(); updateDashboard();
+  }
+}
+
+/* =============================================================
+   ADMIN KEYCODE
+   ============================================================= */
+function checkAdminKey(){
+  var val = document.getElementById("admin-key-input").value;
+  if(val === ADMIN_KEYCODE){
+    document.getElementById("admin-screen").style.display = "none";
+    /* Use a dummy admin user object */
+    loadUserApp({slug:"__admin__",name:"Admin",color:"#333",avatar:""}, true);
   } else {
     document.getElementById("admin-key-error").style.display = "block";
     document.getElementById("admin-key-input").value = "";
@@ -732,6 +690,9 @@ function checkAdminKey(){
 function openAddUserModal(){
   selectedColor = AVATAR_COLORS[0];
   document.getElementById("new-user-name").value = "";
+  document.getElementById("new-user-link-wrap").style.display = "none";
+  document.getElementById("add-user-btn").style.display = "inline-block";
+  document.getElementById("add-user-cancel-btn").textContent = "Cancel";
   var row = document.getElementById("color-picker-row");
   row.innerHTML = "";
   AVATAR_COLORS.forEach(function(c){
@@ -739,7 +700,7 @@ function openAddUserModal(){
     sw.className = "color-swatch"+(c===selectedColor?" selected":"");
     sw.style.background = c;
     sw.onclick = function(){
-      selectedColor = c;
+      selectedColor=c;
       row.querySelectorAll(".color-swatch").forEach(function(s){s.classList.remove("selected");});
       sw.classList.add("selected");
     };
@@ -750,35 +711,45 @@ function openAddUserModal(){
 
 function createUser(){
   var name = document.getElementById("new-user-name").value.trim();
-  if (!name){ document.getElementById("new-user-name").focus(); return; }
-  STORE.users.push({id:uid(name),name:name,color:selectedColor,avatar:""});
+  if(!name){ document.getElementById("new-user-name").focus(); return; }
+  /* Generate slug from name */
+  var slug = name.toLowerCase().replace(/\s+/g,"-").replace(/[^a-z0-9\-]/g,"");
+  /* Make unique if needed */
+  var existing = STORE.users.find(function(u){return u.slug===slug;});
+  if(existing) slug = slug+"-"+Math.random().toString(36).slice(2,5);
+  var user = {slug:slug,name:name,color:selectedColor,avatar:""};
+  STORE.users.push(user);
   saveStore();
-  closeModal("modal-add-user");
-  renderPicker();
-  if (adminUnlocked && document.getElementById("panel-admin").classList.contains("active")) buildAdminPanel();
+  /* Show their personal link */
+  var link = getBaseUrl()+"?user="+slug;
+  document.getElementById("new-user-link").value = link;
+  document.getElementById("new-user-link-wrap").style.display = "block";
+  document.getElementById("add-user-btn").style.display = "none";
+  document.getElementById("add-user-cancel-btn").textContent = "Done";
+  buildAdminPanel();
 }
 
 /* =============================================================
    RESET MODALS (2-step)
    ============================================================= */
 function openResetModal(){
-  document.getElementById("reset-name-1").textContent = CU ? CU.name : "";
+  document.getElementById("reset-name-1").textContent = CU?CU.name:"";
   openModal("modal-reset-1");
 }
 function openResetStep2(){
   closeModal("modal-reset-1");
-  document.getElementById("reset-name-2").textContent = CU ? CU.name : "";
-  document.getElementById("reset-confirm-input").value = "";
-  document.getElementById("btn-final-reset").disabled = true;
+  document.getElementById("reset-name-2").textContent = CU?CU.name:"";
+  document.getElementById("reset-confirm-input").value="";
+  document.getElementById("btn-final-reset").disabled=true;
   openModal("modal-reset-2");
 }
 function checkResetInput(){
-  var match = document.getElementById("reset-confirm-input").value === "RESET";
-  document.getElementById("btn-final-reset").disabled = !match;
+  var match = document.getElementById("reset-confirm-input").value==="RESET";
+  document.getElementById("btn-final-reset").disabled=!match;
 }
 function executeReset(){
-  if (!CU) return;
-  STORE.userData[CU.id] = {};
+  if(!CU) return;
+  STORE.userData[CU.slug]={};
   saveStore();
   closeModal("modal-reset-2");
   buildRoadmap(); buildRubric(); buildCert(); updateDashboard();
@@ -787,19 +758,19 @@ function executeReset(){
 /* =============================================================
    DELETE USER
    ============================================================= */
-function promptDeleteUser(id){
-  var user = STORE.users.find(function(u){return u.id===id;});
-  if (!user) return;
-  pendingDelete = id;
-  document.getElementById("delete-name").textContent = user.name;
+function promptDeleteUser(slug){
+  var user=STORE.users.find(function(u){return u.slug===slug;});
+  if(!user) return;
+  pendingDelete=slug;
+  document.getElementById("delete-name").textContent=user.name;
   openModal("modal-delete-user");
 }
 function executeDeleteUser(){
-  if (!pendingDelete) return;
-  STORE.users = STORE.users.filter(function(u){return u.id!==pendingDelete;});
+  if(!pendingDelete) return;
+  STORE.users=STORE.users.filter(function(u){return u.slug!==pendingDelete;});
   delete STORE.userData[pendingDelete];
   saveStore();
-  pendingDelete = null;
+  pendingDelete=null;
   closeModal("modal-delete-user");
   buildAdminPanel();
 }
@@ -808,12 +779,12 @@ function executeDeleteUser(){
    DASHBOARD
    ============================================================= */
 function updateDashboard(){
-  if (!CU) return;
-  var s = calcStats(CU.id);
+  if(!CU) return;
+  var s=calcStats(CU.slug);
   document.getElementById("stat-complete").textContent   = s.complete;
   document.getElementById("stat-inprogress").textContent = s.inprog;
   document.getElementById("stat-followup").textContent   = s.followup;
-  document.getElementById("stat-avgconf").textContent    = s.avgConf ? s.avgConf+"★" : "--";
+  document.getElementById("stat-avgconf").textContent    = s.avgConf?s.avgConf+"★":"--";
   document.getElementById("pct-label").textContent       = s.pct+"%";
   document.getElementById("pct-bar").style.width         = s.pct+"%";
   document.getElementById("meter-mid").textContent       = s.scored+" of 20 sessions scored";
@@ -823,39 +794,37 @@ function updateDashboard(){
    ROADMAP
    ============================================================= */
 function buildRoadmap(){
-  var container = document.getElementById("roadmap-container");
-  container.innerHTML = "";
+  var container=document.getElementById("roadmap-container");
+  container.innerHTML="";
   WEEKS.forEach(function(week,wi){
-    var sec = document.createElement("div");
-    sec.className = "week-section";
-    sec.innerHTML =
-      '<div class="week-header" id="wh-'+wi+'" onclick="toggleWeek('+wi+')">' +
-        '<div class="week-title-group">' +
-          '<div class="week-eyebrow">Week '+week.week+'</div>' +
-          '<div class="week-title">'+week.title+'</div>' +
-          '<div class="week-goal">'+week.goal+'</div>' +
-          '<div class="week-badges" id="wbadges-'+wi+'"></div>' +
-        '</div>' +
-        '<div class="week-chevron">&#9660;</div>' +
-      '</div>' +
+    var sec=document.createElement("div"); sec.className="week-section";
+    sec.innerHTML=
+      '<div class="week-header" id="wh-'+wi+'" onclick="toggleWeek('+wi+')">'+
+        '<div class="week-title-group">'+
+          '<div class="week-eyebrow">Week '+week.week+'</div>'+
+          '<div class="week-title">'+week.title+'</div>'+
+          '<div class="week-goal">'+week.goal+'</div>'+
+          '<div class="week-badges" id="wbadges-'+wi+'"></div>'+
+        '</div>'+
+        '<div class="week-chevron">&#9660;</div>'+
+      '</div>'+
       '<div class="week-body" id="wb-'+wi+'"></div>';
-    var body = sec.querySelector(".week-body");
-    week.sessions.forEach(function(s){ body.appendChild(buildSessionCard(s)); });
+    var body=sec.querySelector(".week-body");
+    week.sessions.forEach(function(s){body.appendChild(buildSessionCard(s));});
     container.appendChild(sec);
   });
   refreshBadges();
-  /* Auto-open week 1 */
   document.getElementById("wh-0").classList.add("open");
   document.getElementById("wb-0").classList.add("open");
 }
 
 function refreshBadges(){
-  if (!CU) return;
+  if(!CU) return;
   WEEKS.forEach(function(_,wi){
     var el=document.getElementById("wbadges-"+wi); if(!el) return;
     var w=WEEKS[wi], st={c:0,i:0,s:0,f:0,r:0};
     w.sessions.forEach(function(s){
-      var d=getSess(CU.id,s.day);
+      var d=getSess(CU.slug,s.day);
       if(d.status==="complete") st.c++;
       else if(d.status==="in-progress") st.i++;
       else if(d.status==="skipped") st.s++;
@@ -874,7 +843,7 @@ function refreshBadges(){
 
 function buildSessionCard(session){
   var card=document.createElement("div");
-  var d=getSess(CU.id,session.day);
+  var d=getSess(CU.slug,session.day);
   card.className="session-card"+(d.status?" status-"+d.status:"");
   card.id="card-"+session.day;
   var studyHTML=session.study.map(function(i){return"<li>"+i+"</li>";}).join("");
@@ -912,10 +881,9 @@ function buildSessionCard(session){
    RUBRIC
    ============================================================= */
 function buildRubric(){
-  var container=document.getElementById("rubric-rows");
-  container.innerHTML="";
+  var container=document.getElementById("rubric-rows"); container.innerHTML="";
   RUBRIC_CATS.forEach(function(cat,i){
-    var cur=getRub(CU.id,i);
+    var cur=getRub(CU.slug,i);
     var row=document.createElement("div"); row.className="rubric-row";
     var opts=[0,1,2,3,4,5].map(function(v){return'<option value="'+v+'"'+(cur===v?" selected":"")+">"+(v===0?"--":v)+"</option>";}).join("");
     var descs=RUBRIC_LEVELS.map(function(desc,idx){return'<div class="rubric-desc-cell'+(cur===(idx+1)?" current":"")+'">'+desc+'</div>';}).join("");
@@ -930,7 +898,7 @@ function buildRubric(){
 function buildCert(){
   var list=document.getElementById("cert-list"); list.innerHTML="";
   CERT_ITEMS.forEach(function(item,i){
-    var checked=getCert(CU.id,i);
+    var checked=getCert(CU.slug,i);
     var div=document.createElement("div");
     div.className="cert-item"+(checked?" checked":"");
     div.id="ci-"+i; div.onclick=function(){toggleCert(i);};
@@ -940,7 +908,7 @@ function buildCert(){
   updateCertBar();
 }
 function updateCertBar(){
-  var done=0; CERT_ITEMS.forEach(function(_,i){if(getCert(CU.id,i))done++;});
+  var done=0; CERT_ITEMS.forEach(function(_,i){if(getCert(CU.slug,i))done++;});
   document.getElementById("cert-pct-label").textContent=done+" of "+CERT_ITEMS.length+" complete";
   document.getElementById("cert-bar").style.width=Math.round((done/CERT_ITEMS.length)*100)+"%";
 }
@@ -950,28 +918,27 @@ function updateCertBar(){
    ============================================================= */
 function buildAdminPanel(){
   var n=STORE.users.length, totPct=0, totComplete=0, totCert=0;
-  STORE.users.forEach(function(u){ var s=calcStats(u.id); totPct+=s.pct; totComplete+=s.complete; totCert+=s.certDone; });
-
+  STORE.users.forEach(function(u){var s=calcStats(u.slug); totPct+=s.pct; totComplete+=s.complete; totCert+=s.certDone;});
   document.getElementById("admin-summary").innerHTML=
     '<div class="stat-box hl-orange"><div class="stat-lbl">Learners</div><div class="stat-num o">'+n+'</div><div class="stat-sub">on this track</div></div>'+
     '<div class="stat-box"><div class="stat-lbl">Avg Completion</div><div class="stat-num">'+(n?Math.round(totPct/n):0)+'%</div><div class="stat-sub">across all learners</div></div>'+
     '<div class="stat-box hl-green"><div class="stat-lbl">Sessions Done</div><div class="stat-num g">'+totComplete+'</div><div class="stat-sub">total completed</div></div>'+
     '<div class="stat-box"><div class="stat-lbl">Cert Items</div><div class="stat-num y">'+totCert+'</div><div class="stat-sub">checked off total</div></div>';
-
   var el=document.getElementById("admin-learners"); el.innerHTML="";
   STORE.users.forEach(function(user){
-    var s=calcStats(user.id);
+    var s=calcStats(user.slug);
     var conf=s.avgConf?s.avgConf+"★":"--";
-    var isMe = CU && CU.id===user.id;
+    var isMe=CU&&CU.slug===user.slug;
+    var link=getBaseUrl()+"?user="+user.slug;
     var card=document.createElement("div"); card.className="admin-user-card";
     card.innerHTML=
       '<div class="admin-user-header">'+
         '<div class="admin-avatar" style="background:'+avBg(user)+'">'+avHTML(user)+'</div>'+
         '<div class="admin-user-info">'+
           '<div class="admin-user-name">'+user.name+(isMe?' <span style="font-size:10px;color:var(--mid);font-weight:400;">(you)</span>':'')+'</div>'+
-          '<div class="admin-user-meta">'+s.complete+' sessions complete &middot; '+s.certDone+'/15 cert items &middot; Avg conf: '+conf+'</div>'+
+          '<div class="admin-user-meta">'+s.complete+' sessions &middot; '+s.certDone+'/15 cert &middot; Avg conf: '+conf+' &middot; <a href="'+link+'" style="color:var(--orange);font-size:10px;" target="_blank">Personal link</a></div>'+
         '</div>'+
-        (!isMe?'<div class="admin-actions"><button class="btn-sm danger" onclick="promptDeleteUser(\''+user.id+'\')">Remove</button></div>':'')+
+        (!isMe?'<div class="admin-actions"><button class="btn-sm danger" onclick="promptDeleteUser(\''+user.slug+'\')">Remove</button></div>':'')+
       '</div>'+
       '<div class="admin-stats-row">'+
         '<div class="admin-stat"><div class="admin-stat-val" style="color:var(--green)">'+s.complete+'</div><div class="admin-stat-lbl">Complete</div></div>'+
@@ -992,21 +959,19 @@ function buildAdminPanel(){
    EVENTS
    ============================================================= */
 function toggleWeek(wi){
-  var h=document.getElementById("wh-"+wi), b=document.getElementById("wb-"+wi);
+  var h=document.getElementById("wh-"+wi),b=document.getElementById("wb-"+wi);
   var open=h.classList.contains("open");
   h.classList.toggle("open",!open); b.classList.toggle("open",!open);
 }
-function toggleSession(day){
-  var c=document.getElementById("card-"+day); if(c) c.classList.toggle("open");
-}
+function toggleSession(day){ var c=document.getElementById("card-"+day); if(c)c.classList.toggle("open"); }
 function updateStatus(day,value){
-  var d=getSess(CU.id,day); d.status=value; setSess(CU.id,day,d); flash(day);
+  var d=getSess(CU.slug,day); d.status=value; setSess(CU.slug,day,d); flash(day);
   var card=document.getElementById("card-"+day);
-  if(card){var wasOpen=card.classList.contains("open"); card.className="session-card"+(value?" status-"+value:"")+(wasOpen?" open":"");}
+  if(card){var wo=card.classList.contains("open"); card.className="session-card"+(value?" status-"+value:"")+(wo?" open":"");}
   updateDashboard(); refreshBadges();
 }
 function setConf(day,val){
-  var d=getSess(CU.id,day); d.confidence=val; setSess(CU.id,day,d); flash(day);
+  var d=getSess(CU.slug,day); d.confidence=val; setSess(CU.slug,day,d); flash(day);
   var card=document.getElementById("card-"+day);
   if(card){
     card.querySelectorAll(".star-btn").forEach(function(s,i){s.classList.toggle("filled",i<val);});
@@ -1016,7 +981,7 @@ function setConf(day,val){
   updateDashboard();
 }
 function updateField(day,field,value){
-  var d=getSess(CU.id,day); d[field]=value; setSess(CU.id,day,d);
+  var d=getSess(CU.slug,day); d[field]=value; setSess(CU.slug,day,d);
   clearTimeout(saveTimers[day]);
   saveTimers[day]=setTimeout(function(){flash(day);},700);
 }
@@ -1025,27 +990,27 @@ function flash(day){
   el.classList.add("show"); setTimeout(function(){el.classList.remove("show");},1800);
 }
 function toggleCert(i){
-  var val=!getCert(CU.id,i); setCert(CU.id,i,val);
+  var val=!getCert(CU.slug,i); setCert(CU.slug,i,val);
   var item=document.getElementById("ci-"+i);
   if(item){item.classList.toggle("checked",val); item.querySelector(".cert-box").innerHTML=val?"&#10003;":"";}
   updateCertBar();
 }
-function saveRubric(i,val){ setRub(CU.id,i,val); buildRubric(); }
+function saveRubric(i,val){ setRub(CU.slug,i,val); buildRubric(); }
 function switchTab(name,el){
   document.querySelectorAll(".panel").forEach(function(p){p.classList.remove("active");});
   document.querySelectorAll(".tab").forEach(function(t){t.classList.remove("active");});
   document.getElementById("panel-"+name).classList.add("active");
   if(el) el.classList.add("active");
-  if(name==="admin")   buildAdminPanel();
-  if(name==="roadmap" && CU) buildRoadmap();
-  if(name==="rubric"  && CU) buildRubric();
-  if(name==="cert"    && CU) { buildCert(); }
+  if(name==="admin")              buildAdminPanel();
+  if(name==="roadmap" && CU && !IS_ADMIN) buildRoadmap();
+  if(name==="rubric"  && CU && !IS_ADMIN) buildRubric();
+  if(name==="cert"    && CU && !IS_ADMIN) buildCert();
 }
 
 /* =============================================================
    INIT
    ============================================================= */
-document.addEventListener("DOMContentLoaded", function(){ renderPicker(); });
+document.addEventListener("DOMContentLoaded", init);
 </script>
 </body>
 </html>
