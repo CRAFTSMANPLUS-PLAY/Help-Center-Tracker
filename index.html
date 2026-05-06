@@ -350,14 +350,180 @@
   </nav>
 
   <div class="tabs">
-    <button class="tab active" data-tab="roadmap" onclick="switchTab('roadmap',this)">Roadmap</button>
-    <button class="tab" data-tab="rubric"   onclick="switchTab('rubric',  this)">Rubric Scores</button>
-    <button class="tab" data-tab="cert"     onclick="switchTab('cert',    this)">Certification</button>
+    <button class="tab active" data-tab="guide"   onclick="switchTab('guide',  this)">Study Guide</button>
+    <button class="tab"        data-tab="roadmap" onclick="switchTab('roadmap',this)">Roadmap</button>
+    <button class="tab"        data-tab="rubric"  onclick="switchTab('rubric', this)">Rubric Scores</button>
+    <button class="tab"        data-tab="cert"    onclick="switchTab('cert',   this)">Certification</button>
     <button class="tab" id="tab-admin" data-tab="admin" onclick="switchTab('admin',this)" style="display:none;">Team Overview</button>
   </div>
 
+  <!-- STUDY GUIDE -->
+  <div id="panel-guide" class="panel active">
+    <div class="hero">
+      <p class="hero-eyebrow">How to use this tracker</p>
+      <h1 class="hero-title">Study Guide &amp;<br><span>Daily Structure.</span></h1>
+      <p class="hero-sub">Everything you need to know to get the most out of the 4-week track. Read this first, then head to Roadmap.</p>
+    </div>
+    <div class="content">
+
+      <p class="section-label">Your daily hour — how to structure it</p>
+      <div class="card" style="border-top:2px solid var(--orange);">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;">
+          <div style="background:var(--surface2);border-radius:8px;padding:1rem;">
+            <div style="font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--orange);margin-bottom:6px;">10 min</div>
+            <div style="font-size:14px;font-weight:700;color:var(--white);margin-bottom:4px;">Review</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.5;">Re-read your notes from the previous session. What did you log? What was still open?</div>
+          </div>
+          <div style="background:var(--surface2);border-radius:8px;padding:1rem;">
+            <div style="font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--orange);margin-bottom:6px;">30 min</div>
+            <div style="font-size:14px;font-weight:700;color:var(--white);margin-bottom:4px;">Study</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.5;">Read the assigned documentation pages at <a href="https://help.craftsmanplus.com" target="_blank" style="color:var(--orange);">help.craftsmanplus.com</a>. Take notes in the session card as you go.</div>
+          </div>
+          <div style="background:var(--surface2);border-radius:8px;padding:1rem;">
+            <div style="font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--orange);margin-bottom:6px;">15 min</div>
+            <div style="font-size:14px;font-weight:700;color:var(--white);margin-bottom:4px;">Apply</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.5;">Complete the application task. Write it out — don't just think it. A sentence or two is enough.</div>
+          </div>
+          <div style="background:var(--surface2);border-radius:8px;padding:1rem;">
+            <div style="font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--orange);margin-bottom:6px;">5 min</div>
+            <div style="font-size:14px;font-weight:700;color:var(--white);margin-bottom:4px;">Log</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.5;">Score your confidence, set your status, and write down any open questions before you close the tab.</div>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+
+      <p class="section-label">How to use the session cards</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem;">
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem;">
+          <div style="font-size:11px;font-weight:700;color:var(--white);margin-bottom:6px;">Status dropdown</div>
+          <div style="font-size:12px;color:var(--mid);line-height:1.6;">
+            <div style="margin-bottom:4px;"><span style="color:var(--green);font-weight:600;">Complete</span> — studied, applied, and confident</div>
+            <div style="margin-bottom:4px;"><span style="color:var(--orange);font-weight:600;">In Progress</span> — started but not done</div>
+            <div style="margin-bottom:4px;"><span style="color:var(--yellow);font-weight:600;">Needs Follow-Up</span> — something unresolved, flag it</div>
+            <div style="margin-bottom:4px;"><span style="color:var(--mid);font-weight:600;">Skipped / Blank</span> — doc page was empty or N/A</div>
+            <div><span style="color:var(--purple);font-weight:600;">Reference Only</span> — good to know, not deep study</div>
+          </div>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem;">
+          <div style="font-size:11px;font-weight:700;color:var(--white);margin-bottom:6px;">Confidence score (1–5 stars)</div>
+          <div style="font-size:12px;color:var(--mid);line-height:1.6;">
+            <div style="margin-bottom:4px;"><span style="color:var(--yellow);font-weight:600;">★</span> — Not yet comfortable</div>
+            <div style="margin-bottom:4px;"><span style="color:var(--yellow);font-weight:600;">★★</span> — Need guidance to explain it</div>
+            <div style="margin-bottom:4px;"><span style="color:var(--yellow);font-weight:600;">★★★</span> — Can explain it with notes open</div>
+            <div style="margin-bottom:4px;"><span style="color:var(--yellow);font-weight:600;">★★★★</span> — Client-ready, no notes needed</div>
+            <div><span style="color:var(--yellow);font-weight:600;">★★★★★</span> — Could train someone else on this</div>
+          </div>
+        </div>
+      </div>
+      <div style="background:rgba(250,108,0,0.06);border:1px solid rgba(250,108,0,0.2);border-radius:8px;padding:10px 14px;font-size:12px;color:#ccc;line-height:1.6;margin-bottom:1rem;">
+        <strong style="color:var(--orange);font-style:normal;">On blank or incomplete doc pages:</strong> Mark the session as <strong style="color:var(--mid);">Skipped / Blank</strong> and move on. These don't count against you. If something is partially there, mark it <strong style="color:var(--purple);">Reference Only</strong> and note what was missing.
+      </div>
+
+      <hr>
+
+      <p class="section-label">The rubric — what Shane is looking at</p>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:1rem;">
+        <div style="background:#111;padding:10px 16px;display:grid;grid-template-columns:1fr 80px;font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--mid);">
+          <div>Skill category</div><div style="text-align:center;">Target</div>
+        </div>
+        <div style="border-top:1px solid var(--border);">
+          <div style="padding:12px 16px;display:grid;grid-template-columns:1fr 80px;border-bottom:1px solid var(--border);font-size:13px;">
+            <div><span style="font-weight:600;color:var(--white);">Platform Comprehension</span><div style="font-size:11px;color:var(--mid);margin-top:2px;">Can you navigate and explain PLAY confidently?</div></div>
+            <div style="text-align:center;"><span style="background:rgba(90,173,58,0.15);color:var(--green);border-radius:20px;padding:2px 10px;font-size:11px;font-weight:700;">4</span></div>
+          </div>
+          <div style="padding:12px 16px;display:grid;grid-template-columns:1fr 80px;border-bottom:1px solid var(--border);font-size:13px;">
+            <div><span style="font-weight:600;color:var(--white);">Client Explanation Quality</span><div style="font-size:11px;color:var(--mid);margin-top:2px;">Can you explain features clearly without jargon?</div></div>
+            <div style="text-align:center;"><span style="background:rgba(90,173,58,0.15);color:var(--green);border-radius:20px;padding:2px 10px;font-size:11px;font-weight:700;">4</span></div>
+          </div>
+          <div style="padding:12px 16px;display:grid;grid-template-columns:1fr 80px;border-bottom:1px solid var(--border);font-size:13px;">
+            <div><span style="font-weight:600;color:var(--white);">Support / Troubleshooting Judgment</span><div style="font-size:11px;color:var(--mid);margin-top:2px;">Can you triage issues before escalating?</div></div>
+            <div style="text-align:center;"><span style="background:rgba(90,173,58,0.15);color:var(--green);border-radius:20px;padding:2px 10px;font-size:11px;font-weight:700;">4</span></div>
+          </div>
+          <div style="padding:12px 16px;display:grid;grid-template-columns:1fr 80px;border-bottom:1px solid var(--border);font-size:13px;">
+            <div><span style="font-weight:600;color:var(--white);">Escalation Clarity</span><div style="font-size:11px;color:var(--mid);margin-top:2px;">Do you know when and how to escalate cleanly?</div></div>
+            <div style="text-align:center;"><span style="background:rgba(90,173,58,0.15);color:var(--green);border-radius:20px;padding:2px 10px;font-size:11px;font-weight:700;">4</span></div>
+          </div>
+          <div style="padding:12px 16px;display:grid;grid-template-columns:1fr 80px;border-bottom:1px solid var(--border);font-size:13px;">
+            <div><span style="font-weight:600;color:var(--white);">Analytics Interpretation</span><div style="font-size:11px;color:var(--mid);margin-top:2px;">Can you read data and recommend next steps?</div></div>
+            <div style="text-align:center;"><span style="background:rgba(90,173,58,0.15);color:var(--green);border-radius:20px;padding:2px 10px;font-size:11px;font-weight:700;">4</span></div>
+          </div>
+          <div style="padding:12px 16px;display:grid;grid-template-columns:1fr 80px;border-bottom:1px solid var(--border);font-size:13px;">
+            <div><span style="font-weight:600;color:var(--white);">INTELLIGENCE Fluency</span><div style="font-size:11px;color:var(--mid);margin-top:2px;">Can you guide clients on AI features without overpromising?</div></div>
+            <div style="text-align:center;"><span style="background:rgba(90,173,58,0.15);color:var(--green);border-radius:20px;padding:2px 10px;font-size:11px;font-weight:700;">4</span></div>
+          </div>
+          <div style="padding:12px 16px;display:grid;grid-template-columns:1fr 80px;font-size:13px;">
+            <div><span style="font-weight:600;color:var(--white);">Confidence / Independence</span><div style="font-size:11px;color:var(--mid);margin-top:2px;">Can you operate without Shane in the room?</div></div>
+            <div style="text-align:center;"><span style="background:rgba(90,173,58,0.15);color:var(--green);border-radius:20px;padding:2px 10px;font-size:11px;font-weight:700;">4</span></div>
+          </div>
+        </div>
+      </div>
+      <div style="background:rgba(90,173,58,0.06);border:1px solid rgba(90,173,58,0.2);border-radius:8px;padding:10px 14px;font-size:12px;color:#ccc;line-height:1.6;margin-bottom:1rem;">
+        <strong style="color:var(--green);font-style:normal;">Target score is 4 across all categories.</strong> A 4 means client-ready — you can handle it without prompting. A 5 means you could train the next hire on it. Don't aim for 5 everywhere on day one. Build to 4, then grow from there.
+      </div>
+
+      <hr>
+
+      <p class="section-label">Week-by-week targets</p>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:1rem;">
+        <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--orange);border-radius:10px;padding:12px 16px;display:flex;align-items:flex-start;gap:14px;">
+          <div style="font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--orange);white-space:nowrap;padding-top:2px;">Week 1</div>
+          <div><div style="font-size:13px;font-weight:600;color:var(--white);margin-bottom:2px;">Platform Foundation</div><div style="font-size:12px;color:var(--mid);">You can explain what PLAY is, walk through the editor, and describe the basic project journey to a new partner.</div></div>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--yellow);border-radius:10px;padding:12px 16px;display:flex;align-items:flex-start;gap:14px;">
+          <div style="font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--yellow);white-space:nowrap;padding-top:2px;">Week 2</div>
+          <div><div style="font-size:13px;font-weight:600;color:var(--white);margin-bottom:2px;">Feature Depth + Support</div><div style="font-size:12px;color:var(--mid);">You can handle common partner questions around interactions, animations, exports, and variants without escalating immediately.</div></div>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--purple);border-radius:10px;padding:12px 16px;display:flex;align-items:flex-start;gap:14px;">
+          <div style="font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--purple);white-space:nowrap;padding-top:2px;">Week 3</div>
+          <div><div style="font-size:13px;font-weight:600;color:var(--white);margin-bottom:2px;">INTELLIGENCE + ANALYTICS</div><div style="font-size:12px;color:var(--mid);">You can explain AI features clearly, write strong prompts, and interpret analytics without overclaiming what the data means.</div></div>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--green);border-radius:10px;padding:12px 16px;display:flex;align-items:flex-start;gap:14px;">
+          <div style="font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--green);white-space:nowrap;padding-top:2px;">Week 4</div>
+          <div><div style="font-size:13px;font-weight:600;color:var(--white);margin-bottom:2px;">Applied CS Certification</div><div style="font-size:12px;color:var(--mid);">You apply everything to real client scenarios — onboarding, support, performance reviews, and INTELLIGENCE enablement. Final deliverable: your PLAY Cheat Sheet.</div></div>
+        </div>
+      </div>
+
+      <hr>
+
+      <p class="section-label">What the final certification looks like</p>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:1rem;">
+        <p style="font-size:13px;color:var(--mid);line-height:1.7;margin-bottom:1rem;">By the end of Day 20, you should be able to do all of the following independently — no notes, no prompting from Shane:</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <div style="font-size:12px;color:#ccc;display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--green);font-weight:800;flex-shrink:0;">&#10003;</span>Explain PLAY to a new partner in plain English</div>
+          <div style="font-size:12px;color:#ccc;display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--green);font-weight:800;flex-shrink:0;">&#10003;</span>Walk through project creation from scratch</div>
+          <div style="font-size:12px;color:#ccc;display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--green);font-weight:800;flex-shrink:0;">&#10003;</span>Troubleshoot basic interaction issues</div>
+          <div style="font-size:12px;color:#ccc;display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--green);font-weight:800;flex-shrink:0;">&#10003;</span>Prepare a project for export QA</div>
+          <div style="font-size:12px;color:#ccc;display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--green);font-weight:800;flex-shrink:0;">&#10003;</span>Explain INTELLIGENCE without overpromising</div>
+          <div style="font-size:12px;color:#ccc;display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--green);font-weight:800;flex-shrink:0;">&#10003;</span>Interpret analytics and recommend next steps</div>
+          <div style="font-size:12px;color:#ccc;display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--green);font-weight:800;flex-shrink:0;">&#10003;</span>Know when to escalate to Product, Creative, or Shane</div>
+          <div style="font-size:12px;color:#ccc;display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--green);font-weight:800;flex-shrink:0;">&#10003;</span>Lead a 30-minute partner onboarding call</div>
+        </div>
+        <div style="margin-top:1rem;background:rgba(250,108,0,0.06);border:1px solid rgba(250,108,0,0.2);border-radius:8px;padding:10px 14px;font-size:12px;color:#ccc;line-height:1.5;">
+          <strong style="color:var(--orange);">Day 20 deliverable:</strong> A 1-page PLAY Support + Enablement Cheat Sheet. Write it like you're handing it to the next new hire. Shane reviews it. That's the certification gate.
+        </div>
+      </div>
+
+      <hr>
+
+      <p class="section-label">A few things to keep in mind</p>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:2rem;">
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:12px;color:var(--mid);line-height:1.5;"><strong style="color:var(--white);">The goal is fluency, not memorization.</strong> You're not being tested on recall. You're building the judgment to handle real situations. If you have to look something up, that's fine — knowing where to look is part of the skill.</div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:12px;color:var(--mid);line-height:1.5;"><strong style="color:var(--white);">Log open questions, don't skip them.</strong> Every open question in your session notes is a conversation starter. Bring them to Shane. That's how you close gaps fast.</div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:12px;color:var(--mid);line-height:1.5;"><strong style="color:var(--white);">Blank doc pages are expected.</strong> Some pages in the help center are incomplete or in progress. Mark them Skipped and keep moving. Don't let a blank page stall your session.</div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:12px;color:var(--mid);line-height:1.5;"><strong style="color:var(--white);">Apply to real clients as you go.</strong> The application tasks reference real CRAFTSMAN+ partners. The more you connect the docs to actual accounts, the faster it clicks.</div>
+      </div>
+
+      <div style="text-align:center;padding-bottom:1rem;">
+        <button class="btn-primary" style="width:auto;padding:12px 32px;font-size:13px;" onclick="switchTab('roadmap', document.querySelector('.tab[data-tab=&quot;roadmap&quot;]'))">Start Week 1 &rarr;</button>
+      </div>
+
+    </div>
+  </div>
+
   <!-- ROADMAP -->
-  <div id="panel-roadmap" class="panel active">
+  <div id="panel-roadmap" class="panel">
     <div class="hero">
       <p class="hero-eyebrow" id="roadmap-eyebrow">Your Track</p>
       <h1 class="hero-title" id="roadmap-title">PLAY<br><span>Enablement Track.</span></h1>
@@ -667,7 +833,7 @@ function loadUserApp(user, adminMode){
     });
     switchTab("admin", document.getElementById("tab-admin"));
   } else {
-    switchTab("roadmap", document.querySelector('.tab[data-tab="roadmap"]'));
+    switchTab("guide", document.querySelector('.tab[data-tab="guide"]'));
     buildRoadmap(); buildRubric(); buildCert(); updateDashboard();
   }
 }
@@ -1006,9 +1172,10 @@ function switchTab(name,el){
   document.getElementById("panel-"+name).classList.add("active");
   if(el) el.classList.add("active");
   if(name==="admin")              buildAdminPanel();
-  if(name==="roadmap" && CU && !IS_ADMIN) buildRoadmap();
+  if(name==="roadmap" && CU && !IS_ADMIN) { buildRoadmap(); updateDashboard(); }
   if(name==="rubric"  && CU && !IS_ADMIN) buildRubric();
   if(name==="cert"    && CU && !IS_ADMIN) buildCert();
+  /* guide is static — no build needed */
 }
 
 /* =============================================================
