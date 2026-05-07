@@ -307,32 +307,7 @@
   </div>
 </div>
 
-<!-- ADD USER MODAL -->
-<div class="modal-overlay" id="modal-add-user">
-  <div class="modal">
-    <h3>Add a new learner</h3>
-    <p>They'll get their own link and progress tracker, fully separate from everyone else's.</p>
-    <div class="modal-field">
-      <label>Full name</label>
-      <input type="text" id="new-user-name" placeholder="e.g. Alex Chen" maxlength="40">
-    </div>
-    <div class="modal-field">
-      <label>Pick a color</label>
-      <div class="color-picker-row" id="color-picker-row"></div>
-    </div>
-    <div id="new-user-link-wrap" style="display:none;margin-top:1rem;">
-      <div class="modal-field">
-        <label>Their personal link</label>
-        <input type="text" id="new-user-link" readonly onclick="this.select()">
-      </div>
-      <p style="font-size:11px;color:var(--mid);margin-bottom:0;">Copy and send this link to them. It is the only way to access their tracker.</p>
-    </div>
-    <div class="modal-actions">
-      <button class="btn-ghost" id="add-user-cancel-btn" onclick="closeModal('modal-add-user')">Cancel</button>
-      <button class="btn-primary" id="add-user-btn" onclick="createUser()">Add Learner</button>
-    </div>
-  </div>
-</div>
+<!-- Add learner UI removed — add users via DEFAULT_USERS in code -->
 
 <!-- MAIN APP -->
 <div id="main-app" style="display:none;">
@@ -594,10 +569,9 @@
       <p class="section-label">Learner breakdown</p>
       <div id="admin-learners"></div>
       <hr>
-      <p class="section-label">Manage learners</p>
-      <div class="card" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
-        <p style="font-size:13px;color:var(--mid);line-height:1.5;margin:0;">Add new learners. After adding, copy their personal link and send it to them directly.</p>
-        <button class="btn-primary" style="width:auto;padding:8px 20px;font-size:12px;white-space:nowrap;" onclick="openAddUserModal()">+ Add Learner</button>
+      <p class="section-label">Adding new learners</p>
+      <div class="card">
+        <p style="font-size:13px;color:var(--mid);line-height:1.7;margin:0;">To add a new learner, add them to the <code style="background:#111;padding:2px 6px;border-radius:4px;font-size:12px;color:var(--orange);">DEFAULT_USERS</code> array in <code style="background:#111;padding:2px 6px;border-radius:4px;font-size:12px;color:var(--orange);">index.html</code>, push to GitHub, then send them their personal link: <code style="background:#111;padding:2px 6px;border-radius:4px;font-size:12px;color:var(--orange);">?user=their-slug</code></p>
       </div>
     </div>
   </div>
@@ -624,7 +598,8 @@ var DEFAULT_USERS = [
   { slug: "hugo",   name: "Hugo Rojas Jr.",    color: "#FA6C00", avatar: "hugo-avatar.png"   },
   { slug: "shane",  name: "Shane Hedengran",   color: "#FEC01F", avatar: "shane-avatar.png"  },
   { slug: "julian", name: "Julian Friedman",   color: "#5aad3a", avatar: "julian-avatar.png" },
-  { slug: "matt",   name: "Matt Forman",       color: "#9b6bfa", avatar: "matt-avatar.png"   }
+  { slug: "matt",   name: "Matt Forman",       color: "#9b6bfa", avatar: "matt-avatar.png"   },
+  { slug: "juan-erbea", name: "Juan Erbea",      color: "#00b4d8", avatar: "juan-erbea.png"   }
 ];
 
 var ADMIN_SLUG    = "shane";   /* this user sees Team Overview without keycode */
@@ -854,50 +829,8 @@ function checkAdminKey(){
   }
 }
 
-/* =============================================================
-   ADD USER
-   ============================================================= */
-function openAddUserModal(){
-  selectedColor = AVATAR_COLORS[0];
-  document.getElementById("new-user-name").value = "";
-  document.getElementById("new-user-link-wrap").style.display = "none";
-  document.getElementById("add-user-btn").style.display = "inline-block";
-  document.getElementById("add-user-cancel-btn").textContent = "Cancel";
-  var row = document.getElementById("color-picker-row");
-  row.innerHTML = "";
-  AVATAR_COLORS.forEach(function(c){
-    var sw = document.createElement("div");
-    sw.className = "color-swatch"+(c===selectedColor?" selected":"");
-    sw.style.background = c;
-    sw.onclick = function(){
-      selectedColor=c;
-      row.querySelectorAll(".color-swatch").forEach(function(s){s.classList.remove("selected");});
-      sw.classList.add("selected");
-    };
-    row.appendChild(sw);
-  });
-  openModal("modal-add-user");
-}
+/* Add user handled via code — see DEFAULT_USERS */
 
-function createUser(){
-  var name = document.getElementById("new-user-name").value.trim();
-  if(!name){ document.getElementById("new-user-name").focus(); return; }
-  /* Generate slug from name */
-  var slug = name.toLowerCase().replace(/\s+/g,"-").replace(/[^a-z0-9\-]/g,"");
-  /* Make unique if needed */
-  var existing = STORE.users.find(function(u){return u.slug===slug;});
-  if(existing) slug = slug+"-"+Math.random().toString(36).slice(2,5);
-  var user = {slug:slug,name:name,color:selectedColor,avatar:""};
-  STORE.users.push(user);
-  saveStore();
-  /* Show their personal link */
-  var link = getBaseUrl()+"?user="+slug;
-  document.getElementById("new-user-link").value = link;
-  document.getElementById("new-user-link-wrap").style.display = "block";
-  document.getElementById("add-user-btn").style.display = "none";
-  document.getElementById("add-user-cancel-btn").textContent = "Done";
-  buildAdminPanel();
-}
 
 /* =============================================================
    RESET MODALS (2-step)
